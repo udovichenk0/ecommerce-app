@@ -2,8 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+@layer base {
+  html {
+    font-family: Tajawal, system-ui, sans-serif;
+  }
+}
 
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+*{
+  box-sizing: border-box;
+}
 /* Document
    ========================================================================== */
 
@@ -13,7 +21,6 @@
  */
 
  html {
-  line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
@@ -26,6 +33,7 @@
 
 body {
   margin: 0;
+  background-color: #f9f9f9;
 }
 
 /**
@@ -168,7 +176,6 @@ select,
 textarea {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
 }
 

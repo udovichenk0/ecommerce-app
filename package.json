@@ -11,9 +11,13 @@
     "fix": "eslint ./src --fix"
   },
   "dependencies": {
+    "@types/node": "^18.11.4",
+    "@types/webfontloader": "^1.6.35",
     "eslint-plugin-import": "^2.26.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.38.0",
+    "react-router-dom": "^6.4.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
