@@ -6,7 +6,7 @@ import { SingUp } from '../buttons/SignUp/ui'
 
 export const Header = () => {
 	return (
-		<div className='pt-8'>
+		<div className='py-8'>
 			<div className='flex items-center container justify-between'>
 				<div className='flex items-center'>
 					<Link to={'/'}>
