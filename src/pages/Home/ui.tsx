@@ -7,7 +7,7 @@ export const Home = () => {
 	return (
 		<Layout>
 			<div className="container">
-				<section className=" bg-[#f3f3f3] flex items-center h-[400px] mb-28">
+				<section className=" bg-[#f3f3f3] flex items-center h-[400px]">
 					<div className=" basis-1/2 p-8">
 						<div className="text-[48px] font-light leading-[0px] mb-6"><span className="font-medium leading-[0px]">See</span>  everything</div>
 						<div className="text-[48px] font-light mb-5">with <span className="font-medium">Clarity</span> </div>
@@ -21,7 +21,8 @@ export const Home = () => {
 						<img src={woman} className='h-full bg-contain w-full object-cover' alt="" />
 					</div>
 				</section>
-				<Grid data={api.featured}/>
+				<Grid data={api.featured} title={'Featured Products'} link={'/'}/>
+				<Grid data={api.recommended} title={'Recommended Products'} link={'/'}/>
 			</div>
 		</Layout>
 	)

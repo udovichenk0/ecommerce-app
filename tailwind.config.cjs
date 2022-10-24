@@ -5,7 +5,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'auto-fit': 'repeat(auto-fit, minmax(270px, 1fr))'
+      }
+    },
     colors: {
       'main-dark': '#1a1a1a',
       'light-dark': '#4a4a4a',
