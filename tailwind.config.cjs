@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(270px, 1fr))',
-        'auto-row': 'auto 1fr auto'
+        'auto-row': 'auto 1fr auto',
       }
     },
     colors: {

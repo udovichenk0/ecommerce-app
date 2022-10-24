@@ -6,7 +6,7 @@ import { api } from "@/shared/api"
 export const Home = () => {
 	return (
 		<Layout>
-			<div className="container pb-28">
+			<div className="container pb-28 h-full">
 				<section className=" bg-[#f3f3f3] flex items-center h-[400px]">
 					<div className=" basis-1/2 p-8">
 						<div className="text-[48px] font-light leading-[0px] mb-6"><span className="font-medium leading-[0px]">See</span>  everything</div>

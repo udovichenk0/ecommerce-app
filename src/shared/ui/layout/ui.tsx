@@ -4,9 +4,9 @@ import { Header } from "../header";
 
 export const Layout = ({children}: PropsWithChildren) => {
 	return (
-		<div className="grid h-screen grid-row-auto-row">
+		<div className="grid h-screen grid-rows-[auto,1fr,auto] grid-cols-[100%]">
 			<Header/>
-			{children}
+				{children}
 			<Footer/>
 		</div>
 	)
