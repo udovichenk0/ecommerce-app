@@ -16,7 +16,8 @@ module.exports = {
       'light-dark': '#4a4a4a',
       'tr-dark': '#101010ba',
       'white': '#fff',
-      'lgrey': '#f2f2f2'
+      'lgrey': '#f2f2f2',
+      'error': '#eb2b2b'
     },
     container:{
       center: true

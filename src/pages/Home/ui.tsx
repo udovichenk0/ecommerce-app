@@ -1,4 +1,4 @@
-import { ShopNow } from "@/shared/ui/buttons/ShopNow/ui"
+import { ShopNow } from "@/shared/ui/buttons/ArrowBtn/ui"
 import { Layout } from "@/shared/ui/layout"
 import woman from '@/shared/assets/woman.png'
 import { Grid } from "@/widgets/grid"
@@ -15,7 +15,7 @@ export const Home = () => {
 						Buying eyewear should leave you happy and good-looking, with money in your pocket. 
 						Glasses, sunglasses, and contacts—we have got your eyes covered.
 						</p>
-						<ShopNow/>
+						<ShopNow title="Show Now"/>
 					</div>
 					<div className="h-full w-full bg-cover basis-1/2">
 						<img src={woman} className='h-full bg-contain w-full object-cover' alt="" />

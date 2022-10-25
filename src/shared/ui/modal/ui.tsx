@@ -8,14 +8,16 @@ type propsType = {
 
 export const Modal = ({children, title}:any) => {
 	return (
-		<div className="w-[800px] h-[400px] border-2 border-[#c5c5c5]">
-				<div className="p-8 text-main-dark font-bold text-xl">{title}</div>
+		<div className="w-[800px] h-auto border-2 border-[#c5c5c5]">
+			<div className="p-8">
+				<div className="text-main-dark font-bold text-xl mb-12">{title}</div>
 				{children}
+			</div>
 				<div className="w-full h-16 gap-7 border-t-2 border-[#c5c5c5] flex items-center justify-center bg-lgrey">
-					<p>Don't have an account?</p>
+					<p className="font-medium">Don't have an account?</p>
 					<SignIn/>
+					<div></div>
 				</div>
-			
 		</div>
 	)
 }
