@@ -2,15 +2,15 @@ import { Auth, GitHubSignIn, GoogleSignIn } from "@/features/auth"
 import { SignBtn } from "@/shared/ui/buttons/SignIn"
 import { Layout } from "@/shared/ui/layout"
 import { Modal } from "@/shared/ui/modal"
-export const SignIn = () => {
+export const SignUp = () => {
 	return (
 		<Layout>
 			<div className="h-full w-full flex justify-center items-center">
 				<Modal 
-				title={'Sign in to Salinaka'} 
-				form={<Auth.SignIn.AuthForm/>}
-				SignButton={<SignBtn title="Sign Up" link="/signup"/>}
-				text={`Don't have an account?`}
+				title={'Sign up to Salinaka'} 
+				form={<Auth.SignUp.AuthForm/>}
+				SignButton={<SignBtn title="Sign In" link="/signin"/>}
+				text='Have an account?'
 				>
 					<div className="w-[60%] flex flex-col gap-3">
 						<GitHubSignIn.GitHubAuth/>
@@ -22,4 +22,4 @@ export const SignIn = () => {
 	)
 }
 
-export default SignIn
+export default SignUp

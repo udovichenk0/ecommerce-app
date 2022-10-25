@@ -9,6 +9,7 @@ export const AuthForm = () => {
 		defaultValues: {
 			email: '',
 			password: '',
+			fullName: ''
 		}
 	})
 	const onSubmit = (data:any) => {
@@ -16,6 +17,25 @@ export const AuthForm = () => {
 	}
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full gap-1'>
+			<Controller
+			name='fullName'
+			control={control}
+			rules={{
+				required: "Full name is required",
+			}}
+			render={({ field: { onChange, value, ref, onBlur}}) => {
+				return <TextInput 
+				inputRef={ref}
+				value={value} 
+				onChange={onChange}
+				label={'Full name'}
+				placeholder={'John Doe'}
+				error={errors?.fullName}
+				onBlur={onBlur}
+				name={'fullName'}
+				/>
+			}}
+			/>
 			<Controller
 			name='email'
 			control={control}

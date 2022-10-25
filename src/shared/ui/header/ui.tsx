@@ -1,7 +1,7 @@
 import { ShopBag } from '@/shared/assets/bag'
 import logo from '@/shared/assets/logo.png'
 import { Link } from 'react-router-dom'
-import { SignIn } from '../buttons/SignIn'
+import { SignBtn } from '../buttons/SignIn'
 import { SingUp } from '../buttons/SignUp/ui'
 
 export const Header = () => {
@@ -10,7 +10,7 @@ export const Header = () => {
 			<div className='flex items-center container justify-between'>
 				<div className='flex items-center'>
 					<Link to={'/'}>
-					<div className='w-[179px] h-full'>
+					<div className='w-[179px] h-[65px]'>
 						<img src={logo} alt="Logo" className='w-full h-full' />
 					</div>
 				</Link>
@@ -30,7 +30,7 @@ export const Header = () => {
 					<ShopBag/>
 				</div>
 				<SingUp/>
-				<SignIn/>
+				<SignBtn title='Sign In' link='/signin'/>
 			</div>
 			</div>
 			

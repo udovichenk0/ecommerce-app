@@ -1,12 +1,12 @@
 import { PropsWithChildren } from "react"
-import { SignIn } from "../buttons/SignIn"
+import { SignBtn } from "../buttons/SignIn"
 
 type propsType = {
 	title: string
 	children: PropsWithChildren
 }
 
-export const Modal = ({form, title, buttons, children}:any) => {
+export const Modal = ({form, title, children, SignButton, text}:any) => {
 	return (
 		<div className="w-[800px] h-auto border-2 border-[#c5c5c5]">
 				<div className="text-main-dark font-bold text-xl p-8">{title}</div>
@@ -24,8 +24,8 @@ export const Modal = ({form, title, buttons, children}:any) => {
 				{children}
 			</div>
 				<div className="w-full h-16 gap-7 border-t-2 border-[#c5c5c5] flex items-center justify-center bg-lgrey">
-					<p className="font-medium">Don't have an account?</p>
-					<SignIn/>
+					<p className="font-medium">{text}</p>
+					{SignButton}
 				</div>
 		</div>
 	)
