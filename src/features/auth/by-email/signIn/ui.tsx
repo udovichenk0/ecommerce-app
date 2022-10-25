@@ -1,11 +1,10 @@
 import { ShopNow } from "@/shared/ui/buttons/ArrowBtn/ui"
 import { TextInput } from "@/shared/ui/textInput"
-import { ErrorResponse } from "@remix-run/router"
 import { Controller, useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 
 export const AuthForm = () => {
-	const {register, handleSubmit, control, formState:{errors}} = useForm({
+	const {handleSubmit, control, formState:{errors}} = useForm({
 		mode: 'onBlur',
 		defaultValues: {
 			email: '',
@@ -16,7 +15,7 @@ export const AuthForm = () => {
 		console.log(data)
 	}
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-[350px] gap-3'>
+		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full gap-3'>
 			<Controller
 			name='email'
 			control={control}
