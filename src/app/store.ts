@@ -11,4 +11,4 @@ export const store = configureStore({
 	}
 })
 
-epicMiddleware.run()
+// epicMiddleware.run()
