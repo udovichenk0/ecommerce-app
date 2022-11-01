@@ -1,5 +1,4 @@
 import { PropsWithChildren } from "react"
-import { SignBtn } from "../buttons/SignIn"
 
 type propsType = {
 	title: string

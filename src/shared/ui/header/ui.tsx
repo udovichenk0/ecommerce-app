@@ -3,6 +3,7 @@ import logo from '@/shared/assets/logo.png'
 import { Link } from 'react-router-dom'
 import { SignBtn } from '../buttons/SignIn'
 import { SingUp } from '../buttons/SignUp/ui'
+import { links } from './config'
 
 export const Header = () => {
 	return (
@@ -16,10 +17,11 @@ export const Header = () => {
 				</Link>
 				<nav>
 					<ul className='flex items-center text-[#101010ba] font-medium'>
-						<li className='py-[10px] px-4 text-main-dark'><Link to={'/'}>Home</Link></li>
-						<li className='py-[10px] px-4'><Link to={'/'}>Shop</Link></li>
-						<li className='py-[10px] px-4'><Link to={'/'}>Featured</Link></li>
-						<li className='py-[10px] px-4'><Link to={'/'}>Recommended</Link></li>
+						{links.map(({link, title}) => {
+							return (
+								<li className='py-[10px] px-4'><Link to={link}>{title}</Link></li>
+							)
+						})}
 					</ul>
 				</nav>
 				</div>
