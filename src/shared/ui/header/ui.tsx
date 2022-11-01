@@ -19,7 +19,7 @@ export const Header = () => {
 					<ul className='flex items-center text-[#101010ba] font-medium'>
 						{links.map(({link, title}) => {
 							return (
-								<li className='py-[10px] px-4'><Link to={link}>{title}</Link></li>
+								<li key={title} className='py-[10px] px-4'><Link to={link}>{title}</Link></li>
 							)
 						})}
 					</ul>
