@@ -1,3 +1,5 @@
+import { initializeApp } from "@firebase/app";
+import {getFirestore} from "firebase/firestore"
 const firebaseConfig = {
 	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
 	authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -7,6 +9,7 @@ const firebaseConfig = {
 	messagingSenderId: import.meta.env.VITE_FIREBASE_MSG_SENDER_ID,
 	appId: import.meta.env.VITE_FIREBASE_APP_ID
   };
-  
-  export default firebaseConfig;
+export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app)
+export default firebaseConfig;
 
