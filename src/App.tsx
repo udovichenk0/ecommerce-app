@@ -5,7 +5,7 @@ import { routes } from "./pages";
 function App() {
   return (
     <div className="App">
-      <Suspense>
+      <Suspense >
         <Routes>
           <Route>
             {routes.map(({path, Component})=> {

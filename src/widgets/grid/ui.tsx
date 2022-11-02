@@ -1,4 +1,4 @@
-import { Card } from "@/entities/card"
+import { Card } from "@/entities/card/card-home"
 import { Panel } from "@/shared/ui/panel/ui"
 
 type propsType = {

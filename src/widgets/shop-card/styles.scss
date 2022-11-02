@@ -1,0 +1,8 @@
+.card{
+	&:hover{
+		.image{
+			width: 80%;
+			height: auto;
+		}
+	}
+}

@@ -3,6 +3,7 @@ import { Layout } from "@/shared/ui/layout"
 import woman from '@/shared/assets/woman.png'
 import { Grid } from "@/widgets/grid"
 import { api } from "@/shared/api"
+
 export const Home = () => {
 	return (
 		<Layout>

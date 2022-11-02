@@ -1,8 +1,10 @@
 import { api } from "@/shared/api";
 import { createBaseSelector } from "@/shared/lib/redux-std";
-import { Action, createSlice, Observable, PayloadAction } from "@reduxjs/toolkit";
+import { Action, createSelector, createSlice, Observable, PayloadAction } from "@reduxjs/toolkit";
 import { ofType } from "redux-observable";
-import { exhaustMap, map, of } from "rxjs";
+import { delay, exhaustMap, map, of } from "rxjs";
+import { productType } from "./types";
+
 
 const initialState = {
 	products: [],
@@ -16,11 +18,12 @@ const slice = createSlice({
 	name: reducerPath,
 	initialState,
 	reducers: {
-		fetchingStart(state, action: PayloadAction<any>){
+		fetchingStart(state){
 			state.isLoading = true
 		},
-		fetchingSuccess(state:any, action){
-			state.products.push(action.payload)
+		fetchingSuccess(state:any, action: PayloadAction<productType[]>){
+
+			state.products.push(...action.payload)
 			state.isLoading = false
 		},
 	}
@@ -28,17 +31,29 @@ const slice = createSlice({
 
 const getProducts = (action$: any): any => action$.pipe(
 	ofType(reducerPath + '/fetchingStart'),
+	delay(1000),
 	exhaustMap(() => of(api.methods.getAll()).pipe(
-		map(resp => console.log(resp))
+		map(resp => slice.actions.fetchingSuccess(resp))
 	)),
 )
 
 const baseSelector = createBaseSelector<State>(reducerPath)
-
+const products = createSelector(
+	baseSelector,
+	(state) => state.products,
+)
+const isFetching = createSelector(
+	baseSelector,
+	(state) => state.isLoading,
+)
 export const actions = {
 	startFetching: slice.actions.fetchingStart
 }
 
+export const selectors = {
+	products,
+	isFetching
+}
 
 export const epics = {
 	getProducts
