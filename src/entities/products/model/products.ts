@@ -1,14 +1,15 @@
-import { api } from "@/shared/api";
+import { firebase } from "@/shared/api";
 import { createBaseSelector } from "@/shared/lib/redux-std";
-import { Action, createSelector, createSlice, Observable, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ofType } from "redux-observable";
-import { delay, exhaustMap, map, of } from "rxjs";
-import { productType } from "./types";
+import { catchError, exhaustMap, from, map, tap } from "rxjs";
 
 
 const initialState = {
 	products: [],
-	isLoading: false
+	isLoading: false,
+	lastRefKey: null,
+	total: 0
 }
 
 const reducerPath = 'entity/products'
@@ -18,23 +19,31 @@ const slice = createSlice({
 	name: reducerPath,
 	initialState,
 	reducers: {
-		fetchingStart(state){
+		fetchingStart(state, action: PayloadAction<null | string>){
 			state.isLoading = true
 		},
-		fetchingSuccess(state:any, action: PayloadAction<productType[]>){
-
-			state.products.push(...action.payload)
+		fetchingSuccess(state:any, action: any){
+			state.products.push(...action.payload.products)
 			state.isLoading = false
+			state.lastRefKey = action.payload.lastRef
+			state.total = action.payload.total ?? state.total
 		},
 	}
 })
 
-const getProducts = (action$: any): any => action$.pipe(
+const getProducts = (action$:any):any=> action$.pipe(
 	ofType(reducerPath + '/fetchingStart'),
-	delay(1000),
-	exhaustMap(() => of(api.methods.getAll()).pipe(
-		map(resp => slice.actions.fetchingSuccess(resp))
-	)),
+	exhaustMap((action:PayloadAction<null | string>) => from(firebase.getProducts(action.payload)).pipe(
+		map((response:any) =>  
+		slice.actions.fetchingSuccess({
+			products: response.products, 
+			lastRef: response.lastRef,
+			total: response.total,
+		})
+		),
+		catchError((err) => {throw new Error(err)})
+	)
+	)
 )
 
 const baseSelector = createBaseSelector<State>(reducerPath)
@@ -46,13 +55,20 @@ const isFetching = createSelector(
 	baseSelector,
 	(state) => state.isLoading,
 )
+
+const lastRefKey = createSelector(
+	baseSelector,
+	(state) => state.lastRefKey
+)
+
 export const actions = {
 	startFetching: slice.actions.fetchingStart
 }
 
 export const selectors = {
 	products,
-	isFetching
+	isFetching,
+	lastRefKey
 }
 
 export const epics = {

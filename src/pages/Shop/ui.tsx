@@ -6,12 +6,13 @@ import { ShopCard } from "@/widgets/shop-card"
 import { useEffect } from "react"
 export const ShopPage = () => {
 	const fetchProducts = useAction(productModel.actions.startFetching)
-	
-	useEffect(() => {
-		fetchProducts()
-	}, [])
 	const products = useAppSelector(productModel.selectors.products)
 	const isFetching = useAppSelector(productModel.selectors.isFetching)
+	const lastRefKey = useAppSelector(productModel.selectors.lastRefKey)
+	useEffect(() => {
+		fetchProducts(lastRefKey)
+	}, [])
+	console.log(products)
 	return (	
 		<Layout>
 			<div className="container">
@@ -25,12 +26,12 @@ export const ShopPage = () => {
 							</div>
 						)
 					})
-					: products.map(({glasses, title,subtitle, price,}, id) => {
+					: products.map(({image, name,subtitle, price,}, id) => {
 					return (
 						<div key={id}>
 							<ShopCard 
-							glasses={glasses} 
-							title={title} 
+							image={image} 
+							name={name} 
 							subtitle={subtitle}
 							price={price}
 							isFetching={isFetching}
