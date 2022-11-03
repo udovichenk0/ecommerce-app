@@ -5,9 +5,7 @@ import { routes } from "./pages";
 import { getDatabase } from "firebase/database";
 import firebaseConfig from './shared/api/config'
 import { firebase } from "./shared/api";
-
 function App() {
-  firebase.getProducts()
   return (
     <div className="App">
       <Suspense >

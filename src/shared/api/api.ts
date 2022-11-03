@@ -6,7 +6,7 @@ import buldit from '@/shared/assets/buldit.png'
 import sipon from '@/shared/assets/sipon.png'
 export const featured = [
 	{
-		glasses: burnikk,
+		glasses: 'https://firebasestorage.googleapis.com/v0/b/e-commerce-app-b623d.appspot.com/o/products%2Fbalakubak%20.png?alt=media&token=d779b1cf-a444-4c1e-b6b0-95220b3c46b9',
 		title: 'Balakubak',
 		subtitle: 'Sexbomb',
 		id: 1,

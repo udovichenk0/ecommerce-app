@@ -20,7 +20,9 @@ export const ShopPage = () => {
 					? 
 					new Array(12).fill('').map((el,id) => {
 						return (
+							<div key={id}>
 								<Skeleton/>
+							</div>
 						)
 					})
 					: products.map(({glasses, title,subtitle, price,}, id) => {
