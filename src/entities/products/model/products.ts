@@ -2,7 +2,7 @@ import { firebase } from "@/shared/api";
 import { createBaseSelector } from "@/shared/lib/redux-std";
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ofType } from "redux-observable";
-import { catchError, exhaustMap, from, map, tap } from "rxjs";
+import { catchError, exhaustMap, filter, from, map, tap, withLatestFrom } from "rxjs";
 
 
 const initialState = {
@@ -23,7 +23,7 @@ const slice = createSlice({
 			state.isLoading = true
 		},
 		fetchingSuccess(state:any, action: any){
-			state.products.push(...action.payload.products)
+			state.products = [...state.products, ...action.payload.products]
 			state.isLoading = false
 			state.lastRefKey = action.payload.lastRef
 			state.total = action.payload.total ?? state.total
@@ -31,8 +31,9 @@ const slice = createSlice({
 	}
 })
 
-const getProducts = (action$:any):any=> action$.pipe(
+const getProducts = (action$:any, state$:any):any=> action$.pipe(
 	ofType(reducerPath + '/fetchingStart'),
+	filter((action:any) =>typeof action.payload === 'string' || action.payload === null),
 	exhaustMap((action:PayloadAction<null | string>) => from(firebase.getProducts(action.payload)).pipe(
 		map((response:any) =>  
 		slice.actions.fetchingSuccess({

@@ -1,4 +1,5 @@
 import { productModel } from "@/entities/products"
+import { LoadMore } from "@/features/loadmore"
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"
 import { Layout } from "@/shared/ui/layout"
 import { Skeleton } from "@/shared/ui/skeleton"
@@ -12,33 +13,37 @@ export const ShopPage = () => {
 	useEffect(() => {
 		fetchProducts(lastRefKey)
 	}, [])
-	console.log(products)
 	return (	
 		<Layout>
-			<div className="container">
-				<div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] w-full justify-center gap-5">
-					{!products.length
-					? 
-					new Array(12).fill('').map((el,id) => {
+			<div className="container py-20">
+				<div className="mb-16">
+					<div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] w-full justify-center gap-5">
+						{!products.length
+						? 
+						new Array(12).fill('').map((el,id) => {
+							return (
+								<div key={id}>
+									<Skeleton/>
+								</div>
+							)
+						})
+						: products.map(({image, name,subtitle, price,}, id) => {
 						return (
 							<div key={id}>
-								<Skeleton/>
+								<ShopCard 
+								image={image} 
+								name={name} 
+								subtitle={subtitle}
+								price={price}
+								isFetching={isFetching}
+								/>
 							</div>
 						)
-					})
-					: products.map(({image, name,subtitle, price,}, id) => {
-					return (
-						<div key={id}>
-							<ShopCard 
-							image={image} 
-							name={name} 
-							subtitle={subtitle}
-							price={price}
-							isFetching={isFetching}
-							/>
-						</div>
-					)
-				})}
+					})}
+					</div>
+				</div>
+				<div className="w-full flex justify-center">
+				{lastRefKey && <LoadMore method={fetchProducts} lastRefKey={lastRefKey}/>}
 				</div>
 			</div>
 		</Layout>

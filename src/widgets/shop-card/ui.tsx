@@ -14,7 +14,6 @@ export const ShopCard = ({
 	subtitle, 
 	price,
 	isFetching}:IProp) => {
-		console.log(isFetching)
 	return (
 		<Link to={'/'}>
 			<div className="border-2 border-[#e1e1e1] bg-white  min-h-[314px] card ">
