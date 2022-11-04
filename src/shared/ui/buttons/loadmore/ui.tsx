@@ -1,7 +1,8 @@
-export const UIloadmore = ({onLoadMore}:any) => {
+export const UIloadmore = ({onLoadMore, isFetching}:any) => {
 	return (
-		<button 
+		<button
+		disabled={isFetching}
 		className="bg-black py-5 px-6 text-white font-bold text-lg"
-		onClick={onLoadMore}>Show more items</button>
+		onClick={onLoadMore}>{isFetching? 'Fetching items...' : 'Show more items'}</button>
 	)
 }

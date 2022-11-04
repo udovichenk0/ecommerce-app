@@ -35,7 +35,8 @@ const getProducts = async (lastRefKey: any) => {
 					data.docs.forEach((doc) => products.push({ id: doc.id, ...doc.data()}))
 					const total = (data.size)
 					const lastRef = data.docs[data.size - 1].id
-					return res({products, lastRef, total})
+					// return res({products, lastRef, total})
+					throw new Error('Error')
 				}
 				catch(err: any){
 					rej(err.message || 'Faild to fetch products :(')
