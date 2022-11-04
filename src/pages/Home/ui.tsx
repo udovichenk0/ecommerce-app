@@ -3,8 +3,17 @@ import { Layout } from "@/shared/ui/layout"
 import woman from '@/shared/assets/woman.png'
 import { Grid } from "@/widgets/grid"
 import { api } from "@/shared/api"
+import { useGetFeatureProducts } from "@/shared/lib/useGetFeatureProducts"
+import { useEffect } from "react"
+import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 
 export const Home = () => {
+	const {featured, getFeatured, isFeatureLoading} = useGetFeatureProducts()
+	const {getRecommended, recommended, isRecommendLoading} = useGetRecommendedProducts()
+	useEffect(() => {
+		getFeatured()
+		getRecommended()
+	}, [])
 	return (
 		<Layout>
 			<div className="container pb-28 h-full">
@@ -22,8 +31,8 @@ export const Home = () => {
 						<img src={woman} className='h-full bg-contain w-full object-cover' alt="" />
 					</div>
 				</section>
-				<Grid data={api.featured} title={'Featured Products'} link={'/'}/>
-				<Grid data={api.recommended} title={'Recommended Products'} link={'/'}/>
+				<Grid data={featured} title={'Featured Products'} link={'/'}/>
+				<Grid data={recommended} title={'Recommended Products'} link={'/'}/>
 			</div>
 		</Layout>
 	)

@@ -24,7 +24,7 @@ const getProducts = async (lastRefKey: any) => {
 					res({products, lastKey})
 				}
 				catch(err: any){
-					rej(err.message || 'Faild to fetch products :(')
+					rej(err.message || 'Faild to fetch products')
 				}	
 			}
 			else{
@@ -35,28 +35,26 @@ const getProducts = async (lastRefKey: any) => {
 					data.docs.forEach((doc) => products.push({ id: doc.id, ...doc.data()}))
 					const total = (data.size)
 					const lastRef = data.docs[data.size - 1].id
-					// return res({products, lastRef, total})
-					throw new Error('Error')
+					return res({products, lastRef, total})
 				}
 				catch(err: any){
-					rej(err.message || 'Faild to fetch products :(')
+					rej(err.message || 'Faild to fetch products')
 				}
 			}
 		})()
 	})
 }
 
-const getFeaturedProducts = async () => {
-	const docs:any = []
-	const q = query(collection(db,'products'), where('isFeatured', '==', true), limit(11))
-	const data = await getDocs(q)
-	return data
-}
+const getFeaturedProducts = async () => 
+await getDocs(query(collection(db,'products'), where('isFeatured', '==', true), limit(11)))
 
+const getRecommendedProducts = async () => 
+await getDocs(query(collection(db, 'products'), where('isRecommended', '==', true), limit(11)))
 
 
 export {
 	getProducts,
 	generateKey,
-	getFeaturedProducts
+	getFeaturedProducts,
+	getRecommendedProducts
 }
