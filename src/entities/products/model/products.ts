@@ -47,7 +47,6 @@ const getProducts = (action$:any):any=> action$.pipe(
 			total: response.total,
 		})
 		),
-		timeout(1000),
 		catchError((err) => of(err).pipe(
 			map(() => slice.actions.fetchingFail('Failed to fetch products! :('))
 		))

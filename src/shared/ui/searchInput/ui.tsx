@@ -1,14 +1,14 @@
 import { SearchSvg } from "@/shared/assets/searchSvg"
 import { Controller, useForm } from "react-hook-form"
 
-export const SearchInput = () => {
+export const SearchInput = ({method}:any) => {
 	const {register, handleSubmit, control} = useForm({
 		defaultValues: {
 			search: ''
 		}
 	})
-	function onclick(){
-		console.log(1)
+	function onclick(data:any){
+		method(data.search)
 	}
 	return (
 		<form

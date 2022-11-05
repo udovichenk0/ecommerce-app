@@ -9,7 +9,6 @@ type propsType = {
 }
 
 export const Grid = ({data, title, link}:propsType) => {
-	console.log(data)
 	return (
 		<div className="px-20 mt-28">
 			<Panel title={title} link={link}/>

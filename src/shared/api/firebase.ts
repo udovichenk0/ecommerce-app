@@ -52,9 +52,27 @@ const getRecommendedProducts = async () =>
 await getDocs(query(collection(db, 'products'), where('isRecommended', '==', true), limit(11)))
 
 
+const searchProducts = async (searchName:string) => {
+	return new Promise((res,rej) => {
+		(async () => {
+			try {
+				const searchItems: DocumentData[] = []
+				const data = await getDocs(query(collection(db,'products'), where('name', '==', searchName), limit(11)))
+				data.docs.forEach(doc => {
+					searchItems.push(doc.data())
+				})	
+				res(searchItems)
+			} catch (error:any) {
+				rej(error.message || 'Something went wrong')
+			}
+		})()
+	})
+}
+
 export {
 	getProducts,
 	generateKey,
 	getFeaturedProducts,
-	getRecommendedProducts
+	getRecommendedProducts,
+	searchProducts
 }
