@@ -1,6 +1,6 @@
 import { db, app } from "./config"
 import { collection, doc, setDoc, getDoc, getDocs, query, orderBy, where, limit, startAfter, FieldPath, documentId, DocumentData, CollectionReference, Query, QuerySnapshot  } from "firebase/firestore";
-import { ProductType } from "./types";
+
 
 const createCollection = <T = DocumentData>(collectionName: string) => {
 	return collection(db, collectionName) as CollectionReference<T>
@@ -13,7 +13,7 @@ const getProducts = async (lastRefKey: any) => {
 		(async () => {
 			if(lastRefKey){
 				try{
-					const products:ProductType[] = []
+					const products:DocumentData[] = []
 					const q = query(createCollection('products'), orderBy(documentId()), startAfter(lastRefKey), limit(4))
 					const data = await getDocs(q)
 					data.docs.forEach((doc:any) => {
@@ -29,7 +29,7 @@ const getProducts = async (lastRefKey: any) => {
 			}
 			else{
 				try{
-					const products:ProductType[] = []
+					const products:DocumentData[] = []
 					const q = query(createCollection('products'), limit(4))
 					const data = await getDocs(q)
 					data.docs.forEach((doc) => products.push({ id: doc.id, ...doc.data()}))

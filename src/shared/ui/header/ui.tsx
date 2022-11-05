@@ -1,3 +1,4 @@
+import { SearchProduct } from '@/features/search'
 import { ShopBag } from '@/shared/assets/bag'
 import logo from '@/shared/assets/logo.png'
 import { Link } from 'react-router-dom'
@@ -27,7 +28,7 @@ export const Header = () => {
 				</div>
 				
 			<div className='flex items-center'>
-				<input type="text" />
+				<SearchProduct/>
 				<div className='w-6 mr-12'>
 					<ShopBag/>
 				</div>

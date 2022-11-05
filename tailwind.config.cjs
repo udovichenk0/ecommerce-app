@@ -21,7 +21,8 @@ module.exports = {
       'error': '#eb2b2b'
     },
     container:{
-      center: true
+      center: true,
+      padding: '20px'
     }
   },
   plugins: [],
