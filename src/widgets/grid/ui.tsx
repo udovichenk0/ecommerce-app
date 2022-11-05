@@ -10,11 +10,11 @@ type propsType = {
 
 export const Grid = ({data, title, link}:propsType) => {
 	return (
-		<div className="px-20 mt-28">
+		<div className="px-10 mt-28">
 			<Panel title={title} link={link}/>
-			<div className="grid grid-cols-auto-fit w-full justify-center gap-5">
+			<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">
 				{
-					data?.map(({name, image, subtitle}:ProductType, id:number) => {
+					data?.map(({name, image, subtitle}:any, id:number) => {
 						return (
 							<Card key={id} title={name} glasses={image} subtitle={subtitle}/>
 						)

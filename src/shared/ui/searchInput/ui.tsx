@@ -1,14 +1,20 @@
 import { SearchSvg } from "@/shared/assets/searchSvg"
 import { Controller, useForm } from "react-hook-form"
-
-export const SearchInput = ({method}:any) => {
-	const {register, handleSubmit, control} = useForm({
+import { useNavigate } from "react-router-dom"
+interface IProps{
+	method: (sInput: string) => void
+}
+export const SearchInput = ({method}:IProps) => {
+	const navigate = useNavigate()
+	const {handleSubmit, control} = useForm<{search: string}>({
 		defaultValues: {
 			search: ''
 		}
 	})
-	function onclick(data:any){
+	function onclick(data:{search: string}){
+		console.log(data)
 		method(data.search)
+		navigate('/search')
 	}
 	return (
 		<form

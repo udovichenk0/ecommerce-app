@@ -22,7 +22,7 @@ export const ShopPage = () => {
 									message={requestStatus || 'Something went wrong :('} 
 									method={() => fetchProducts(lastRefKey)}/>}
 				<div className="mb-16">
-					<div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] w-full justify-center gap-5">
+					<div className="grid grid-cols-auto-fit w-full justify-center gap-5">
 						{!products.length
 						? 
 						new Array(12).fill('').map((_,id) => {

@@ -46,7 +46,7 @@ const getProducts = async (lastRefKey: any) => {
 }
 
 const getFeaturedProducts = async () => 
-await getDocs(query(collection(db,'products'), where('isFeatured', '==', true), limit(11)))
+await getDocs(query(collection(db,'products'), where('isFeatured', '==', true), limit(1)))
 
 const getRecommendedProducts = async () => 
 await getDocs(query(collection(db, 'products'), where('isRecommended', '==', true), limit(11)))
@@ -57,13 +57,15 @@ const searchProducts = async (searchName:string) => {
 		(async () => {
 			try {
 				const searchItems: DocumentData[] = []
-				const data = await getDocs(query(collection(db,'products'), where('name', '==', searchName), limit(11)))
+				if(searchName[0].toUpperCase() != searchName[0]) searchName = searchName[0].toUpperCase() + searchName.slice(1)
+				const data = await getDocs(query(collection(db,'products'), where('name', '>=', searchName), where('name', '<=', searchName+ '\uf8ff'), limit(11)))
 				data.docs.forEach(doc => {
 					searchItems.push(doc.data())
 				})	
+				// throw new Error()
 				res(searchItems)
 			} catch (error:any) {
-				rej(error.message || 'Something went wrong')
+				rej(error.message)
 			}
 		})()
 	})
