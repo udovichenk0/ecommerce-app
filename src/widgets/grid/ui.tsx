@@ -14,9 +14,9 @@ export const Grid = ({data, title, link}:propsType) => {
 			<Panel title={title} link={link}/>
 			<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">
 				{
-					data?.map(({name, image, subtitle}:any, id:number) => {
+					data?.map(({name, image, subtitle, id}:any, ind: number) => {
 						return (
-							<Card key={id} title={name} glasses={image} subtitle={subtitle}/>
+							<Card key={ind} title={name} glasses={image} id={id} subtitle={subtitle}/>
 						)
 					})
 				}

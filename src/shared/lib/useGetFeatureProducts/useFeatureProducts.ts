@@ -14,7 +14,7 @@ export const useGetFeatureProducts = () => {
 		try {
 			if(data.empty) setLoading(false)
 			else{
-				data.docs.forEach(doc => items.push(doc.data()))
+				data.docs.forEach(doc => items.push({...doc.data(), id:doc.id}))
 				setFeatured(items)
 			}
 		} catch (error) {

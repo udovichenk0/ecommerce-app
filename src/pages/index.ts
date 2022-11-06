@@ -27,7 +27,7 @@ export const routes = [
 		Component: SearchLazyPage
 	},
 	{
-		path: '/product',
+		path: '/product/:id',
 		Component: ProductLazyPage
 	},
 ]
