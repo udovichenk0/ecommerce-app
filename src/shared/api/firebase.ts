@@ -46,7 +46,7 @@ const getProducts = async (lastRefKey: any) => {
 }
 
 const getFeaturedProducts = async () => 
-await getDocs(query(collection(db,'products'), where('isFeatured', '==', true), limit(1)))
+await getDocs(query(collection(db,'products'), where('isFeatured', '==', true), limit(11)))
 
 const getRecommendedProducts = async () => 
 await getDocs(query(collection(db, 'products'), where('isRecommended', '==', true), limit(11)))

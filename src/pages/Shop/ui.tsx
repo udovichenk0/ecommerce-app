@@ -7,23 +7,26 @@ import { Skeleton } from "@/shared/ui/skeleton"
 import { ShopCard } from "@/widgets/shop-card"
 import { useEffect } from "react"
 export const ShopPage = () => {
+	const selectors = ({
+		products: useAppSelector(productModel.selectors.products),
+		isFetching: useAppSelector(productModel.selectors.isFetching),
+		lastRefKey: useAppSelector(productModel.selectors.lastRefKey),
+		requestStatus: useAppSelector(productModel.selectors.requestStatus)
+	})
 	const fetchProducts = useAction(productModel.actions.startFetching)
-	const products = useAppSelector(productModel.selectors.products)
-	const isFetching = useAppSelector(productModel.selectors.isFetching)
-	const lastRefKey = useAppSelector(productModel.selectors.lastRefKey)
-	const requestStatus = useAppSelector(productModel.selectors.requestStatus)
 	useEffect(() => {
-		fetchProducts(lastRefKey)
+		if(!selectors.lastRefKey)
+		fetchProducts(selectors.lastRefKey)
 	}, [])
 	return (	
 		<Layout>
 			<div className="container py-20 relative">
-				{requestStatus && <ErrorNotifyDisplay 
-									message={requestStatus || 'Something went wrong :('} 
-									method={() => fetchProducts(lastRefKey)}/>}
+				{selectors.requestStatus && <ErrorNotifyDisplay 
+									message={selectors.requestStatus || 'Something went wrong :('} 
+									method={() => fetchProducts(selectors.lastRefKey)}/>}
 				<div className="mb-16">
 					<div className="grid grid-cols-auto-fit w-full justify-center gap-5">
-						{!products.length
+						{!selectors.products.length
 						? 
 						new Array(12).fill('').map((_,id) => {
 							return (
@@ -32,7 +35,7 @@ export const ShopPage = () => {
 								</div>
 							)
 						})
-						: products.map(({image, name,subtitle, price}, id) => {
+						: selectors.products.map(({image, name,subtitle, price}, id) => {
 						return (
 							<div key={id}>
 								<ShopCard 
@@ -40,7 +43,7 @@ export const ShopPage = () => {
 								name={name} 
 								subtitle={subtitle}
 								price={price}
-								isFetching={isFetching}
+								isFetching={selectors.isFetching}
 								/>
 							</div>
 						)
@@ -48,9 +51,9 @@ export const ShopPage = () => {
 					</div>
 				</div>
 				<div className="w-full flex justify-center">
-				{lastRefKey && <UIloadmore 
-								onLoadMore={() => fetchProducts(lastRefKey)} 
-								isFetching={isFetching}
+				{selectors.lastRefKey && <UIloadmore 
+								onLoadMore={() => fetchProducts(selectors.lastRefKey)} 
+								isFetching={selectors.isFetching}
 								/>}
 				</div>
 			</div>

@@ -12,6 +12,7 @@ export const Home = () => {
 	const {getRecommended, recommended, isRecommendLoading} = useGetRecommendedProducts()
 	useEffect(() => {
 		getFeatured()
+		console.log(featured)
 		getRecommended()
 	}, [])
 	return (
