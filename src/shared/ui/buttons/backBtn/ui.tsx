@@ -5,7 +5,7 @@ export const BackButton = () => {
 
 	return (
 		<button
-		className="font-bold text-lg"
+		className="font-bold text-lg bg-main-dark text-white py-3 px-8"
 		onClick={() => navigate(-1)}>
 			Back
 		</button>

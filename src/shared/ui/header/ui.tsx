@@ -8,7 +8,7 @@ import { links } from './config'
 
 export const Header = () => {
 	return (
-		<div className='py-8'>
+		<div className='pt-8 pb-20'>
 			<div className='flex items-center container justify-between'>
 				<div className='flex items-center'>
 					<Link to={'/'}>

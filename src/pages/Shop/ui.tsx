@@ -20,7 +20,7 @@ export const ShopPage = () => {
 	}, [])
 	return (	
 		<Layout>
-			<div className="container py-20 relative">
+			<div className="container relative">
 				{selectors.requestStatus && <ErrorNotifyDisplay 
 									message={selectors.requestStatus || 'Something went wrong :('} 
 									method={() => fetchProducts(selectors.lastRefKey)}/>}
