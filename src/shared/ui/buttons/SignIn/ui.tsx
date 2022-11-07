@@ -1,4 +1,3 @@
-import React from "react"
 import { useNavigate } from "react-router-dom"
 
 export const SignBtn = ({title, link}:{title:string, link: string}) => {

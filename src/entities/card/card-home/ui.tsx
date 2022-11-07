@@ -1,4 +1,3 @@
-import React from "react"
 import { Link } from "react-router-dom"
 export const Card = ({glasses, title, subtitle, id}:any) => {
 	return (

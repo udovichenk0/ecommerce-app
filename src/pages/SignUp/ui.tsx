@@ -1,5 +1,3 @@
-import React from "react"
-
 import { Auth, GitHubSignIn, GoogleSignIn } from "@/features/auth"
 import { SignBtn } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layout"
@@ -11,7 +9,7 @@ export const SignUp = () => {
 			<div className="h-full w-full flex justify-center items-center">
 				<Modal 
 				title={'Sign up to Salinaka'} 
-				form={<Auth.SignUp.AuthForm/>}
+				form={<Auth.SignUp.AuthSignUpForm/>}
 				SignButton={<SignBtn title="Sign In" link="/signin"/>}
 				text='Have an account?'
 				>

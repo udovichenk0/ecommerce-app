@@ -1,5 +1,3 @@
-import React from "react"
-
 import { searchModel } from "@/features/search"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { Layout } from "@/shared/ui/layout"

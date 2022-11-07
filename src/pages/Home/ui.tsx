@@ -1,4 +1,4 @@
-import React,{ useEffect } from "react"
+import { useEffect } from "react"
 
 // eslint-disable-next-line import/no-internal-modules
 import woman from '@/shared/assets/woman.png'

@@ -1,11 +1,10 @@
-import React from "react"
 import { Controller, useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 
 import { ShopNow } from "@/shared/ui/buttons"
 import { TextInput } from "@/shared/ui/textInput"
 
-export const AuthForm = () => {
+export const AuthSignUpForm = () => {
 	const {handleSubmit, control, formState:{errors}} = useForm({
 		mode: 'onBlur',
 		defaultValues: {

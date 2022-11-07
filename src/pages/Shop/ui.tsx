@@ -1,4 +1,4 @@
-import React,{ useEffect } from "react"
+import { useEffect } from "react"
 
 import { productModel } from "@/entities/products"
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"

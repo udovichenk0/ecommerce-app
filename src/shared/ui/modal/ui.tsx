@@ -1,6 +1,3 @@
-import React from "react"
-
-
 export const Modal = ({form, title, children, SignButton, text}:any) => {
 	return (
 		<div className="w-[800px] h-auto border-2 border-[#c5c5c5]">

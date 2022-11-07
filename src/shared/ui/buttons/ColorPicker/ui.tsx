@@ -1,4 +1,3 @@
-import React from "react"
 export const ColorPicker = ({colors, onSelectColor}:any) => {
 	return (
 		colors?.map((color:any, ind:number) => {

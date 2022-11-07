@@ -1,5 +1,3 @@
-import React from "react"
-
 import { GoogleBtn } from "@/shared/ui/buttons"
 
 export const GoogleAuth = () => {

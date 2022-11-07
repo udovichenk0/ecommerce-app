@@ -1,4 +1,3 @@
-import React from 'react'
 type propsType = {
 	onChange: any
 	value: any
