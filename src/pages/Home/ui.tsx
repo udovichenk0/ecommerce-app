@@ -1,15 +1,14 @@
+import React,{ useEffect } from "react"
 import { ShopNow } from "@/shared/ui/buttons/ArrowBtn/ui"
 import { Layout } from "@/shared/ui/layout"
 import woman from '@/shared/assets/woman.png'
 import { Grid } from "@/widgets/grid"
-import { api } from "@/shared/api"
 import { useGetFeatureProducts } from "@/shared/lib/useGetFeatureProducts"
-import { useEffect } from "react"
 import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 
 export const Home = () => {
-	const {featured, getFeatured, isFeatureLoading} = useGetFeatureProducts()
-	const {getRecommended, recommended, isRecommendLoading} = useGetRecommendedProducts()
+	const {featured, getFeatured} = useGetFeatureProducts()
+	const {getRecommended, recommended} = useGetRecommendedProducts()
 	useEffect(() => {
 		getFeatured()
 		getRecommended()

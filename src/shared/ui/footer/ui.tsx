@@ -1,3 +1,4 @@
+import React from "react"
 import { links } from "./config"
 import logo from '@/shared/assets/logo.png'
 export const Footer = () => {

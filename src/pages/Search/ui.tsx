@@ -1,3 +1,4 @@
+import React from "react"
 import { searchModel } from "@/features/search"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { Layout } from "@/shared/ui/layout"
@@ -8,14 +9,17 @@ const SearchPage = () => {
 	return (
 		<Layout>
 			<div className="container">
-				{searchProducts.map(({image, name, subtitle, price}) => {
+				{searchProducts.map(({image, name, subtitle, price}, id) => {
 				return (
-					<ShopCard 
+					<div key={id}>
+						<ShopCard 
 					image={image} 
 					name={name} 
 					subtitle={subtitle} 
 					price={price} 
 					isFetching={isFetching}/>
+					</div>
+					
 				)
 			})}
 			

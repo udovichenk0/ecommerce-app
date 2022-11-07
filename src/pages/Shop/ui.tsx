@@ -1,3 +1,4 @@
+import React,{ useEffect } from "react"
 import { productModel } from "@/entities/products"
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"
 import { UIloadmore } from "@/shared/ui/buttons/loadmore"
@@ -5,7 +6,6 @@ import { Layout } from "@/shared/ui/layout"
 import { ErrorNotifyDisplay } from "@/shared/ui/notifications/errors"
 import { Skeleton } from "@/shared/ui/skeleton"
 import { ShopCard } from "@/widgets/shop-card"
-import { useEffect } from "react"
 export const ShopPage = () => {
 	const selectors = ({
 		products: useAppSelector(productModel.selectors.products),

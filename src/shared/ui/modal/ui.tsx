@@ -1,9 +1,5 @@
-import { PropsWithChildren } from "react"
+import React from "react"
 
-type propsType = {
-	title: string
-	children: PropsWithChildren
-}
 
 export const Modal = ({form, title, children, SignButton, text}:any) => {
 	return (

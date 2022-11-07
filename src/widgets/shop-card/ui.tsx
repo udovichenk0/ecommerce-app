@@ -1,3 +1,4 @@
+import React from "react"
 import { Link } from "react-router-dom"
 import './styles.scss'
 interface IProp {
@@ -12,8 +13,7 @@ export const ShopCard = ({
 	image, 
 	name,
 	subtitle, 
-	price,
-	isFetching}:IProp) => {
+	price,}:IProp) => {
 	return (
 		<Link to={'/'}>
 			<div className="border-2 border-[#e1e1e1] bg-white h-[330px] card max-w-[359px]">

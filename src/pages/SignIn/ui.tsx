@@ -1,3 +1,4 @@
+import React from "react"
 import { Auth, GitHubSignIn, GoogleSignIn } from "@/features/auth"
 import { SignBtn } from "@/shared/ui/buttons/SignIn"
 import { Layout } from "@/shared/ui/layout"

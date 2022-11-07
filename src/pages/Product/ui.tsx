@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+import React,{ useEffect, useRef, useState } from "react"
+import { useParams } from "react-router-dom"
 import { correctPrice } from "@/shared/lib/correctPrice"
 import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 import { useGetSingleProduct } from "@/shared/lib/useGetSingleProduct"
@@ -6,8 +9,6 @@ import { ColorPicker } from "@/shared/ui/buttons/ColorPicker"
 import { Layout } from "@/shared/ui/layout"
 import { Selector } from "@/shared/ui/selector/ui"
 import { Grid } from "@/widgets/grid"
-import { useEffect, useRef, useState } from "react"
-import { useParams } from "react-router-dom"
 const Product = () => {
 	const {id} = useParams()
 	const ref = useRef<any>(null)

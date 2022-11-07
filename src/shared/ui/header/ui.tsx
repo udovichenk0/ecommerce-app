@@ -1,11 +1,11 @@
-import { SearchProduct } from '@/features/search'
-import { ShopBag } from '@/shared/assets/bag'
-import logo from '@/shared/assets/logo.png'
 import { Link } from 'react-router-dom'
+import React from 'react'
 import { SignBtn } from '../buttons/SignIn'
 import { SingUp } from '../buttons/SignUp/ui'
 import { links } from './config'
-
+import { SearchProduct } from '@/features/search'
+import { ShopBag } from '@/shared/assets/bag'
+import logo from '@/shared/assets/logo.png'
 export const Header = () => {
 	return (
 		<div className='pt-8 pb-20'>

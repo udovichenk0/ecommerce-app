@@ -1,3 +1,4 @@
+import React from "react"
 import { GitHubSvg } from "@/shared/assets/githubSvg"
 
 export const GitHubBtn = () => {

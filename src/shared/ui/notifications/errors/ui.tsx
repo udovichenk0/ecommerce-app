@@ -1,3 +1,4 @@
+import React from 'react'
 interface IProps {
 	method:any,
 	message: string | null

@@ -1,6 +1,6 @@
-import { firebase } from "@/shared/api";
 import { DocumentData } from "firebase/firestore";
 import { useState } from "react";
+import { firebase } from "@/shared/api";
 
 export const useGetRecommendedProducts = () => {
   const [recommended, setRecommended] = useState<any[]>([]);

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-
+import React from "react"
 export const Card = ({glasses, title, subtitle, id}:any) => {
 	return (
 			<div className="self-center border-2 border-[#e1e1e1] 2xl:max-w-[424px] xl:max-w-[342px] lg:max-w-[284px] md:max-w-[314px]">

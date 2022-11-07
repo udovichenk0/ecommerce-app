@@ -1,3 +1,4 @@
+import React from "react"
 import { GoogleSvg } from "@/shared/assets/googleSvg"
 
 export const GoogleBtn = () => {
