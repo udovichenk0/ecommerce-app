@@ -1,1 +1,3 @@
-export * as SignUp from "./ui";
+import PageSignUp from "./ui";
+
+export default PageSignUp;

@@ -1,1 +1,3 @@
-export * as SignIn from "./ui";
+import PageSignIn from "./ui";
+
+export default PageSignIn;

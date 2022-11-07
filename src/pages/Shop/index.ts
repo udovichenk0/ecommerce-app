@@ -1,1 +1,3 @@
-export * as ShopPage from "./ui";
+import PageShop from "./ui";
+
+export default PageShop;
