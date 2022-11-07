@@ -12,14 +12,13 @@ import {
   DocumentData,
   CollectionReference,
 } from "firebase/firestore";
+
 import { db } from "./config";
-import { productModel } from "@/entities/products";
 const createCollection = <T = DocumentData>(collectionName: string) => {
   return collection(db, collectionName) as CollectionReference<T>;
 };
 // Create a key generator
 const generateKey = doc(createCollection("products")).id;
-console.log(productModel);
 const getProducts = async (lastRefKey: any) => {
   return new Promise((res, rej) => {
     (async () => {

@@ -1,3 +1,1 @@
-import SignIn from './ui'
-
-export default SignIn
+export * as SignIn from "./ui";

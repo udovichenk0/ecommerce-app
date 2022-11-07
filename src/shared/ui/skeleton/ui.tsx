@@ -1,5 +1,5 @@
-import ContentLoader from "react-content-loader"
 import React from "react"
+import ContentLoader from "react-content-loader"
 export const Skeleton = () => {
 	return (
 		<div className="border-[1px] border-[#e1e1e1]">

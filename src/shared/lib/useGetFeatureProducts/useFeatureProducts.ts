@@ -1,5 +1,6 @@
 import { DocumentData } from "firebase/firestore";
 import { useState } from "react";
+
 import { firebase } from "@/shared/api";
 
 export const useGetFeatureProducts = () => {

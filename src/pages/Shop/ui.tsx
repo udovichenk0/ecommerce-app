@@ -1,10 +1,12 @@
 import React,{ useEffect } from "react"
+
 import { productModel } from "@/entities/products"
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"
-import { UIloadmore } from "@/shared/ui/buttons/loadmore"
+import { UIloadmore } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layout"
-import { ErrorNotifyDisplay } from "@/shared/ui/notifications/errors"
+import { ErrorNotifyDisplay } from "@/shared/ui/notifications"
 import { Skeleton } from "@/shared/ui/skeleton"
+import { Header } from "@/widgets/header"
 import { ShopCard } from "@/widgets/shop-card"
 export const ShopPage = () => {
 	const selectors = ({
@@ -19,7 +21,7 @@ export const ShopPage = () => {
 		fetchProducts(selectors.lastRefKey)
 	}, [])
 	return (	
-		<Layout>
+		<Layout header={<Header/>}>
 			<div className="container relative">
 				{selectors.requestStatus && <ErrorNotifyDisplay 
 									message={selectors.requestStatus || 'Something went wrong :('} 

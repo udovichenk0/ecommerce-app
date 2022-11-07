@@ -1,8 +1,9 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ofType } from "redux-observable";
 import { catchError, exhaustMap, filter, from, map, of } from "rxjs";
-import { createBaseSelector } from "@/shared/lib/redux-std";
+
 import { firebase } from "@/shared/api";
+import { createBaseSelector } from "@/shared/lib/redux-std";
 
 const initialState = {
   products: [],

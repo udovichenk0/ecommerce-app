@@ -1,10 +1,13 @@
 import React,{ useEffect } from "react"
-import { ShopNow } from "@/shared/ui/buttons/ArrowBtn/ui"
-import { Layout } from "@/shared/ui/layout"
+
+// eslint-disable-next-line import/no-internal-modules
 import woman from '@/shared/assets/woman.png'
-import { Grid } from "@/widgets/grid"
 import { useGetFeatureProducts } from "@/shared/lib/useGetFeatureProducts"
 import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
+import { ShopNow } from "@/shared/ui/buttons"
+import { Layout } from "@/shared/ui/layout"
+import { Grid } from "@/widgets/grid"
+import { Header } from "@/widgets/header"
 
 export const Home = () => {
 	const {featured, getFeatured} = useGetFeatureProducts()
@@ -14,7 +17,7 @@ export const Home = () => {
 		getRecommended()
 	}, [])
 	return (
-		<Layout>
+		<Layout header={<Header/>}>
 			<div className="container pb-28 h-full">
 				<section className=" bg-[#f3f3f3] flex items-center h-[400px]">
 					<div className=" basis-1/2 p-8">

@@ -1,5 +1,6 @@
-import { combineEpics, createEpicMiddleware } from "redux-observable";
 import { configureStore } from "@reduxjs/toolkit";
+import { combineEpics, createEpicMiddleware } from "redux-observable";
+
 import { productModel } from "@/entities/products";
 import { searchModel } from "@/features/search";
 console.log(productModel);

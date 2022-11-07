@@ -1,14 +1,14 @@
-/* eslint-disable no-unused-vars */
 import React,{ useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
+
 import { correctPrice } from "@/shared/lib/correctPrice"
 import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 import { useGetSingleProduct } from "@/shared/lib/useGetSingleProduct"
-import { BackButton } from "@/shared/ui/buttons/backBtn"
-import { ColorPicker } from "@/shared/ui/buttons/ColorPicker"
+import { BackButton, ColorPicker } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layout"
-import { Selector } from "@/shared/ui/selector/ui"
+import { Selector } from "@/shared/ui/selector"
 import { Grid } from "@/widgets/grid"
+import { Header } from "@/widgets/header"
 const Product = () => {
 	const {id} = useParams()
 	const ref = useRef<any>(null)
@@ -29,7 +29,7 @@ const Product = () => {
 		ref.current.value = color
 	}
 	return (
-		<Layout>
+		<Layout header={<Header/>}>
 			<div className="container pb-20" >
 				<div className="mb-10 px-20">
 						<BackButton/>

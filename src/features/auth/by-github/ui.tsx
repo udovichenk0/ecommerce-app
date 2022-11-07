@@ -1,5 +1,4 @@
-import React from "react"
-import { GitHubBtn } from "@/shared/ui/buttons/github"
+import { GitHubBtn } from "@/shared/ui/buttons"
 
 export const GitHubAuth = () => {
 	return (

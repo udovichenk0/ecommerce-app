@@ -1,7 +1,8 @@
+import React from "react"
 import { Controller, useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
-import React from "react"
-import { ShopNow } from "@/shared/ui/buttons/ArrowBtn/ui"
+
+import { ShopNow } from "@/shared/ui/buttons"
 import { TextInput } from "@/shared/ui/textInput"
 
 export const AuthForm = () => {

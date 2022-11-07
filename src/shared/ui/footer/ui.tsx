@@ -1,6 +1,8 @@
-import React from "react"
-import { links } from "./config"
+// eslint-disable-next-line import/no-internal-modules
 import logo from '@/shared/assets/logo.png'
+
+import { links } from "./config"
+
 export const Footer = () => {
 	return (
 		<div className="w-full h-24 bg-[#f0f0f0]">

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { firebase } from "@/shared/api";
 
 export const useGetSingleProduct = (id?: string) => {

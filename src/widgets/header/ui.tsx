@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom'
-import React from 'react'
-import { SignBtn } from '../buttons/SignIn'
-import { SingUp } from '../buttons/SignUp/ui'
-import { links } from './config'
+
 import { SearchProduct } from '@/features/search'
+// eslint-disable-next-line import/no-internal-modules
 import { ShopBag } from '@/shared/assets/bag'
+// eslint-disable-next-line import/no-internal-modules
 import logo from '@/shared/assets/logo.png'
+import { SignBtn, SingUp } from '@/shared/ui/buttons'
+
+import { links } from './config'
+
+
+
 export const Header = () => {
 	return (
 		<div className='pt-8 pb-20'>

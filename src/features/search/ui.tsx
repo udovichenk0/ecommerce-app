@@ -1,7 +1,8 @@
-import React from "react"
-import { actions } from "./model"
+
 import { useAction } from "@/shared/lib/redux-std"
 import { SearchInput } from "@/shared/ui/searchInput"
+
+import { actions } from "./model"
 
 export const SearchProduct = () => {
 	const search = useAction(actions.startSearchFetching)

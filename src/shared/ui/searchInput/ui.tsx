@@ -1,7 +1,8 @@
 import React from "react"
-
 import { Controller, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
+
+// eslint-disable-next-line import/no-internal-modules
 import { SearchSvg } from "@/shared/assets/searchSvg"
 interface IProps{
 	// eslint-disable-next-line no-unused-vars

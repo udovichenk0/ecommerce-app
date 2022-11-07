@@ -1,7 +1,7 @@
-import React from "react"
 import { Card } from "@/entities/card/card-home"
-import { ProductType } from "@/shared/types/product.type"
-import { Panel } from "@/shared/ui/panel/ui"
+// eslint-disable-next-line import/no-internal-modules
+import { ProductType } from "@/shared/types"
+import { Panel } from "@/shared/ui/panel"
 
 type propsType = {
 	title: string

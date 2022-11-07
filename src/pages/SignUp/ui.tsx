@@ -1,11 +1,13 @@
 import React from "react"
+
 import { Auth, GitHubSignIn, GoogleSignIn } from "@/features/auth"
-import { SignBtn } from "@/shared/ui/buttons/SignIn"
+import { SignBtn } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layout"
 import { Modal } from "@/shared/ui/modal"
+import { Header } from "@/widgets/header"
 export const SignUp = () => {
 	return (
-		<Layout>
+		<Layout header={<Header/>}>
 			<div className="h-full w-full flex justify-center items-center">
 				<Modal 
 				title={'Sign up to Salinaka'} 

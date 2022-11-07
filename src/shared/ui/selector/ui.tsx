@@ -1,5 +1,5 @@
-import Select, { SingleValue } from 'react-select'
 import React from "react"
+import Select, { SingleValue } from 'react-select'
 interface IProps {
 	sizes: number[]
 	// eslint-disable-next-line no-unused-vars

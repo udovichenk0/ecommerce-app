@@ -1,4 +1,4 @@
-import React from "react"
+// eslint-disable-next-line import/no-internal-modules
 import { GitHubSvg } from "@/shared/assets/githubSvg"
 
 export const GitHubBtn = () => {
