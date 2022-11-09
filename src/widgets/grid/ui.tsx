@@ -1,6 +1,6 @@
 import { Card } from "@/entities/card/card-home"
 // eslint-disable-next-line import/no-internal-modules
-import { ProductType } from "@/shared/types"
+import { ProductType } from "@/shared/lib/types"
 import { Panel } from "@/shared/ui/panel"
 
 type propsType = {

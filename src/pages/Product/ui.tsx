@@ -75,7 +75,8 @@ const Product = () => {
 									<h1 className="font-medium text-[35px] mb-5">{correctPrice(product?.price)}</h1>
 									{isItemInBasket(basket, id) 
 									? <RemoveFromBasket id={id}/>
-									: <AddToBasket product={product}/>
+									: <AddToBasket 
+									product={{...product, selectedSize: selectedSize || product?.sizes[0], selectedColor: selectedColor || product?.colors[0]}}/>
 									}
 								</div>
 							</div>

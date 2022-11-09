@@ -12,6 +12,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     addToBasket(state, action) {
+      console.log(action.payload);
       state.basket.push(action.payload);
     },
     removeFromBasket(state, action) {
