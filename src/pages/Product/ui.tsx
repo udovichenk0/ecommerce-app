@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 
+
+import { basketModel } from "@/entities/basket"
+import { AddToBasket, RemoveFromBasket } from "@/features/basket"
 import { correctPrice } from "@/shared/lib/correctPrice"
+import { isItemInBasket } from "@/shared/lib/isItemInBasket"
+import { useAppSelector } from "@/shared/lib/redux-std"
 import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 import { useGetSingleProduct } from "@/shared/lib/useGetSingleProduct"
 import { BackButton, ColorPicker } from "@/shared/ui/buttons"
@@ -9,10 +14,12 @@ import { Layout } from "@/shared/ui/layout"
 import { Selector } from "@/shared/ui/selector"
 import { Grid } from "@/widgets/grid"
 import { Header } from "@/widgets/header"
+
 const Product = () => {
 	const {id} = useParams()
 	const ref = useRef<any>(null)
 	const {product} =  useGetSingleProduct(id)
+	const basket = useAppSelector(basketModel.selectors.basket)
 	const [selectedImage, setSelectedImage] = useState<string>()
 	const [selectedColor, setSelectedColor] = useState<string>()
 	const [selectedSize, setSelectedSize] = useState<number>()
@@ -23,7 +30,6 @@ const Product = () => {
 	useEffect(() => {
 		setSelectedImage(product?.image)
 	}, [product])
-	
 	function onSelectColor(color: string){
 		setSelectedColor(color)
 		ref.current.value = color
@@ -48,7 +54,7 @@ const Product = () => {
 								})}	
 							</div>
 							<div className="h-full flex items-center w-auto relative">
-								<input disabled type="color" ref={ref} className="w-full h-full absolute top-0 left-0 mix-blend-hue " />
+								<input disabled type="color" ref={ref} className={`w-full h-full absolute top-0 left-0 mix-blend-hue ${selectedColor? 'opacity-100' : 'opacity-0'}`} />
 								<img src={selectedImage}  alt="" />
 							</div>
 							<div className="w-[500px] h-full bg-white">
@@ -66,7 +72,11 @@ const Product = () => {
 									<div className="flex gap-x-3 mb-6">
 										<ColorPicker colors={product?.colors} onSelectColor={onSelectColor}/>
 									</div>
-									<h1 className="font-medium text-[35px]">{correctPrice(product?.price)}</h1>
+									<h1 className="font-medium text-[35px] mb-5">{correctPrice(product?.price)}</h1>
+									{isItemInBasket(basket, id) 
+									? <RemoveFromBasket id={id}/>
+									: <AddToBasket product={product}/>
+									}
 								</div>
 							</div>
 						</div>

@@ -23,7 +23,8 @@ module.exports = {
       'blue': '#004d84',
       'brown': '#753600',
       'red': '#f70808',
-      'orange': '#ff6f00'
+      'orange': '#ff6f00',
+      'green': '#24f558'
     },
     container:{
       center: true,

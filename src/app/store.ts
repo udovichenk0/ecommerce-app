@@ -1,24 +1,48 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
+import { basketModel } from "@/entities/basket";
 import { productModel } from "@/entities/products";
 import { searchModel } from "@/features/search";
-console.log(productModel);
 
 const epicMiddleware = createEpicMiddleware();
 const rootEpics = combineEpics(
   productModel.epics.getProducts,
   searchModel.epics.searchEpic
 );
+const rootReducers = combineReducers({
+  ...productModel.reducers,
+  ...searchModel.reducers,
+  ...basketModel.reducer,
+});
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["entity/basket"],
+};
+
+export const persistedReducer = persistReducer(persistConfig, rootReducers);
 
 export const store = configureStore({
-  reducer: {
-    ...productModel.reducers,
-    ...searchModel.reducers,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(epicMiddleware);
+    return getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(epicMiddleware);
   },
 });
-
+export const persistor = persistStore(store);
 epicMiddleware.run(rootEpics);

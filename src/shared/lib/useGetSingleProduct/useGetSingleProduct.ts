@@ -7,14 +7,13 @@ export const useGetSingleProduct = (id?: string) => {
   const getProduct = async (id?: any) => {
     const doc = await firebase.GetSingleProduct(id);
     try {
-      setProduct(doc.data());
+      setProduct({ ...doc.data(), id: doc.id });
     } catch (error) {
       console.log("Error");
     }
   };
   useEffect(() => {
     getProduct(id);
-  }, []);
-
+  }, [id]);
   return { product };
 };
