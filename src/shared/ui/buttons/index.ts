@@ -7,3 +7,4 @@ export * from "./github";
 export * from "./google";
 export * from "./loadmore";
 export * from "./updateBasket";
+export * from "./ShopBag";
