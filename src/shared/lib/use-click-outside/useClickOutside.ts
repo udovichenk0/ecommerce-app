@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 export const useClickOutside = (
   handle: any,
-  el: any,
   reference: any,
   isHandled: any
 ) => {

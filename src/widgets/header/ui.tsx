@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { basketModel } from '@/entities/basket'
 import { SearchProduct } from '@/features/search'
 // eslint-disable-next-line import/no-internal-modules
-import { Cart } from '@/shared/assets/bag'
-// eslint-disable-next-line import/no-internal-modules
 import logo from '@/shared/assets/logo.png'
+import { useAppSelector } from '@/shared/lib/redux-std'
 import { ShopBag, SignBtn, SingUp } from '@/shared/ui/buttons'
 
 import { links } from './config'
@@ -16,6 +16,7 @@ import { BasketSideMenu } from './menu'
 
 export const Header = () => {
 	const [isOpened, setOpen] = useState<boolean>(false)
+	const basket = useAppSelector(basketModel.selectors.basket)
 	return (
 		<div className='pt-8 pb-20'>
 			<div className='flex items-center container justify-between'>
@@ -37,7 +38,7 @@ export const Header = () => {
 				</div>
 			<div className='flex items-center'>
 				<SearchProduct/>
-				<ShopBag setOpen={setOpen}/>
+				<ShopBag setOpen={setOpen} basketLength={basket.length}/>
 				<SingUp/>
 				<SignBtn title='Sign In' link='/signin'/>
 				<BasketSideMenu isOpened={isOpened} setOpen={setOpen}/>
