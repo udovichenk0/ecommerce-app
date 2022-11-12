@@ -1,4 +1,10 @@
 import {
+  getAuth,
+  signInWithPopup,
+  GithubAuthProvider,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import {
   collection,
   doc,
   getDoc,
@@ -11,12 +17,26 @@ import {
   documentId,
   DocumentData,
   CollectionReference,
+  setDoc,
 } from "firebase/firestore";
 
-import { db } from "./config";
+import { auth, db } from "./config";
+const githubProvider = new GithubAuthProvider();
 const createCollection = <T = DocumentData>(collectionName: string) => {
   return collection(db, collectionName) as CollectionReference<T>;
 };
+
+//AUTH
+
+const createAccount = (email: string, password: string) =>
+  createUserWithEmailAndPassword(auth, email, password);
+
+const addUser = (data: any, id: string) => {
+  setDoc(doc(db, "users", id), data);
+};
+// const signInWithGithub = signInWithPopup(auth, githubProvider);
+
+//PRODUCTS
 // Create a key generator
 const generateKey = doc(createCollection("products")).id;
 const getProducts = async (lastRefKey: any) => {
@@ -115,4 +135,7 @@ export {
   getRecommendedProducts,
   searchProducts,
   GetSingleProduct,
+  // signInWithGithub,
+  createAccount,
+  addUser,
 };

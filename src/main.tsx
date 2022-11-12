@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
+import './shared/api/firebase'
 import App from './App'
 import './app/index.css'
 import { persistor, store } from './app/store';

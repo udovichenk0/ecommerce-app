@@ -1,10 +1,14 @@
 import { Controller, useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 
-import { ShopNow } from "@/shared/ui/buttons"
+import { viewerModel } from "@/entities/viewer"
+import { useAction, useAppSelector } from "@/shared/lib/redux-std"
+import { BaseButton, ShopNow } from "@/shared/ui/buttons"
 import { TextInput } from "@/shared/ui/textInput"
 
 export const AuthSignUpForm = () => {
+	const startAuth = useAction(viewerModel.actions.startAuth)
+	const profile = useAppSelector(viewerModel.selectors.profile)
 	const {handleSubmit, control, formState:{errors}} = useForm({
 		mode: 'onBlur',
 		defaultValues: {
@@ -14,8 +18,9 @@ export const AuthSignUpForm = () => {
 		}
 	})
 	const onSubmit = (data:any) => {
-		console.log(data)
+		startAuth(data)
 	}
+	console.log(profile )
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full gap-1'>
 			<Controller
@@ -85,7 +90,7 @@ export const AuthSignUpForm = () => {
 					Forgot password?
 					</div>
 				</Link>
-				<ShopNow title='Sign In'/>
+				<BaseButton label='Sign Up'/>
 			</div>
 		</form>
 	)

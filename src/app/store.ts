@@ -14,22 +14,25 @@ import storage from "redux-persist/lib/storage";
 
 import { basketModel } from "@/entities/basket";
 import { productModel } from "@/entities/products";
+import { viewerModel } from "@/entities/viewer";
 import { searchModel } from "@/features/search";
 
 const epicMiddleware = createEpicMiddleware();
 const rootEpics = combineEpics(
   productModel.epics.getProducts,
-  searchModel.epics.searchEpic
+  searchModel.epics.searchEpic,
+  viewerModel.epics.authEpic
 );
 const rootReducers = combineReducers({
   ...productModel.reducers,
   ...searchModel.reducers,
   ...basketModel.reducer,
+  ...viewerModel.reducer,
 });
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["entity/basket"],
+  whitelist: ["entity/basket", "entity/viewer"],
 };
 
 export const persistedReducer = persistReducer(persistConfig, rootReducers);
