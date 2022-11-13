@@ -3,6 +3,8 @@ import {
   signInWithPopup,
   GithubAuthProvider,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import {
   collection,
@@ -28,12 +30,25 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
 
 //AUTH
 
+const getUser = async (uid: string) =>
+  (await getDoc(doc(db, "users", uid))).data();
+// await getDoc(doc(db, "users", uid));
+
 const createAccount = (email: string, password: string) =>
   createUserWithEmailAndPassword(auth, email, password);
+
+const signIn = async (email: string, password: string) => {
+  return signInWithEmailAndPassword(auth, email, password).then((resp) =>
+    getDoc(doc(db, "users", resp.user.uid))
+  );
+};
 
 const addUser = (data: any, id: string) => {
   setDoc(doc(db, "users", id), data);
 };
+
+const signUserOut = () => signOut(auth);
+
 // const signInWithGithub = signInWithPopup(auth, githubProvider);
 
 //PRODUCTS
@@ -135,7 +150,9 @@ export {
   getRecommendedProducts,
   searchProducts,
   GetSingleProduct,
-  // signInWithGithub,
   createAccount,
   addUser,
+  signIn,
+  getUser,
+  signUserOut,
 };

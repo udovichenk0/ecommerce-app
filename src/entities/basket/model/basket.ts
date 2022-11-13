@@ -33,6 +33,9 @@ const slice = createSlice({
         }
       });
     },
+    clearBasket(state) {
+      state.basket = [];
+    },
     removeQuantity(state, action) {
       state.basket.find((item: BasketType) => {
         if (item.id == action.payload) {
@@ -55,5 +58,6 @@ export const actions = {
   removeFromBasket: slice.actions.removeFromBasket,
   addQuantity: slice.actions.addQuantity,
   removeQuantity: slice.actions.removeQuantity,
+  clearBasket: slice.actions.clearBasket,
 };
 export const reducer = { [reducerPath]: slice.reducer };

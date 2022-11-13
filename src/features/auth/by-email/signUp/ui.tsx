@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import { viewerModel } from "@/entities/viewer"
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"
-import { BaseButton, ShopNow } from "@/shared/ui/buttons"
+import { BaseButton } from "@/shared/ui/buttons"
 import { TextInput } from "@/shared/ui/textInput"
 
 export const AuthSignUpForm = () => {
@@ -20,7 +20,6 @@ export const AuthSignUpForm = () => {
 	const onSubmit = (data:any) => {
 		startAuth(data)
 	}
-	console.log(profile )
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full gap-1'>
 			<Controller

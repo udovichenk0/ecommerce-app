@@ -10,3 +10,4 @@ export * from "./updateBasket";
 export * from "./ShopBag";
 export * from "./menu-button";
 export * from "./black-button";
+export * from "./grey-button";

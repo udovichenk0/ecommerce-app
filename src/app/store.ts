@@ -16,12 +16,15 @@ import { basketModel } from "@/entities/basket";
 import { productModel } from "@/entities/products";
 import { viewerModel } from "@/entities/viewer";
 import { searchModel } from "@/features/search";
+import { signOutModel } from "@/features/sign-out";
 
 const epicMiddleware = createEpicMiddleware();
 const rootEpics = combineEpics(
   productModel.epics.getProducts,
   searchModel.epics.searchEpic,
-  viewerModel.epics.authEpic
+  viewerModel.epics.authEpic,
+  viewerModel.epics.signInEpic,
+  signOutModel.epics.signOutEpic
 );
 const rootReducers = combineReducers({
   ...productModel.reducers,

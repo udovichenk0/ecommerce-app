@@ -1,10 +1,12 @@
 import { Controller, useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 
-// eslint-disable-next-line import/no-internal-modules
-import { ShopNow } from "@/shared/ui/buttons/ArrowBtn"
+import { viewerModel } from "@/entities/viewer"
+import { useAction } from "@/shared/lib/redux-std"
+import { BaseButton } from "@/shared/ui/buttons"
 import { TextInput } from "@/shared/ui/textInput"
 export const AuthSignInForm = () => {
+	const startSignInWithEmail = useAction(viewerModel.actions.startSignInWithEmail)
 	const {handleSubmit, control, formState:{errors}} = useForm({
 		mode: 'onBlur',
 		defaultValues: {
@@ -13,7 +15,7 @@ export const AuthSignInForm = () => {
 		}
 	})
 	const onSubmit = (data:any) => {
-		console.log(data)
+		startSignInWithEmail({email: data.email, password:data.password})
 	}
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full gap-1'>
@@ -65,7 +67,7 @@ export const AuthSignInForm = () => {
 					Forgot password?
 					</div>
 				</Link>
-				<ShopNow title='Sign In'/>
+				<BaseButton label='Sign In'/>
 			</div>
 		</form>
 	)

@@ -5,7 +5,7 @@ import { routes } from "./pages";
 function App() {
   return (
     <div className='App'>
-      <Suspense >
+      <Suspense fallback='loading'>
         <Routes>
           <Route>
             {routes.map(({path, Component})=> {
