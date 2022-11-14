@@ -7,8 +7,8 @@ import { Auth, GitHubSignIn, GoogleSignIn } from "@/features/auth"
 import { useAppSelector } from "@/shared/lib/redux-std";
 import { useAuth } from "@/shared/lib/useAuth";
 import { SignBtn } from "@/shared/ui/buttons"
+import { Form } from "@/shared/ui/form"
 import { Layout } from "@/shared/ui/layout"
-import { Modal } from "@/shared/ui/modal"
 import { Header } from "@/widgets/header"
 export const SignIn = () => {
 const navigate = useNavigate()
@@ -20,7 +20,7 @@ const profile = useAppSelector(viewerModel.selectors.profile)
 	return (
 		<Layout header={<Header/>}>
 			<div className="h-full w-full flex justify-center items-center">
-				<Modal 
+				<Form 
 				title={'Sign in to Salinaka'} 
 				form={<Auth.SignIn.AuthSignInForm/>}
 				SignButton={<SignBtn title="Sign Up" link="/signup"/>}
@@ -30,7 +30,7 @@ const profile = useAppSelector(viewerModel.selectors.profile)
 						<GitHubSignIn.GitHubAuth/>
 						<GoogleSignIn.GoogleAuth/>
 					</div>
-				</Modal>
+				</Form>
 			</div>
 		</Layout>
 	)

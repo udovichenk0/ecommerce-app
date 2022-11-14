@@ -1,13 +1,17 @@
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 
 import { BasketItem, basketModel } from "@/entities/basket"
 import { BasketType } from "@/entities/basket/types"
+import { viewerModel } from "@/entities/viewer"
 import { countTotalPrice } from "@/shared/lib/count-total-price"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { useClickOutside } from "@/shared/lib/use-click-outside"
+import { useAuth } from "@/shared/lib/useAuth"
 import { BasketSkelet } from "@/shared/ui/basket"
 import { BaseButton, MenuButton } from "@/shared/ui/buttons"
+import { Modal } from "@/shared/ui/modal"
+import { CheckOutModal } from "@/shared/ui/notifications"
 
 interface IProps {
 	isOpened: boolean
@@ -27,6 +31,9 @@ export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 	const reference = useRef(null)
 	useClickOutside(() => setOpen(false), reference, isOpened)
 	const basket = useAppSelector(basketModel.selectors.basket)
+	const [isModelOpened, setModelOpen] = useState<boolean>(false)
+	const profile = useAppSelector(viewerModel.selectors.profile)
+	const isSignIn = useAuth(profile)
 	return (	
 		<div ref={reference}>
 			<BasketSkelet isOpened={isOpened}>
@@ -62,7 +69,10 @@ export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 								<h2 className="text-[20px] pb-5">Subtotal Amout:</h2>
 								<h1 className="font-medium text-[30px]">${countTotalPrice(basket)}</h1>
 							</div>
-							<BaseButton label={'CHECK OUT'} action={() => console.log('CHECK OUT')}/>
+							<BaseButton label={'CHECK OUT'} action={() => isSignIn? () => console.log(1) : setModelOpen(true)} disabled={!basket.length}/>
+							{isModelOpened && <Modal setModelOpen={setModelOpen}>
+								<CheckOutModal setModelOpen={setModelOpen}/>
+							</Modal>}
 						</div>
 					</div>
 			</BasketSkelet>

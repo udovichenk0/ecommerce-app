@@ -1,18 +1,18 @@
 import { onAuthStateChanged } from 'firebase/auth';
 // eslint-disable-next-line import/default
-import ReactDOM from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import './shared/api/firebase'
-import App from './App'
+import '@/shared/api/firebase'
 import './app/index.css'
+
+import App from '@/App'
+import { viewerModel } from '@/entities/viewer';
+import { firebase,auth } from '@/shared/api';
+
 import { persistor, store } from './app/store';
-import { viewerModel } from './entities/viewer';
-import { firebase } from './shared/api';
-// eslint-disable-next-line import/no-internal-modules
-import { auth } from './shared/api/config';
 
 
 if(onAuthStateChanged(auth, async (user) => {
@@ -23,11 +23,9 @@ if(onAuthStateChanged(auth, async (user) => {
     else{
         console.log('failed to auth')
     }
-})
+}))
 
-)
-
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
             <BrowserRouter>

@@ -2,9 +2,10 @@ import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { routes } from "./pages";
+
 function App() {
   return (
-    <div className='App'>
+      <div className='App'>
       <Suspense fallback='loading'>
         <Routes>
           <Route>
@@ -15,6 +16,7 @@ function App() {
         </Routes>
       </Suspense>
     </div>
+    
   );
 }
 
