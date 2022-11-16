@@ -1,5 +1,5 @@
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { BasketItem, basketModel } from "@/entities/basket"
 import { BasketType } from "@/entities/basket/types"
@@ -29,19 +29,19 @@ interface IBasket {
 }
 export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 	const reference = useRef(null)
-	useClickOutside(() => setOpen(false), reference, isOpened)
 	const basket = useAppSelector(basketModel.selectors.basket)
 	const [isModelOpened, setModelOpen] = useState<boolean>(false)
 	const profile = useAppSelector(viewerModel.selectors.profile)
 	const isSignIn = useAuth(profile)
-	return (	
+		useClickOutside(() => !isModelOpened && setOpen(false), reference, isOpened)
+	return (
 		<div ref={reference}>
 			<BasketSkelet isOpened={isOpened}>
 					<div className="p-7 h-full">
 						<div className="flex justify-between items-center mb-4">
 							<div className="flex items-end gap-3">
 								<h2 className="leading-none text-[27px] font-medium">My Basket</h2>
-							<span className="font-bold text-light-dark">({basket.length} item)</span>
+								<span className="font-bold text-light-dark">({basket.length} item)</span>
 							</div>
 							<MenuButton action={() => setOpen(false)} label={'Close'}/>
 						</div>

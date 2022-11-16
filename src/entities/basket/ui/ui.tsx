@@ -20,7 +20,7 @@ export const BasketItem = ({selectedColor, selectedSize, quantity, price, name, 
 	const removeQuantity = useAction(actions.removeQuantity)
 	const removeFromBasket = useAction(actions.removeFromBasket)
 	return (
-		<div className="flex h-[116px] items-center justify-between mb-5 menu ">
+		<div className="flex h-[116px] items-center justify-between mb-5">
 			<div className="inline-flex flex-col gap-2 mr-4">
 				<MenuButton action={() => addQuantity(id)} label={'+'}/>
 				<MenuButton action={() => removeQuantity(id)} label={'-'} disable={quantity == 1}/>

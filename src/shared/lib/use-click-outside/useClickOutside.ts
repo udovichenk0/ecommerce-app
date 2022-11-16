@@ -3,20 +3,26 @@ import { useEffect } from "react";
 export const useClickOutside = (
   handle: any,
   reference: any,
-  isHandled: any
+  isHandled: boolean
 ) => {
   useEffect(() => {
     const listener = (event: any) => {
-      if (!isHandled || reference?.current.contains(event?.target as Node)) {
+      if (
+        !reference.current ||
+        !isHandled ||
+        reference?.current.contains(event?.target as Node)
+      ) {
         return;
       }
-      if (!event.target.closest(".menu")) handle();
+      handle();
     };
 
-    document.addEventListener("click", listener);
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
 
     return () => {
-      document.removeEventListener("click", listener);
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
     };
-  }, [isHandled, reference]);
+  }, [handle, reference]);
 };
