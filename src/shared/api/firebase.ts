@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  getAdditionalUserInfo,
 } from "firebase/auth";
 import {
   collection,
@@ -52,7 +53,15 @@ const signUserOut = () => signOut(auth);
 const setBasket = async (basket: any, id: string) =>
   updateDoc(doc(db, "users", id), { basket });
 
-// const signInWithGithub = signInWithPopup(auth, githubProvider);
+const signInWithGithub = async () => {
+  const signinWithGithub = await signInWithPopup(auth, githubProvider);
+  signinWithGithub.user.uid;
+  return {
+    ...getAdditionalUserInfo(signinWithGithub),
+    uid: signinWithGithub.user.uid,
+    email: signinWithGithub.user.email,
+  };
+};
 
 //PRODUCTS
 // Create a key generator
@@ -159,4 +168,5 @@ export {
   getUser,
   signUserOut,
   setBasket,
+  signInWithGithub,
 };

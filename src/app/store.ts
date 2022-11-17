@@ -24,6 +24,7 @@ const rootEpics = combineEpics(
   searchModel.epics.searchEpic,
   viewerModel.epics.authEpic,
   viewerModel.epics.signInEpic,
+  viewerModel.epics.signInGithubEpic,
   signOutModel.epics.signOutEpic
 );
 const rootReducers = combineReducers({

@@ -22,6 +22,7 @@ const slice = createSlice({
     },
     authSuccess(state, action) {
       state.profile = action.payload;
+      console.log(action.payload);
       state.isAuthentication = false;
     },
     clearProfile(state) {
@@ -31,6 +32,9 @@ const slice = createSlice({
       state.profile = action.payload;
     },
     startSignInWithEmail(state, action) {
+      state.isAuthentication = true;
+    },
+    startsignInWithGitHub(state) {
       state.isAuthentication = true;
     },
     startSignOut(state) {
@@ -56,6 +60,7 @@ const authEpic = (action$: any) =>
             joinedData: user.metadata.creationTime,
           };
           firebase.addUser(data, user.uid);
+          console.log(data);
           return slice.actions.authSuccess(data);
         })
       )
@@ -68,6 +73,28 @@ const signInEpic = (action$: any) =>
     exhaustMap(({ payload }) =>
       from(firebase.signIn(payload.email, payload.password)).pipe(
         map((response) => slice.actions.authSuccess(response.data()))
+      )
+    )
+  );
+
+const signInGithubEpic = (action$: any) =>
+  action$.pipe(
+    ofType(reducerName + "/startsignInWithGitHub"),
+    exhaustMap(({ payload }) =>
+      from(firebase.signInWithGithub()).pipe(
+        map((response: any) => {
+          const data = {
+            avatar: null,
+            email: response.profile.email,
+            name: response.username,
+            address: "",
+            basket: [],
+            uid: response.uid,
+            joinedData: null,
+          };
+          if (response.isNewUser) firebase.addUser(data, response.uid);
+          return slice.actions.authSuccess(response);
+        })
       )
     )
   );
@@ -86,11 +113,13 @@ export const actions = {
   onAuthStateChanged: slice.actions.onAuthStateChanged,
   clearProfile: slice.actions.clearProfile,
   startSignOut: slice.actions.startSignOut,
+  startsignInWithGitHub: slice.actions.startsignInWithGitHub,
 };
 
 export const epics = {
   authEpic,
   signInEpic,
+  signInGithubEpic,
 };
 
 export const reducer = { [reducerName]: slice.reducer };
