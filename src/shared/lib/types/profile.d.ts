@@ -5,4 +5,5 @@ export type ProfileType = {
   email: string;
   joinedData: string;
   name: string;
+  uid: string;
 };

@@ -20,6 +20,7 @@ import {
   DocumentData,
   CollectionReference,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 import { auth, db } from "./config";
@@ -32,7 +33,6 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
 
 const getUser = async (uid: string) =>
   (await getDoc(doc(db, "users", uid))).data();
-// await getDoc(doc(db, "users", uid));
 
 const createAccount = (email: string, password: string) =>
   createUserWithEmailAndPassword(auth, email, password);
@@ -48,6 +48,9 @@ const addUser = (data: any, id: string) => {
 };
 
 const signUserOut = () => signOut(auth);
+
+const setBasket = async (basket: any, id: string) =>
+  updateDoc(doc(db, "users", id), { basket });
 
 // const signInWithGithub = signInWithPopup(auth, githubProvider);
 
@@ -67,7 +70,7 @@ const getProducts = async (lastRefKey: any) => {
             limit(4)
           );
           const data = await getDocs(q);
-          data.docs.forEach((doc: any) => {
+          data.docs.forEach((doc: DocumentData) => {
             return products.push({
               id: doc.id,
               ...doc.data(),
@@ -155,4 +158,5 @@ export {
   signIn,
   getUser,
   signUserOut,
+  setBasket,
 };

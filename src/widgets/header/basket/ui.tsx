@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState } from "react"
+import {  useRef, useState } from "react"
 
 import { BasketItem, basketModel } from "@/entities/basket"
 import { BasketType } from "@/entities/basket/types"
@@ -17,18 +17,9 @@ interface IProps {
 	isOpened: boolean
 	setOpen: (isOpened: boolean) => void
 }
-interface IBasket {
-	selectedColor: string
-	selectedSize: number
-	quantity: number
-	price:number
-	name: string
-	image:string
-	id:string
-	totalPrice: number
-}
+
 export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
-	const reference = useRef(null)
+	const reference = useRef<HTMLHeadingElement>(null)
 	const basket = useAppSelector(basketModel.selectors.basket)
 	const [isModelOpened, setModelOpen] = useState<boolean>(false)
 	const profile = useAppSelector(viewerModel.selectors.profile)

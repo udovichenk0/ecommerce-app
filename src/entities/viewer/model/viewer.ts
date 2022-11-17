@@ -28,7 +28,6 @@ const slice = createSlice({
       state.profile = {} as ProfileType;
     },
     onAuthStateChanged(state, action) {
-      console.log(action);
       state.profile = action.payload;
     },
     startSignInWithEmail(state, action) {
@@ -53,6 +52,7 @@ const authEpic = (action$: any) =>
             name: payload.fullName,
             address: "",
             basket: [],
+            uid: user.uid,
             joinedData: user.metadata.creationTime,
           };
           firebase.addUser(data, user.uid);
@@ -67,9 +67,7 @@ const signInEpic = (action$: any) =>
     ofType(reducerName + "/startSignInWithEmail"),
     exhaustMap(({ payload }) =>
       from(firebase.signIn(payload.email, payload.password)).pipe(
-        map((response) => {
-          return slice.actions.authSuccess(response.data());
-        })
+        map((response) => slice.actions.authSuccess(response.data()))
       )
     )
   );

@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { MutableRefObject, useEffect } from "react";
 
-export const useClickOutside = (
-  handle: any,
-  reference: any,
+export const useClickOutside = <
+  T extends { contains: (event: Node) => Node } | HTMLHeadingElement | null
+>(
+  handle: () => void,
+  reference: MutableRefObject<T>,
   isHandled: boolean
-) => {
+): void => {
   useEffect(() => {
-    const listener = (event: any) => {
+    const listener = (event: Event) => {
       if (
         !reference.current ||
         !isHandled ||

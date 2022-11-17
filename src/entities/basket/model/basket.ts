@@ -20,6 +20,9 @@ const slice = createSlice({
         totalPrice: action.payload.price,
       });
     },
+    setBasket(state, action) {
+      state.basket = action.payload;
+    },
     removeFromBasket(state, action) {
       state.basket = state.basket.filter(
         (item: BasketType) => item.id !== action.payload
@@ -59,5 +62,6 @@ export const actions = {
   addQuantity: slice.actions.addQuantity,
   removeQuantity: slice.actions.removeQuantity,
   clearBasket: slice.actions.clearBasket,
+  setBasket: slice.actions.setBasket,
 };
 export const reducer = { [reducerPath]: slice.reducer };

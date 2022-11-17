@@ -1,11 +1,10 @@
 
-import { PropsWithChildren, ReactNode, useRef } from "react"
+import { ReactNode } from "react"
 import {createPortal} from "react-dom"
-import { useNavigate } from "react-router-dom"
 
 
 interface IProps {
-	setModelOpen: (prop: any) => void
+	setModelOpen: (prop: boolean) => void
 	children: ReactNode
 }
 export const Modal = ({children, setModelOpen}: IProps) => {

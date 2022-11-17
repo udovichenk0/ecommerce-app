@@ -1,7 +1,7 @@
-import { PropsWithChildren, ReactNode } from "react";
+import { MutableRefObject, PropsWithChildren, ReactNode } from "react";
 interface IProps {
 	children: ReactNode
-	reference: any
+	reference: MutableRefObject<null>
 }
 export const ProfileDropDown = ({children, reference}: IProps) => {
 	return <div ref={reference}

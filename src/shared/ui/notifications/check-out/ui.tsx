@@ -1,17 +1,11 @@
-
-import { PropsWithChildren, useRef } from "react"
-import {createPortal} from "react-dom"
 import { useNavigate } from "react-router-dom"
-
-import { useClickOutside } from "@/shared/lib/use-click-outside"
 
 import { BaseButton } from "../../buttons"
 
 interface IProps {
-	setModelOpen: (prop: any) => void
+	setModelOpen: (prop: boolean) => void
 }
 export const CheckOutModal = ({setModelOpen}: IProps) => {
-	const ref = useRef(null)
 	const navigate = useNavigate()
 	return (
 		<div id="modal" className="bg-white shadow-[rgb(0,0,0,0.1)_0px_5px_10px]">

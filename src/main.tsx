@@ -13,12 +13,14 @@ import { viewerModel } from '@/entities/viewer';
 import { firebase,auth } from '@/shared/api';
 
 import { persistor, store } from './app/store';
+import { basketModel } from './entities/basket';
 
 
 if(onAuthStateChanged(auth, async (user) => {
     if(user) {
         const data = await firebase.getUser(user.uid)
         store.dispatch(viewerModel.actions.onAuthStateChanged(data))
+        store.dispatch(basketModel.actions.setBasket(data?.basket))
     }
     else{
         console.log('failed to auth')
@@ -29,8 +31,8 @@ createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
             <BrowserRouter>
-            <App />
-        </BrowserRouter>
+                <App />
+            </BrowserRouter>
         </PersistGate>
     </Provider>
 );
