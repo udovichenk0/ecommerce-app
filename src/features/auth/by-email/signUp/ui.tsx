@@ -89,7 +89,7 @@ export const AuthSignUpForm = () => {
 					Forgot password?
 					</div>
 				</Link>
-				<BaseButton label='Sign Up'/>
+				<BaseButton action={handleSubmit(onSubmit)} label='Sign Up'/>
 			</div>
 		</form>
 	)
