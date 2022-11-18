@@ -25,6 +25,7 @@ const rootEpics = combineEpics(
   viewerModel.epics.authEpic,
   viewerModel.epics.signInEpic,
   viewerModel.epics.signInGithubEpic,
+  viewerModel.epics.signInGoogleEpic,
   signOutModel.epics.signOutEpic
 );
 const rootReducers = combineReducers({
@@ -46,6 +47,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({
       serializableCheck: {
+        serializableCheck: false,
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(epicMiddleware);

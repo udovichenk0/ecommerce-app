@@ -16,7 +16,6 @@ const slice = createSlice({
     addToBasket(state, action) {
       state.basket.push({
         ...action.payload,
-        quantity: 1,
         totalPrice: action.payload.price,
       });
     },
@@ -32,7 +31,6 @@ const slice = createSlice({
       state.basket.find((item: BasketType) => {
         if (item.id == action.payload) {
           item.quantity++;
-          item.totalPrice += item.price;
         }
       });
     },
@@ -43,7 +41,6 @@ const slice = createSlice({
       state.basket.find((item: BasketType) => {
         if (item.id == action.payload) {
           item.quantity--;
-          item.totalPrice -= item.price;
         }
       });
     },

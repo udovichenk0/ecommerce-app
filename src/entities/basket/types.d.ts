@@ -1,5 +1,4 @@
 export type BasketType = {
-  color: string[];
   description: string;
   id: string;
   image: string;

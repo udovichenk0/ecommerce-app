@@ -37,6 +37,9 @@ const slice = createSlice({
     startsignInWithGitHub(state) {
       state.isAuthentication = true;
     },
+    startSigninWithGoogle(state) {
+      state.isAuthentication = true;
+    },
     startSignOut(state) {
       state.isAuthentication = true;
     },
@@ -79,17 +82,39 @@ const signInEpic = (action$: any) =>
 const signInGithubEpic = (action$: any) =>
   action$.pipe(
     ofType(reducerName + "/startsignInWithGitHub"),
-    exhaustMap(({ payload }) =>
+    exhaustMap(() =>
       from(firebase.signInWithGithub()).pipe(
         map((response: any) => {
           const data = {
-            avatar: response.profile.avatar_url,
-            email: response.profile.email,
-            name: response.username,
+            avatar: response.photoURL,
+            email: response.email,
+            name: response.displayName,
             address: "",
             basket: [],
             uid: response.uid,
-            joinedData: null,
+            joinedData: response.creationTime,
+          };
+          if (response.isNewUser) firebase.addUser(data, response.uid);
+          return slice.actions.authSuccess(response);
+        })
+      )
+    )
+  );
+
+const signInGoogleEpic = (action$: any) =>
+  action$.pipe(
+    ofType(reducerName + "/startSigninWithGoogle"),
+    exhaustMap(() =>
+      from(firebase.signInWithGoogle()).pipe(
+        map((response: any) => {
+          const data = {
+            avatar: response.photoURL,
+            email: response.email,
+            name: response.displayName,
+            address: "",
+            basket: [],
+            uid: response.uid,
+            joinedData: response.creationTime,
           };
           if (response.isNewUser) firebase.addUser(data, response.uid);
           return slice.actions.authSuccess(response);
@@ -113,12 +138,14 @@ export const actions = {
   clearProfile: slice.actions.clearProfile,
   startSignOut: slice.actions.startSignOut,
   startsignInWithGitHub: slice.actions.startsignInWithGitHub,
+  startSigninWithGoogle: slice.actions.startSigninWithGoogle,
 };
 
 export const epics = {
   authEpic,
   signInEpic,
   signInGithubEpic,
+  signInGoogleEpic,
 };
 
 export const reducer = { [reducerName]: slice.reducer };

@@ -77,7 +77,7 @@ const Product = () => {
 									{isItemInBasket(basket, id) 
 									? <RemoveFromBasket id={id}/>
 									: <AddToBasket 
-									product={{...product, selectedSize: selectedSize || product?.sizes[0], selectedColor: selectedColor || product?.colors[0]}}/>
+									product={{...product, selectedSize: selectedSize || product?.sizes[0],quantity: 1, selectedColor: selectedColor || product?.colors[0]}}/>
 									}
 								</div>
 							</div>

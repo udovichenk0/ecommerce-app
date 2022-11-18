@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   getAdditionalUserInfo,
+  GoogleAuthProvider,
+  getRedirectResult,
 } from "firebase/auth";
 import {
   collection,
@@ -26,6 +28,7 @@ import {
 
 import { auth, db } from "./config";
 const githubProvider = new GithubAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 const createCollection = <T = DocumentData>(collectionName: string) => {
   return collection(db, collectionName) as CollectionReference<T>;
 };
@@ -50,17 +53,44 @@ const addUser = (data: any, id: string) => {
 
 const signUserOut = () => signOut(auth);
 
-const setBasket = async (basket: any, id: string) =>
+const setBasket = async (basket: any, id: string) => {
   updateDoc(doc(db, "users", id), { basket });
-
+};
 const signInWithGithub = async () => {
-  const signinWithGithub = await signInWithPopup(auth, githubProvider);
-  signinWithGithub.user.uid;
-  return {
-    ...getAdditionalUserInfo(signinWithGithub),
-    uid: signinWithGithub.user.uid,
-    email: signinWithGithub.user.email,
-  };
+  // const signinWithGithub = await signInWithPopup(auth, githubProvider);
+  // return {
+  //   ...getAdditionalUserInfo(signinWithGithub),
+  //   uid: signinWithGithub.user.uid,
+  //   email: signinWithGithub.user.email,
+  // };
+  return signInWithPopup(auth, githubProvider).then((result) => {
+    const user = result.user;
+    const { email, uid, photoURL, phoneNumber, displayName } = user;
+    return {
+      email,
+      uid,
+      photoURL,
+      creationTime: user.metadata.creationTime,
+      phoneNumber,
+      displayName,
+      isNewUser: getAdditionalUserInfo(result)?.isNewUser,
+    };
+  });
+};
+const signInWithGoogle = async () => {
+  return signInWithPopup(auth, googleProvider).then((result) => {
+    const user = result.user;
+    const { email, uid, photoURL, phoneNumber, displayName } = user;
+    return {
+      email,
+      uid,
+      photoURL,
+      creationTime: user.metadata.creationTime,
+      phoneNumber,
+      displayName,
+      isNewUser: getAdditionalUserInfo(result)?.isNewUser,
+    };
+  });
 };
 
 //PRODUCTS
@@ -169,4 +199,5 @@ export {
   signUserOut,
   setBasket,
   signInWithGithub,
+  signInWithGoogle,
 };
