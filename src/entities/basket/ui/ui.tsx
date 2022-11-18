@@ -13,9 +13,8 @@ interface IBasket {
 	name: string
 	image:string
 	id:string
-	totalPrice:number
 }
-export const BasketItem = ({selectedColor, selectedSize, quantity, price, name, image, id, totalPrice}:IBasket) => {
+export const BasketItem = ({selectedColor, selectedSize, quantity, price, name, image, id}:IBasket) => {
 	const addQuantity = useAction(actions.addQuantity)
 	const removeQuantity = useAction(actions.removeQuantity)
 	const removeFromBasket = useAction(actions.removeFromBasket)
@@ -36,7 +35,7 @@ export const BasketItem = ({selectedColor, selectedSize, quantity, price, name, 
 							<h2 className="text-[#8d8d8d] text-lg flex items-center gap-2">Color: <div style={{backgroundColor: selectedColor}} className={`h-[15px] w-[15px] rounded-full mb-1`}></div> </h2>
 						</div>
 				</div>
-					<span className="font-bold text-xl mr-2">${totalPrice? totalPrice : price}</span>
+					<span className="font-bold text-xl mr-2">${price * quantity}</span>
 					<MenuButton action={() => removeFromBasket(id)} label={'x'}/>
 		</div>
 	)

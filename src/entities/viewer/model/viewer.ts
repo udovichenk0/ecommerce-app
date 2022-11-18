@@ -60,7 +60,6 @@ const authEpic = (action$: any) =>
             joinedData: user.metadata.creationTime,
           };
           firebase.addUser(data, user.uid);
-          console.log(data);
           return slice.actions.authSuccess(data);
         })
       )
@@ -84,7 +83,7 @@ const signInGithubEpic = (action$: any) =>
       from(firebase.signInWithGithub()).pipe(
         map((response: any) => {
           const data = {
-            avatar: null,
+            avatar: response.profile.avatar_url,
             email: response.profile.email,
             name: response.username,
             address: "",

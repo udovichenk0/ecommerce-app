@@ -1,1 +1,1 @@
-export * as GitHubSignIn from './ui'
+export * as GitHubSignIn from "./ui";

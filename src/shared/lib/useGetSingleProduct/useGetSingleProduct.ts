@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import { firebase } from "@/shared/api";
 
+import { ProductType } from "../types";
+
 export const useGetSingleProduct = (id?: string) => {
   const [product, setProduct] = useState<any>();
   const getProduct = async (id?: any) => {

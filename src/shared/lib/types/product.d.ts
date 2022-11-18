@@ -7,7 +7,7 @@ export type ProductType = {
   sizes: number[];
   subtitle: string;
   id: string;
-  color: string[];
+  colors: string[];
   imageCollection: string[];
   price: number;
 };

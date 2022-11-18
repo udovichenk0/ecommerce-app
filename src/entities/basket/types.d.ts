@@ -13,5 +13,4 @@ export type BasketType = {
   selectedColor: string;
   selectedSize: number;
   sizes: number[];
-  totalPrice: number;
 };

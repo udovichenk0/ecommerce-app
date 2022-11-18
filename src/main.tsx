@@ -19,7 +19,6 @@ import { basketModel } from './entities/basket';
 if(onAuthStateChanged(auth, async (user) => {
     if(user) {
         const data = await firebase.getUser(user.uid)
-        console.log(data)
         store.dispatch(viewerModel.actions.onAuthStateChanged(data))
         store.dispatch(basketModel.actions.setBasket(data?.basket))
     }

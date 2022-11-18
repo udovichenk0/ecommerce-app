@@ -37,7 +37,7 @@ export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 							<MenuButton action={() => setOpen(false)} label={'Close'}/>
 						</div>
 						<div className="">
-							{basket.map(({selectedColor, selectedSize, quantity, price, name, image, id, totalPrice}:BasketType) => {
+							{basket.map(({selectedColor, selectedSize, quantity, price, name, image, id}:BasketType) => {
 							return (
 								<div key={id}>
 									<BasketItem 
@@ -48,7 +48,6 @@ export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 									name={name}
 									image={image}
 									id={id}
-									totalPrice={totalPrice}
 									/>
 								</div>
 								

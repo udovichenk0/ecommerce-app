@@ -7,6 +7,7 @@ import { AddToBasket, RemoveFromBasket } from "@/features/basket"
 import { correctPrice } from "@/shared/lib/correctPrice"
 import { isItemInBasket } from "@/shared/lib/isItemInBasket"
 import { useAppSelector } from "@/shared/lib/redux-std"
+import { ProductType } from "@/shared/lib/types"
 import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 import { useGetSingleProduct } from "@/shared/lib/useGetSingleProduct"
 import { BackButton, ColorPicker } from "@/shared/ui/buttons"
@@ -18,7 +19,7 @@ import { Header } from "@/widgets/header"
 const Product = () => {
 	const {id} = useParams()
 	const ref = useRef<any>(null)
-	const {product} =  useGetSingleProduct(id)
+	const {product}:{product: ProductType} =  useGetSingleProduct(id)
 	const basket = useAppSelector(basketModel.selectors.basket)
 	const [selectedImage, setSelectedImage] = useState<string>()
 	const [selectedColor, setSelectedColor] = useState<string>()
@@ -48,14 +49,14 @@ const Product = () => {
 										<button key={ind}
 										onClick={() => setSelectedImage(image)}
 										className='border-[1px] border-[#e1e1e1]'>
-											<img src={image} alt={product?.name} />
+											<img className="w-full h-auto" src={image} alt={product?.name} />
 										</button>
 									)
 								})}	
 							</div>
-							<div className="h-full flex items-center w-auto relative">
+							<div className="h-full flex items-center w-[382px] relative">
 								<input disabled type="color" ref={ref} className={`w-full h-full absolute top-0 left-0 mix-blend-hue ${selectedColor? 'opacity-100' : 'opacity-0'}`} />
-								<img src={selectedImage}  alt="" />
+								<img className="w-full h-auto" src={selectedImage}  alt={product?.name} />
 							</div>
 							<div className="w-[500px] h-full bg-white">
 								<div className='p-12'>
