@@ -67,7 +67,7 @@ export const AuthSignInForm = () => {
 					Forgot password?
 					</div>
 				</Link>
-				<BaseButton label='Sign In'/>
+				<BaseButton action={handleSubmit(onSubmit)} label='Sign In'/>
 			</div>
 		</form>
 	)

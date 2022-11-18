@@ -1,4 +1,4 @@
-export type BasketPropType = {
+export type BasketType = {
   description: string;
   id: string;
   image: string;

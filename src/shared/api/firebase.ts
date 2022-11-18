@@ -1,5 +1,4 @@
 import {
-  getAuth,
   signInWithPopup,
   GithubAuthProvider,
   createUserWithEmailAndPassword,
@@ -27,6 +26,7 @@ import {
 } from "firebase/firestore";
 
 import { auth, db } from "./config";
+import { BasketPropType } from "./types";
 const githubProvider = new GithubAuthProvider();
 const googleProvider = new GoogleAuthProvider();
 const createCollection = <T = DocumentData>(collectionName: string) => {
@@ -53,16 +53,10 @@ const addUser = (data: any, id: string) => {
 
 const signUserOut = () => signOut(auth);
 
-const setBasket = async (basket: any, id: string) => {
+const setBasket = async (basket: BasketPropType[], id: string) => {
   updateDoc(doc(db, "users", id), { basket });
 };
 const signInWithGithub = async () => {
-  // const signinWithGithub = await signInWithPopup(auth, githubProvider);
-  // return {
-  //   ...getAdditionalUserInfo(signinWithGithub),
-  //   uid: signinWithGithub.user.uid,
-  //   email: signinWithGithub.user.email,
-  // };
   return signInWithPopup(auth, githubProvider).then((result) => {
     const user = result.user;
     const { email, uid, photoURL, phoneNumber, displayName } = user;
