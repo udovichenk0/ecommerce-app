@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 
 
 import { basketModel } from "@/entities/basket"
+import { Card } from "@/entities/card"
 import { AddToBasket, RemoveFromBasket } from "@/features/basket"
 import { correctPrice } from "@/shared/lib/correctPrice"
 import { isItemInBasket } from "@/shared/lib/isItemInBasket"
@@ -12,8 +13,9 @@ import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 import { useGetSingleProduct } from "@/shared/lib/useGetSingleProduct"
 import { BackButton, ColorPicker } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layout"
+import { BasketNotification } from "@/shared/ui/notifications"
+import { Panel } from "@/shared/ui/panel"
 import { Selector } from "@/shared/ui/selector"
-import { Grid } from "@/widgets/grid"
 import { Header } from "@/widgets/header"
 
 const Product = () => {
@@ -25,6 +27,8 @@ const Product = () => {
 	const [selectedColor, setSelectedColor] = useState<string>()
 	const [selectedSize, setSelectedSize] = useState<number>()
 	const {getRecommended, recommended, isRecommendLoading} = useGetRecommendedProducts()
+
+	const [notifications, setNotifications] = useState<any>(false);
 	useEffect(() => {
 		getRecommended()
 	}, [])
@@ -37,6 +41,9 @@ const Product = () => {
 	}
 	return (
 		<Layout header={<Header/>}>
+			{notifications.color && 
+			<BasketNotification onDelete={setNotifications} color={notifications.color} message={notifications.message}/>
+			}
 			<div className="container pb-20" >
 				<div className="mb-10 px-20">
 						<BackButton/>
@@ -75,15 +82,26 @@ const Product = () => {
 									</div>
 									<h1 className="font-medium text-[35px] mb-5">{correctPrice(product?.price)}</h1>
 									{isItemInBasket(basket, id) 
-									? <RemoveFromBasket id={id}/>
-									: <AddToBasket 
+									? <RemoveFromBasket setNotification={setNotifications} id={id}/>
+									: <AddToBasket setNotification={setNotifications}
 									product={{...product, selectedSize: selectedSize || product?.sizes[0],quantity: 1, selectedColor: selectedColor || product?.colors[0]}}/>
 									}
 								</div>
 							</div>
 						</div>
 					</div>
-					<Grid data={recommended} title={'Recommended Products'} link={'/'}/>
+					<div className="px-10 mt-28">
+					<Panel title={'Recommended Products'} link={'/recommended'}/>
+					<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">
+						{
+							recommended?.map(({name, image, subtitle, id}:any, ind: number) => {
+								return (
+									<Card key={ind} name={name} image={image} id={id} subtitle={subtitle}/>
+								)
+							})
+						}
+					</div>
+				</div>
 			</div>
 		</Layout>
 	)

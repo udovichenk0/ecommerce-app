@@ -28,7 +28,7 @@ export const FeaturedPage = () => {
 						{
 							featured?.map(({name, image, subtitle, id}:any, ind: number) => {
 								return (
-									<Card key={ind} title={name} glasses={image} id={id} subtitle={subtitle}/>
+									<Card key={ind} name={name} image={image} id={id} subtitle={subtitle}/>
 								)
 							})
 						}

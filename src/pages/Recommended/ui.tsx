@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Card } from '@/entities/card'
 // eslint-disable-next-line import/no-internal-modules
 import recommendedGirl from '@/shared/assets/recommendedGirl.webp'
+import { ProductType } from '@/shared/lib/types'
 import { useGetRecommendedProducts } from '@/shared/lib/useGetRecommended'
 import { Layout } from "@/shared/ui/layout"
 import { Header } from "@/widgets/header"
@@ -26,9 +27,9 @@ export const RecommendedPage = () => {
 				<div className="px-10 mt-28">
 					<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">
 						{
-							recommended?.map(({name, image, subtitle, id}:any, ind: number) => {
+							recommended?.map(({name, image, subtitle, id}:ProductType, ind: number) => {
 								return (
-									<Card key={ind} title={name} glasses={image} id={id} subtitle={subtitle}/>
+									<Card key={ind} name={name} image={image} id={id} subtitle={subtitle}/>
 								)
 							})
 						}
