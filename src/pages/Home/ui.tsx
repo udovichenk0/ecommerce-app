@@ -1,12 +1,13 @@
 import { useEffect } from "react"
 
+import { Card } from "@/entities/card"
 // eslint-disable-next-line import/no-internal-modules
 import woman from '@/shared/assets/woman.png'
 import { useGetFeatureProducts } from "@/shared/lib/useGetFeatureProducts"
 import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 import { ShopNow } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layout"
-import { Grid } from "@/widgets/grid"
+import { Panel } from "@/shared/ui/panel"
 import { Header } from "@/widgets/header"
 
 export const Home = () => {
@@ -33,8 +34,31 @@ export const Home = () => {
 						<img src={woman} className='h-full bg-contain w-full object-cover' alt="" />
 					</div>
 				</section>
-				<Grid data={featured} title={'Featured Products'} link={'/'}/>
-				<Grid data={recommended} title={'Recommended Products'} link={'/'}/>
+				<div className="px-10 mt-28">
+					<Panel title={'Featured Products'} link={'/featured'}/>
+					<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">
+						{
+							featured?.map(({name, image, subtitle, id}:any, ind: number) => {
+								return (
+									<Card key={ind} title={name} glasses={image} id={id} subtitle={subtitle}/>
+								)
+							})
+						}
+					</div>
+				</div>
+				<div className="px-10 mt-28">
+					<Panel title={'Recommended Products'} link={'/recommended'}/>
+					<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">
+						{
+							recommended?.map(({name, image, subtitle, id}:any, ind: number) => {
+								return (
+									<Card key={ind} title={name} glasses={image} id={id} subtitle={subtitle}/>
+								)
+							})
+						}
+					</div>
+				</div>
+				
 			</div>
 		</Layout>
 	)
