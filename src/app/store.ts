@@ -37,7 +37,7 @@ const rootReducers = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["entity/basket", "entity/viewer"],
+  whitelist: ["entity/basket"],
 };
 
 export const persistedReducer = persistReducer(persistConfig, rootReducers);

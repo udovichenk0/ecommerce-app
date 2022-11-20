@@ -13,7 +13,7 @@ import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 import { useGetSingleProduct } from "@/shared/lib/useGetSingleProduct"
 import { BackButton, ColorPicker } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layout"
-import { BasketNotification } from "@/shared/ui/notifications"
+import { Notification } from "@/shared/ui/notifications"
 import { Panel } from "@/shared/ui/panel"
 import { Selector } from "@/shared/ui/selector"
 import { Header } from "@/widgets/header"
@@ -42,7 +42,7 @@ const Product = () => {
 	return (
 		<Layout header={<Header/>}>
 			{notifications.color && 
-			<BasketNotification onDelete={setNotifications} color={notifications.color} message={notifications.message}/>
+			<Notification onDelete={setNotifications} color={notifications.color} message={notifications.message}/>
 			}
 			<div className="container pb-20" >
 				<div className="mb-10 px-20">

@@ -1,23 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom"
 
 import './notification.css'
 import { Color } from "./config"
 
 
-export const BasketNotification = ({
+export const Notification = ({
 	color = Color.info,
 	message,
 	onDelete
 }:any) => {
 	useEffect(() => {
-		const timeoutId = setTimeout(() => onDelete(false), 1200);
-		
+		const timeoutId = setTimeout(() => onDelete(false), 2000);
 		return () => {
 			clearTimeout(timeoutId);
 		};
 	}, [onDelete]);
-
 	return createPortal(
 		<div className={`fixed top-20 right-20 ${color} z-50`}>
 			<div className="p-5 font-medium text-[18px]">
@@ -27,5 +25,3 @@ export const BasketNotification = ({
 		document.getElementById('notification-root') as any
 	)
 }
-
-//${color == 'success' && 'bg-[#3b9620]'} ${color == 'warning' && 'bg-[#e4a51f]'}

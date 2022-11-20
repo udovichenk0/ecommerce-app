@@ -1,6 +1,6 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { ofType } from "redux-observable";
-import { catchError, exhaustMap, from, map, of, tap } from "rxjs";
+import { catchError, exhaustMap, from, map, mergeMap, of, tap } from "rxjs";
 
 import { firebase } from "@/shared/api";
 import { createBaseSelector } from "@/shared/lib/redux-std";
@@ -22,13 +22,12 @@ const slice = createSlice({
     },
     authSuccess(state, action) {
       state.profile = action.payload;
-      console.log(action.payload);
       state.isAuthentication = false;
     },
     clearProfile(state) {
       state.profile = {} as ProfileType;
     },
-    onAuthStateChanged(state, action) {
+    startOnAuthStateChanged(state, action) {
       state.profile = action.payload;
     },
     startSignInWithEmail(state, action) {
@@ -45,6 +44,14 @@ const slice = createSlice({
     },
   },
 });
+
+// const onAuthStateChangedEpic = (action$: any) =>
+//   action$.pipe(
+//     ofType(reducerName + "/startOnAuthStateChanged"),
+//     mergeMap((action: any) => {
+//       return 1;
+//     })
+//   );
 
 const authEpic = (action$: any) =>
   action$.pipe(
@@ -74,7 +81,10 @@ const signInEpic = (action$: any) =>
     ofType(reducerName + "/startSignInWithEmail"),
     exhaustMap(({ payload }) =>
       from(firebase.signIn(payload.email, payload.password)).pipe(
-        map((response) => slice.actions.authSuccess(response.data()))
+        map((response) => slice.actions.authSuccess(response.data())),
+        catchError((error: any) => {
+          throw new Error();
+        })
       )
     )
   );
@@ -134,7 +144,7 @@ export const actions = {
   authSuccess: slice.actions.authSuccess,
   startAuth: slice.actions.startAuthentication,
   startSignInWithEmail: slice.actions.startSignInWithEmail,
-  onAuthStateChanged: slice.actions.onAuthStateChanged,
+  onAuthStateChanged: slice.actions.startOnAuthStateChanged,
   clearProfile: slice.actions.clearProfile,
   startSignOut: slice.actions.startSignOut,
   startsignInWithGitHub: slice.actions.startsignInWithGitHub,

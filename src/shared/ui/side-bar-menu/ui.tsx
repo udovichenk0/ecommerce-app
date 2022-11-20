@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-import { BaseButton } from "../../buttons"
+import { BaseButton } from "../buttons"
 
 interface IProps {
 	setModelOpen: (prop: boolean) => void

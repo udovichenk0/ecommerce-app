@@ -11,7 +11,7 @@ import { useAuth } from "@/shared/lib/useAuth"
 import { BasketSkelet } from "@/shared/ui/basket"
 import { BaseButton, MenuButton } from "@/shared/ui/buttons"
 import { Modal } from "@/shared/ui/modal"
-import { CheckOutModal } from "@/shared/ui/notifications"
+import { CheckOutModal } from "@/shared/ui/side-bar-menu"
 
 interface IProps {
 	isOpened: boolean

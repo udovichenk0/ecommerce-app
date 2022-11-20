@@ -29,7 +29,6 @@ const slice = createSlice({
     foundProductsSuccess(state, action: any) {
       state.foundProducts = action.payload;
       state.isSearchedFetching = false;
-      console.log(state.foundProducts);
     },
     foundProductsError(state, action) {
       state.requestStatus = action.payload;
