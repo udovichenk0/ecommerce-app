@@ -23,9 +23,12 @@ useEffect(() => {
       store.dispatch(basketModel.actions.setBasket(data?.basket))
       setLoading(true)
     }
+    setLoading(true)
 })
 }, [])
-if(!loading) return <Loader/>
+if(!loading) {
+  console.log(loading)
+  return <Loader/>}
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

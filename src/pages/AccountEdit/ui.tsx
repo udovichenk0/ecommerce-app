@@ -1,18 +1,25 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
+import { viewerModel } from "@/entities/viewer"
 // eslint-disable-next-line import/no-internal-modules
 import bgDefault from '@/shared/assets/accBgDefault.jpg'
-import { ProfileType } from '@/shared/lib/types'
-import { useAuth } from '@/shared/lib/useAuth'
-import { BaseButton } from '@/shared/ui/buttons'
+import { useAppSelector } from "@/shared/lib/redux-std"
+import { ProfileType } from "@/shared/lib/types"
+import { useAuth } from "@/shared/lib/useAuth"
+import { BaseButton } from "@/shared/ui/buttons"
+import { Layout } from "@/shared/ui/layout"
+import { Header } from "@/widgets/header"
 
-export const Profile = ({profile}: {profile: ProfileType}) => {
+export const AccountEditPage = () => {
 	const navigate = useNavigate()
+	const profile = useAppSelector(viewerModel.selectors.profile)
 	useEffect(() => {
 		if(!useAuth(profile)) navigate('/')
 	}, [profile])
 	return (
+		<Layout header={<Header/>}>
+		<div className='container flex justify-center'>
 		<div className="w-[700px] border-[1px] border-[#e1e1e1] p-4 relative mb-20">
 			<div className='w-full h-[150px] relative bg-[#e9e9e9]'>
 				<div className='overflow-hidden w-full h-full object-cover absolute top-0 left-0'>
@@ -43,5 +50,7 @@ export const Profile = ({profile}: {profile: ProfileType}) => {
 				</div>
 			</div>
 		</div>
+		</div>
+	</Layout>
 	)
 }

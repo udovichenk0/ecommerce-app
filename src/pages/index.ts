@@ -9,6 +9,7 @@ const ProductLazyPage = lazy(() => import("./Product"));
 const FeaturedLazyPage = lazy(() => import("./Featured"));
 const RecommendedLazyPage = lazy(() => import("./Recommended"));
 const AccountLazyPage = lazy(() => import("./Account"));
+const AccountEditLazyPage = lazy(() => import("./AccountEdit"));
 export const routes = [
   {
     path: "/",
@@ -21,6 +22,10 @@ export const routes = [
   {
     path: "/account",
     Component: AccountLazyPage,
+  },
+  {
+    path: "/account/:edit",
+    Component: AccountEditLazyPage,
   },
   {
     path: "/recommended",
