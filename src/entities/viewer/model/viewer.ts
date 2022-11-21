@@ -45,14 +45,6 @@ const slice = createSlice({
   },
 });
 
-// const onAuthStateChangedEpic = (action$: any) =>
-//   action$.pipe(
-//     ofType(reducerName + "/startOnAuthStateChanged"),
-//     mergeMap((action: any) => {
-//       return 1;
-//     })
-//   );
-
 const authEpic = (action$: any) =>
   action$.pipe(
     ofType(reducerName + "/startAuthentication"),
