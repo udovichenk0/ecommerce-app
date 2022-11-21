@@ -20,7 +20,6 @@ const slice = createSlice({
       });
     },
     setBasket(state, action) {
-      console.log("dispatched");
       state.basket = action.payload;
     },
     removeFromBasket(state, action) {

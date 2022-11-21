@@ -4,11 +4,14 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
+import { basketModel } from "@/entities/basket";
+import { viewerModel } from "@/entities/viewer";
+import { routes } from "@/pages";
+import { auth, firebase } from "@/shared/api";
+import { Loader } from "@/shared/ui/spinner";
+
 import { persistor, store } from "./app/store";
-import { basketModel } from "./entities/basket";
-import { viewerModel } from "./entities/viewer";
-import { routes } from "./pages";
-import { auth, firebase } from "./shared/api";
+
 
 function App() {
   const [loading, setLoading ] = useState(false)
@@ -22,7 +25,7 @@ useEffect(() => {
     }
 })
 }, [])
-if(!loading) return null
+if(!loading) return <Loader/>
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
