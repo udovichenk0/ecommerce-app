@@ -15,6 +15,7 @@ import storage from "redux-persist/lib/storage";
 import { basketModel } from "@/entities/basket";
 import { productModel } from "@/entities/products";
 import { viewerModel } from "@/entities/viewer";
+import { editProfileModel } from "@/features/edit-profile";
 import { searchModel } from "@/features/search";
 import { signOutModel } from "@/features/sign-out";
 
@@ -26,7 +27,8 @@ const rootEpics = combineEpics(
   viewerModel.epics.signInEpic,
   viewerModel.epics.signInGithubEpic,
   viewerModel.epics.signInGoogleEpic,
-  signOutModel.epics.signOutEpic
+  signOutModel.epics.signOutEpic,
+  editProfileModel.epics.editProfileEpic
 );
 const rootReducers = combineReducers({
   ...productModel.reducers,

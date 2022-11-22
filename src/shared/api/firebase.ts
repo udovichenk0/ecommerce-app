@@ -56,6 +56,17 @@ const signUserOut = () => signOut(auth);
 const setBasket = async (basket: BasketPropType[], id: string) => {
   updateDoc(doc(db, "users", id), { basket });
 };
+
+//Profile
+
+const updateProfile = (payload: any) => {
+  const { name, address } = payload.data;
+  return updateDoc(doc(db, "users", payload.id), {
+    name: name,
+    address: address,
+  }).then(() => getUser(payload.id));
+};
+
 const signInWithGithub = async () => {
   return signInWithPopup(auth, githubProvider).then((result) => {
     const user = result.user;
@@ -194,4 +205,5 @@ export {
   setBasket,
   signInWithGithub,
   signInWithGoogle,
+  updateProfile,
 };

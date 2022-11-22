@@ -19,7 +19,7 @@ useEffect(() => {
   onAuthStateChanged(auth, async (user) => {
     if(user) {
       const data = await firebase.getUser(user.uid)
-      store.dispatch(viewerModel.actions.onAuthStateChanged(data))
+      store.dispatch(viewerModel.actions.setProfile(data))
       store.dispatch(basketModel.actions.setBasket(data?.basket))
       setLoading(true)
     }
@@ -27,7 +27,6 @@ useEffect(() => {
 })
 }, [])
 if(!loading) {
-  console.log(loading)
   return <Loader/>}
   return (
     <Provider store={store}>

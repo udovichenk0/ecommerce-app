@@ -10,7 +10,7 @@ const reducerName = "entity/viewer";
 
 const initialState = {
   profile: {} as ProfileType,
-  isAuthentication: false,
+  isFetching: false,
 };
 type State = typeof initialState;
 const slice = createSlice({
@@ -18,29 +18,33 @@ const slice = createSlice({
   initialState,
   reducers: {
     startAuthentication(state, action) {
-      state.isAuthentication = true;
+      state.isFetching = true;
     },
     authSuccess(state, action) {
       state.profile = action.payload;
-      state.isAuthentication = false;
+      state.isFetching = false;
     },
     clearProfile(state) {
       state.profile = {} as ProfileType;
     },
-    startOnAuthStateChanged(state, action) {
+    setProfile(state, action) {
       state.profile = action.payload;
     },
     startSignInWithEmail(state, action) {
-      state.isAuthentication = true;
+      state.isFetching = true;
     },
     startsignInWithGitHub(state) {
-      state.isAuthentication = true;
+      state.isFetching = true;
     },
     startSigninWithGoogle(state) {
-      state.isAuthentication = true;
+      state.isFetching = true;
     },
     startSignOut(state) {
-      state.isAuthentication = true;
+      state.isFetching = true;
+    },
+
+    startEditProfile(state, action) {
+      state.isFetching = true;
     },
   },
 });
@@ -136,11 +140,12 @@ export const actions = {
   authSuccess: slice.actions.authSuccess,
   startAuth: slice.actions.startAuthentication,
   startSignInWithEmail: slice.actions.startSignInWithEmail,
-  onAuthStateChanged: slice.actions.startOnAuthStateChanged,
+  setProfile: slice.actions.setProfile,
   clearProfile: slice.actions.clearProfile,
   startSignOut: slice.actions.startSignOut,
   startsignInWithGitHub: slice.actions.startsignInWithGitHub,
   startSigninWithGoogle: slice.actions.startSigninWithGoogle,
+  startEditProfile: slice.actions.startEditProfile,
 };
 
 export const epics = {

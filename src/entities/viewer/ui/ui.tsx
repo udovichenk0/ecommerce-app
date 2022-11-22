@@ -18,7 +18,7 @@ export const Profile = ({profile}: {profile: ProfileType}) => {
 				<div className='overflow-hidden w-full h-full object-cover absolute top-0 left-0'>
 					<img className='w-full h-full' src={bgDefault} alt="banner" />
 				</div>
-				<div className='z-50 pt-[310px] absolute -bottom-1/3 px-5 flex items-center justify-between w-full'>
+				<div className='z-50 absolute -bottom-1/3 px-5 flex items-center justify-between w-full'>
 						<div className='w-[96px] h-[96px] bg-white rounded-full flex justify-center items-center'>
 							<img className='w-[90px] h-[90px] rounded-full' src={profile.avatar} alt={profile.name} />
 						</div>

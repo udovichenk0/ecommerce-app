@@ -19,7 +19,7 @@ export const Profile = ({name, photo}: {name:string, photo: string}) => {
 			<button 
 			onClick={() => setOpen(prev => !prev)}
 			ref={reference} className="flex items-center gap-3">
-				<h2>{sliceName('Denis Udovichenko')}</h2>
+				<h2>{sliceName(name)}</h2>
 				<div className='w-[40px] h-[40px] rounded-full'>
 					<img className='w-full h-full rounded-full' src={photo || defaultUser} alt={name} />
 				</div>
