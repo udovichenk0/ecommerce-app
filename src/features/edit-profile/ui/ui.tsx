@@ -1,15 +1,18 @@
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 
 import { viewerModel } from "@/entities/viewer"
 // eslint-disable-next-line import/no-internal-modules
 import bgDefault from '@/shared/assets/accBgDefault.jpg'
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"
+import { BaseButton, GreyButton } from "@/shared/ui/buttons"
 import { InputEditor } from "@/shared/ui/editor"
 import { FileChooser } from "@/shared/ui/file-chooser"
 
 export const ProfileEditForm = () => {
 	const profile = useAppSelector(viewerModel.selectors.profile)
 	const editProfile = useAction(viewerModel.actions.startEditProfile)
+	const navigate = useNavigate()
 	const {register, handleSubmit} = useForm({
 		defaultValues: {
 			email: profile.email,
@@ -27,6 +30,7 @@ export const ProfileEditForm = () => {
 	}
 	const handle = (data:any) => {
 		editProfile({id: profile.uid, data})
+		navigate('/account')
 	}
 	return (
 		<form onSubmit={handleSubmit(handle)}>
@@ -46,17 +50,22 @@ export const ProfileEditForm = () => {
 								{/* <FileChooser register={register} label='banner'/> */}
 					</div>
 				</div>
-				<div className="pt-20 px-3 flex flex-col gap-y-5">
-					<InputEditor label='* Full Name' register={register} name='name'/>
-					<InputEditor label='* Email Address' register={register} disabled={true} name='email'/>
-					<InputEditor placeholder={'#245 Brgy. Maligalig, Arayat Pampanga, Philippines'} label='Address (Will be used for checkout)' register={register} name='address'/>
+				<div className="px-3 pt-20">
+					<div className="flex flex-col gap-y-5 mb-8">
+						<InputEditor label='* Full Name' register={register} name='name'/>
+						<InputEditor label='* Email Address' register={register} disabled={true} name='email'/>
+						<InputEditor placeholder={'#245 Brgy. Maligalig, Arayat Pampanga, Philippines'} label='Address (Will be used for checkout)' register={register} name='address'/>
+					</div>
+					<div className="flex justify-between">
+						<button
+						onClick={() => navigate('/account')}
+						className="font-bold text-[#7d7d7d] bg-[#f2f2f2] border-[1px] border-[#e1e1e1] py-[15px] px-[20px]">Back to Profile</button>
+						<BaseButton label='Update Profile' action={handleSubmit(handle)}/>
+					</div>
 				</div>
-
 			</div>
+			
 		</div>
-		<button onSubmit={handleSubmit(handle)}>
-fsdfadf
-		</button>
 		</form>
 	)
 }

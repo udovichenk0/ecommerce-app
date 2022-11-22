@@ -22,8 +22,8 @@ export const Profile = ({profile}: {profile: ProfileType}) => {
 						<div className='w-[96px] h-[96px] bg-white rounded-full flex justify-center items-center'>
 							<img className='w-[90px] h-[90px] rounded-full' src={profile.avatar} alt={profile.name} />
 						</div>
-						<div>
-							<BaseButton action={() => console.log(1)} label={'Edit Account'}/>
+						<div >
+							<BaseButton action={() => navigate(':edit')} label={'Edit Account'}/>
 						</div>
 				</div>
 			</div>
