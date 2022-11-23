@@ -70,10 +70,12 @@ const updateProfile = (payload: any) => {
 const signInWithGithub = async () => {
   return signInWithPopup(auth, githubProvider).then((result) => {
     const user = result.user;
+    console.log(user);
     const { email, uid, photoURL, phoneNumber, displayName } = user;
     return {
       email,
       uid,
+      mobile: user.phoneNumber,
       photoURL,
       creationTime: user.metadata.creationTime,
       phoneNumber,
@@ -90,6 +92,7 @@ const signInWithGoogle = async () => {
       email,
       uid,
       photoURL,
+      mobile: user.phoneNumber,
       creationTime: user.metadata.creationTime,
       phoneNumber,
       displayName,

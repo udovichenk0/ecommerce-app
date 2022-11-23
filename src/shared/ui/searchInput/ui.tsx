@@ -15,7 +15,6 @@ export const SearchInput = ({method}:IProps) => {
 		}
 	})
 	function onclick(data:{search: string}){
-		console.log(data)
 		method(data.search)
 		navigate('/search')
 	}
@@ -32,7 +31,7 @@ export const SearchInput = ({method}:IProps) => {
 			render={({ field: { onChange, onBlur, value, ref } }) => (
 					<input
 					placeholder="Search product..."
-					className="w-full py-2 px-16 text-xl border-[1px] border-[#e1e1e1]"
+					className="w-full py-2 px-16 text-xl border-[1px] border-[#e1e1e1] outline-none"
 					type="text" onChange={onChange} onBlur={onBlur} value={value} ref={ref}/>
 			)}
 			/>

@@ -6,4 +6,5 @@ export type ProfileType = {
   joinedData: string;
   name: string;
   uid: string;
+  mobile: string;
 };

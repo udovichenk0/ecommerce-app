@@ -1,6 +1,9 @@
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
+import PhoneInput from "react-phone-input-2"
 import { useNavigate } from "react-router-dom"
 
+import './style.css'
+import 'react-phone-input-2/lib/style.css'
 import { viewerModel } from "@/entities/viewer"
 // eslint-disable-next-line import/no-internal-modules
 import bgDefault from '@/shared/assets/accBgDefault.jpg'
@@ -13,12 +16,13 @@ export const ProfileEditForm = () => {
 	const profile = useAppSelector(viewerModel.selectors.profile)
 	const editProfile = useAction(viewerModel.actions.startEditProfile)
 	const navigate = useNavigate()
-	const {register, handleSubmit} = useForm({
+	const {register, handleSubmit, control} = useForm({
 		defaultValues: {
 			email: profile.email,
 			name: profile.name,
 			avatar: profile.avatar,
 			address: profile.address,
+			mobile: profile.mobile
 		}
 	})
 	const convert = (file: File) => {
@@ -55,6 +59,19 @@ export const ProfileEditForm = () => {
 						<InputEditor label='* Full Name' register={register} name='name'/>
 						<InputEditor label='* Email Address' register={register} disabled={true} name='email'/>
 						<InputEditor placeholder={'#245 Brgy. Maligalig, Arayat Pampanga, Philippines'} label='Address (Will be used for checkout)' register={register} name='address'/>
+						<Controller
+						control={control}
+						name={'mobile'}
+						render={({field: { onChange, onBlur, value, ref }}) => {
+							return <PhoneInput
+						country={'ua'}
+						value={value}
+						onChange={onChange}
+						/>
+						}}
+						/>
+						
+						
 					</div>
 					<div className="flex justify-between">
 						<button

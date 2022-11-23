@@ -59,6 +59,7 @@ const authEpic = (action$: any) =>
           const data = {
             avatar: null,
             email: user.email,
+            mobile: null,
             name: payload.fullName,
             address: "",
             basket: [],
@@ -95,6 +96,7 @@ const signInGithubEpic = (action$: any) =>
             avatar: response.photoURL,
             email: response.email,
             name: response.displayName,
+            mobile: response.mobile,
             address: "",
             basket: [],
             uid: response.uid,
@@ -117,6 +119,7 @@ const signInGoogleEpic = (action$: any) =>
             avatar: response.photoURL,
             email: response.email,
             name: response.displayName,
+            mobile: response.mobile,
             address: "",
             basket: [],
             uid: response.uid,
