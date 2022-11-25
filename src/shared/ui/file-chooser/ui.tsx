@@ -1,4 +1,4 @@
-export const FileChooser = ({register, label, name}:any) => {
+export const FileChooser = ({register, name}:any) => {
 	return (
 		<label htmlFor="editor" className="w-[30px] h-[30px] bg-black rounded-full cursor-pointer">
 			<input id="editor"

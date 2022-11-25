@@ -58,12 +58,21 @@ const setBasket = async (basket: BasketPropType[], id: string) => {
 };
 
 //Profile
-
-const updateProfile = (payload: any) => {
-  const { name, address } = payload.data;
+interface UpdateProfileType {
+  id: string;
+  mobile: string;
+  name: string;
+  address: string;
+  avatar: any;
+}
+const updateProfile = (payload: UpdateProfileType) => {
+  const { name, address, mobile, avatar } = payload;
+  console.log(payload);
   return updateDoc(doc(db, "users", payload.id), {
-    name: name,
-    address: address,
+    name,
+    address,
+    mobile,
+    avatar,
   }).then(() => getUser(payload.id));
 };
 

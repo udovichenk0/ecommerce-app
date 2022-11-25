@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import PhoneInput from "react-phone-input-2"
 import { useNavigate } from "react-router-dom"
@@ -7,12 +8,13 @@ import 'react-phone-input-2/lib/style.css'
 import { viewerModel } from "@/entities/viewer"
 // eslint-disable-next-line import/no-internal-modules
 import bgDefault from '@/shared/assets/accBgDefault.jpg'
+import { readFile } from "@/shared/lib/fileReader"
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"
-import { BaseButton, GreyButton } from "@/shared/ui/buttons"
+import { BaseButton } from "@/shared/ui/buttons"
 import { InputEditor } from "@/shared/ui/editor"
 import { FileChooser } from "@/shared/ui/file-chooser"
 
-export const ProfileEditForm = () => {
+export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 	const profile = useAppSelector(viewerModel.selectors.profile)
 	const editProfile = useAction(viewerModel.actions.startEditProfile)
 	const navigate = useNavigate()
@@ -25,16 +27,15 @@ export const ProfileEditForm = () => {
 			mobile: profile.mobile
 		}
 	})
-	const convert = (file: File) => {
-		const reader = new FileReader()
-		reader.onloadend = () => {
+	const handle = async (data:any) => {
 
-		}
-		reader.readAsDataURL(file)
-	}
-	const handle = (data:any) => {
-		editProfile({id: profile.uid, data})
-		navigate('/account')
+		const avatar = await readFile(data.avatar[0])
+		editProfile({
+			id: profile.uid,
+			...data, 
+			avatar: avatar || profile.avatar, 
+			mobile: data.mobile.length > 5? data.mobile : null})
+			navigate('/account')
 	}
 	return (
 		<form onSubmit={handleSubmit(handle)}>
@@ -48,10 +49,10 @@ export const ProfileEditForm = () => {
 							<div className='w-[96px] h-[96px] bg-white rounded-full flex justify-center items-center relative'>
 								<img className='w-[90px] h-[90px] rounded-full' src={profile.avatar} alt={profile.name} />
 								<div className="flex absolute right-0 bottom-0">
-									{/* <FileChooser register={register} label='banner' name='avatar'/> */}
+									<FileChooser register={register} name='avatar'/>
 								</div>
 							</div>
-								{/* <FileChooser register={register} label='banner'/> */}
+								{/* <FileChooser register={register}/> */}
 					</div>
 				</div>
 				<div className="px-3 pt-20">
@@ -62,7 +63,7 @@ export const ProfileEditForm = () => {
 						<Controller
 						control={control}
 						name={'mobile'}
-						render={({field: { onChange, onBlur, value, ref }}) => {
+						render={({field: { onChange, value }}) => {
 							return <PhoneInput
 						country={'ua'}
 						value={value}

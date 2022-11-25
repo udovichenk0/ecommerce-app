@@ -29,6 +29,7 @@ const slice = createSlice({
     },
     setProfile(state, action) {
       state.profile = action.payload;
+      state.isFetching = false;
     },
     startSignInWithEmail(state, action) {
       state.isFetching = true;
@@ -134,9 +135,10 @@ const signInGoogleEpic = (action$: any) =>
 
 const baseSelector = createBaseSelector<State>(reducerName);
 const profile = createSelector(baseSelector, (state) => state.profile);
-
+const isFetching = createSelector(baseSelector, (state) => state.isFetching);
 export const selectors = {
   profile,
+  isFetching,
 };
 
 export const actions = {
