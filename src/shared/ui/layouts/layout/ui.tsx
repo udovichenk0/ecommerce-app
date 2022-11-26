@@ -1,4 +1,4 @@
-import { Footer } from "../footer";
+import { Footer } from "../../footer";
 
 type PropsType = {
 	children: JSX.Element|JSX.Element[]

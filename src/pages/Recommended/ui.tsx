@@ -5,7 +5,7 @@ import { Card } from '@/entities/card'
 import recommendedGirl from '@/shared/assets/recommendedGirl.webp'
 import { ProductType } from '@/shared/lib/types'
 import { useGetRecommendedProducts } from '@/shared/lib/useGetRecommended'
-import { Layout } from "@/shared/ui/layout"
+import { Layout } from "@/shared/ui/layouts/layout"
 import { Header } from "@/widgets/header"
 export const RecommendedPage = () => {
 	const {recommended, getRecommended} = useGetRecommendedProducts()

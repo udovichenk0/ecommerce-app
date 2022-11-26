@@ -46,7 +46,6 @@ const slice = createSlice({
     },
   },
 });
-
 const baseSelector = createBaseSelector<State>(reducerPath);
 const basket = createSelector(baseSelector, (state) => state.basket);
 

@@ -6,7 +6,7 @@ import woman from '@/shared/assets/woman.png'
 import { useGetFeatureProducts } from "@/shared/lib/useGetFeatureProducts"
 import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 import { ShopNow } from "@/shared/ui/buttons"
-import { Layout } from "@/shared/ui/layout"
+import { Layout } from "@/shared/ui/layouts"
 import { Panel } from "@/shared/ui/panel"
 import { Header } from "@/widgets/header"
 

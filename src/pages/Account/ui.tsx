@@ -1,6 +1,6 @@
 import { Profile, viewerModel } from '@/entities/viewer'
 import { useAppSelector } from '@/shared/lib/redux-std'
-import { Layout } from "@/shared/ui/layout"
+import { Layout } from "@/shared/ui/layouts/layout"
 import { Header } from "@/widgets/header"
 
 export const AccountPage = () => {

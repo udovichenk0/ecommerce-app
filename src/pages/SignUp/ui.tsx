@@ -7,7 +7,7 @@ import { useAppSelector } from "@/shared/lib/redux-std"
 import { useAuth } from "@/shared/lib/useAuth"
 import { SignBtn } from "@/shared/ui/buttons"
 import { Form } from "@/shared/ui/form"
-import { Layout } from "@/shared/ui/layout"
+import { Layout, SpaLayout } from "@/shared/ui/layouts"
 import { Header } from "@/widgets/header"
 export const SignUp = () => {
 
@@ -18,8 +18,7 @@ export const SignUp = () => {
 	}, [profile])
 	return (
 		<Layout header={<Header/>}>
-			<div className="h-full w-full flex justify-center items-center">
-				<Form 
+				<SpaLayout 
 				title={'Sign up to Salinaka'} 
 				form={<Auth.SignUp.AuthSignUpForm/>}
 				SignButton={<SignBtn title="Sign In" link="/signin"/>}
@@ -29,8 +28,7 @@ export const SignUp = () => {
 						<GitHubSignIn.GitHubAuth/>
 						<GoogleSignIn.GoogleAuth/>
 					</div>
-				</Form>
-			</div>
+				</SpaLayout>
 		</Layout>
 	)
 }

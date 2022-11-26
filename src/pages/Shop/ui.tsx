@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 
+import { ShopCard } from "@/entities/card/shop-card"
 import { productModel } from "@/entities/products"
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"
 import { UIloadmore } from "@/shared/ui/buttons"
-import { Layout } from "@/shared/ui/layout"
+import { Layout } from "@/shared/ui/layouts"
 import { Skeleton } from "@/shared/ui/skeleton"
 import { Header } from "@/widgets/header"
-import { ShopCard } from "@/widgets/shop-card"
 export const ShopPage = () => {
 	const selectors = ({
 		products: useAppSelector(productModel.selectors.products),
@@ -24,7 +24,7 @@ export const ShopPage = () => {
 			<div className="container relative">
 				<div className="mb-16">
 					<div className="grid grid-cols-auto-fit w-full justify-center gap-5">
-						{!selectors.products.length
+						{!selectors.products.length 
 						? 
 						new Array(12).fill('').map((_,id) => {
 							return (
