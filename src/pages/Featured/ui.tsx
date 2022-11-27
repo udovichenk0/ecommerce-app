@@ -4,7 +4,7 @@ import { Card } from '@/entities/card'
 // eslint-disable-next-line import/no-internal-modules
 import featuredGuy from '@/shared/assets/featuredGuy.webp'
 import { useGetFeatureProducts } from '@/shared/lib/useGetFeatureProducts'
-import { Layout } from "@/shared/ui/layouts/layout"
+import { Layout } from "@/shared/ui/layouts"
 import { Header } from "@/widgets/header"
 export const FeaturedPage = () => {
 	const {featured, getFeatured} = useGetFeatureProducts()

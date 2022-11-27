@@ -6,7 +6,6 @@ import { Auth, GitHubSignIn, GoogleSignIn } from "@/features/auth"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { useAuth } from "@/shared/lib/useAuth"
 import { SignBtn } from "@/shared/ui/buttons"
-import { Form } from "@/shared/ui/form"
 import { Layout, SpaLayout } from "@/shared/ui/layouts"
 import { Header } from "@/widgets/header"
 export const SignUp = () => {

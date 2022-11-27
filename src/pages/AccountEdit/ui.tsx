@@ -6,7 +6,7 @@ import { viewerModel } from "@/entities/viewer"
 import { ProfileEditForm } from "@/features/edit-profile"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { useAuth } from "@/shared/lib/useAuth"
-import { Layout } from "@/shared/ui/layouts/layout"
+import { Layout } from "@/shared/ui/layouts"
 import { Header } from "@/widgets/header"
 
 export const AccountEditPage = () => {

@@ -1,5 +1,6 @@
 import { lazy, ReactNode } from "react";
 
+import { RequireAuth } from "@/processes/require-auth";
 const MainPage = lazy(() => import("@/pages/Home"));
 const SignInPage = lazy(() => import("@/pages/SignIn"));
 const SignUpPage = lazy(() => import("@/pages/SignUp"));
@@ -64,7 +65,7 @@ export const routes: Record<AppRoutes, { path: string; element: ReactNode }> = {
   },
   [AppRoutes.ACCOUNT]: {
     path: RoutePath.account,
-    element: <AccountPage/>,
+    element: <RequireAuth><AccountPage/></RequireAuth> ,
   },
   [AppRoutes.EDIT]: {
     path: RoutePath.edit,

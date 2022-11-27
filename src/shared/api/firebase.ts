@@ -6,7 +6,6 @@ import {
   signOut,
   getAdditionalUserInfo,
   GoogleAuthProvider,
-  getRedirectResult,
 } from "firebase/auth";
 import {
   collection,
@@ -63,7 +62,7 @@ interface UpdateProfileType {
   mobile: string;
   name: string;
   address: string;
-  avatar: any;
+  avatar: string;
 }
 const updateProfile = (payload: UpdateProfileType) => {
   const { name, address, mobile, avatar } = payload;
@@ -79,7 +78,6 @@ const updateProfile = (payload: UpdateProfileType) => {
 const signInWithGithub = async () => {
   return signInWithPopup(auth, githubProvider).then((result) => {
     const user = result.user;
-    console.log(user);
     const { email, uid, photoURL, phoneNumber, displayName } = user;
     return {
       email,

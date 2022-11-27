@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export function readFile(file: File) {
   const img = file;
   const regex = /(\/jpg|\/jpeg|\/png)$/i;

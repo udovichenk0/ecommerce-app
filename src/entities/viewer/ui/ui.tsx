@@ -9,9 +9,6 @@ import { BaseButton } from '@/shared/ui/buttons'
 
 export const Profile = ({profile, isFetching}: {profile: ProfileType, isFetching: boolean}) => {
 	const navigate = useNavigate()
-	useEffect(() => {
-		if(!useAuth(profile)) navigate('/')
-	}, [profile])
 	return (
 		<div className="w-[700px] border-[1px] border-[#e1e1e1] p-4 relative mb-20">
 			<div className='w-full h-[150px] relative bg-[#e9e9e9]'>

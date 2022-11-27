@@ -6,10 +6,10 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { basketModel } from "@/entities/basket";
 import { viewerModel } from "@/entities/viewer";
-import { Routing } from "@/pages";
 import { auth, firebase } from "@/shared/api";
 import { Loader } from "@/shared/ui/spinner";
 
+import { routes } from "./app/route";
 import { persistor, store } from "./app/store";
 
 
@@ -32,9 +32,17 @@ if(!loading) {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
-        <div className='App'>
+        <div className=''>
         <Suspense fallback='loading'>
-          <Routing/>
+        <Routes>
+            {Object.values(routes).map(({path, element}) => {
+              return (
+                <Route key={path}
+                path={path} 
+                element={element}/>
+              )
+            })}
+          </Routes>
         </Suspense>
       </div>
       </BrowserRouter>
