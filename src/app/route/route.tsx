@@ -69,7 +69,7 @@ export const routes: Record<AppRoutes, { path: string; element: ReactNode }> = {
   },
   [AppRoutes.EDIT]: {
     path: RoutePath.edit,
-    element: <AccountEditPage/>,
+    element: <RequireAuth><AccountEditPage/></RequireAuth>,
   },
   [AppRoutes.SIGNIN]: {
     path: RoutePath.signin,
