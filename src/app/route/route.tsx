@@ -65,11 +65,11 @@ export const routes: Record<AppRoutes, { path: string; element: ReactNode }> = {
   },
   [AppRoutes.ACCOUNT]: {
     path: RoutePath.account,
-    element: <RequireAuth><AccountPage/></RequireAuth> ,
+    element: <AccountPage/> ,
   },
   [AppRoutes.EDIT]: {
     path: RoutePath.edit,
-    element: <RequireAuth><AccountEditPage/></RequireAuth>,
+    element: <AccountEditPage/>,
   },
   [AppRoutes.SIGNIN]: {
     path: RoutePath.signin,

@@ -1,4 +1,4 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ofType } from "redux-observable";
 import { catchError, exhaustMap, from, map, mergeMap, of, tap } from "rxjs";
 
@@ -27,7 +27,7 @@ const slice = createSlice({
     clearProfile(state) {
       state.profile = {} as ProfileType;
     },
-    setProfile(state, action) {
+    setProfile(state, action: PayloadAction<any>) {
       state.profile = action.payload;
       state.isFetching = false;
     },
@@ -44,7 +44,7 @@ const slice = createSlice({
       state.isFetching = true;
     },
 
-    startEditProfile(state, action) {
+    startEditProfile(state, action: any) {
       state.isFetching = true;
     },
   },

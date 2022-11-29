@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import PhoneInput from "react-phone-input-2"
 import { useNavigate } from "react-router-dom"
@@ -14,9 +15,11 @@ import { InputEditor } from "@/shared/ui/editor"
 import { FileChooser } from "@/shared/ui/inputs"
 
 import { checkUpdate } from "../lib"
+import { IData } from "../types"
 
 export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 	const profile = useAppSelector(viewerModel.selectors.profile)
+	const [loading, setLoading] = useState<boolean>(false)
 	const editProfile = useAction(viewerModel.actions.startEditProfile)
 	const navigate = useNavigate()
 	const {register, handleSubmit, control} = useForm({
@@ -28,19 +31,26 @@ export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 			mobile: profile.mobile
 		}
 	})
-	const handle = async (data:any) => {
-		if(checkUpdate(data, profile)){
-			const avatar = await readFile(data.avatar[0])
-			editProfile({
-				id: profile.uid,
-				info: {
-					...data, 
-					avatar: avatar || profile.avatar, 
-					mobile: data.mobile.length > 5? data.mobile : null
-				}
-			})
-		}
+	const handle = async (data:IData) => {
+		console.log(data)
+			if(checkUpdate(data, profile)){
+				setLoading(true)
+				const avatar = await readFile(data.avatar[0])
+				editProfile({
+					id: profile.uid,
+					info: {
+						...data, 
+						avatar: avatar || profile.avatar, 
+						mobile: data.mobile.length > 5? data.mobile : null
+					},
+				})
+			}
 	}
+	useEffect(() => {
+		if(loading && !isFetching){
+			navigate('/account')
+		}
+	}, [handle])
 	return (
 		<form onSubmit={handleSubmit(handle)}>
 			<div className='container flex justify-center'>
@@ -61,9 +71,9 @@ export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 				</div>
 				<div className="px-3 pt-20">
 					<div className="flex flex-col gap-y-5 mb-8">
-						<InputEditor label='* Full Name' register={register} name='name'/>
+						<InputEditor label='* Full Name' register={register} name='name' disabled={isFetching}/>
 						<InputEditor label='* Email Address' register={register} disabled={true} name='email'/>
-						<InputEditor placeholder={'#245 Brgy. Maligalig, Arayat Pampanga, Philippines'} label='Address (Will be used for checkout)' register={register} name='address'/>
+						<InputEditor disabled={isFetching} placeholder={'#245 Brgy. Maligalig, Arayat Pampanga, Philippines'} label='Address (Will be used for checkout)' register={register} name='address'/>
 						<Controller
 						control={control}
 						name={'mobile'}

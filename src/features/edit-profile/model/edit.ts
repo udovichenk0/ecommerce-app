@@ -1,5 +1,6 @@
+import { createBrowserRouter } from "react-router-dom";
 import { ofType } from "redux-observable";
-import { exhaustMap, from, map } from "rxjs";
+import { exhaustMap, from, map, tap } from "rxjs";
 
 import { viewerModel } from "@/entities/viewer";
 import { firebase } from "@/shared/api";
@@ -13,7 +14,6 @@ const editProfileEpic = (action$: any) =>
       )
     )
   );
-
 export const epics = {
   editProfileEpic,
 };

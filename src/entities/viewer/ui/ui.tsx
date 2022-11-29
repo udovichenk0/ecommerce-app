@@ -1,10 +1,8 @@
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // eslint-disable-next-line import/no-internal-modules
 import bgDefault from '@/shared/assets/accBgDefault.jpg'
 import { ProfileType } from '@/shared/lib/types'
-import { useAuth } from '@/shared/lib/useAuth'
 import { BaseButton } from '@/shared/ui/buttons'
 
 export const Profile = ({profile, isFetching}: {profile: ProfileType, isFetching: boolean}) => {
@@ -15,13 +13,11 @@ export const Profile = ({profile, isFetching}: {profile: ProfileType, isFetching
 				<div className='overflow-hidden w-full h-full object-cover absolute top-0 left-0 flex items-center justify-center'>
 					<img className='w-full h-full' src={bgDefault} alt="banner" />
 				</div>
-				<div className='z-50 absolute -bottom-1/3 px-5 flex items-center justify-between w-full'>
+				<div className='z-40 absolute -bottom-1/3 px-5 flex items-center justify-between w-full'>
 						<div className='w-[96px] h-[96px] bg-white rounded-full flex justify-center items-center'>
 							<img className='w-[90px] h-[90px] rounded-full' src={profile.avatar} alt={profile.name} />
 						</div>
-						<div >
-							<BaseButton action={() => navigate(':edit')} label={'Edit Account'}/>
-						</div>
+						<BaseButton action={() => navigate(':edit')} label={'Edit Account'}/>
 				</div>
 			</div>
 			<div className='pt-20 grid gap-8'>
