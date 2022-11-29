@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { viewerModel } from "@/entities/viewer"
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"
 import { BaseButton } from "@/shared/ui/buttons"
-import { TextInput } from "@/shared/ui/textInput"
+import { TextInput } from "@/shared/ui/inputs"
 
 export const AuthSignUpForm = () => {
 	const startAuth = useAction(viewerModel.actions.startAuth)

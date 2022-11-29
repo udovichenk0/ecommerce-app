@@ -59,20 +59,17 @@ const setBasket = async (basket: BasketPropType[], id: string) => {
 //Profile
 interface UpdateProfileType {
   id: string;
-  mobile: string;
-  name: string;
-  address: string;
-  avatar: string;
+  info: {
+    mobile: string;
+    name: string;
+    address: string;
+    avatar: string;
+  };
 }
 const updateProfile = (payload: UpdateProfileType) => {
-  const { name, address, mobile, avatar } = payload;
-  console.log(payload);
-  return updateDoc(doc(db, "users", payload.id), {
-    name,
-    address,
-    mobile,
-    avatar,
-  }).then(() => getUser(payload.id));
+  return updateDoc(doc(db, "users", payload.id), { ...payload.info }).then(() =>
+    getUser(payload.id)
+  );
 };
 
 const signInWithGithub = async () => {

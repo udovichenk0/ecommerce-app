@@ -26,15 +26,14 @@ useEffect(() => {
     setLoading(true)
 })
 }, [])
-if(!loading) {
-  return <Loader/>}
+if(!loading) return <Loader/>
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
         <div className=''>
         <Suspense fallback='loading'>
-        <Routes>
+          <Routes>
             {Object.values(routes).map(({path, element}) => {
               return (
                 <Route key={path}

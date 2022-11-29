@@ -1,4 +1,3 @@
-import { PayloadAction } from "@reduxjs/toolkit";
 import { ofType } from "redux-observable";
 import { exhaustMap, from, map } from "rxjs";
 

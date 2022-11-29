@@ -13,7 +13,7 @@ export const RequireAuth = ({children}:any) =>{
 	else { 
 		useEffect(() => {
 			navigate('/', {replace: true})
-		}, [])
+		}, [profile])
 	}
 	
 }

@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import PhoneInput from "react-phone-input-2"
 import { useNavigate } from "react-router-dom"
@@ -12,11 +11,12 @@ import { readFile } from "@/shared/lib/fileReader"
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"
 import { BaseButton } from "@/shared/ui/buttons"
 import { InputEditor } from "@/shared/ui/editor"
-import { FileChooser } from "@/shared/ui/file-chooser"
+import { FileChooser } from "@/shared/ui/inputs"
+
+import { checkUpdate } from "../lib"
 
 export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 	const profile = useAppSelector(viewerModel.selectors.profile)
-	const fetching = useAppSelector(viewerModel.selectors.isFetching)
 	const editProfile = useAction(viewerModel.actions.startEditProfile)
 	const navigate = useNavigate()
 	const {register, handleSubmit, control} = useForm({
@@ -29,13 +29,17 @@ export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 		}
 	})
 	const handle = async (data:any) => {
-		const avatar = await readFile(data.avatar[0])
-		editProfile({
-			id: profile.uid,
-			...data, 
-			avatar: avatar || profile.avatar, 
-			mobile: data.mobile.length > 5? data.mobile : null})
-			// navigate('/account')
+		if(checkUpdate(data, profile)){
+			const avatar = await readFile(data.avatar[0])
+			editProfile({
+				id: profile.uid,
+				info: {
+					...data, 
+					avatar: avatar || profile.avatar, 
+					mobile: data.mobile.length > 5? data.mobile : null
+				}
+			})
+		}
 	}
 	return (
 		<form onSubmit={handleSubmit(handle)}>
@@ -78,7 +82,9 @@ export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 						<button
 						onClick={() => navigate('/account')}
 						className="font-bold text-[#7d7d7d] bg-[#f2f2f2] border-[1px] border-[#e1e1e1] py-[15px] px-[20px]">Back to Profile</button>
-						{fetching ? <div>fetching</div> : <BaseButton label='Update Profile' action={handleSubmit(handle)}/>}
+						{<BaseButton disabled={isFetching} 
+						label={isFetching? 'Updating Profile..' : 'Update Profile'} 
+						action={handleSubmit(handle)}/>}
 					</div>
 				</div>
 			</div>

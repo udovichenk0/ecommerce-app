@@ -18,9 +18,9 @@ export const AccountEditPage = () => {
 	}, [profile])
 	return (
 		<Layout header={<Header/>}>
-		<div className='container flex justify-center'>
-			<ProfileEditForm isFetching={isFetching}/>
-		</div>
-	</Layout>
+			<div className='container flex justify-center'>
+				<ProfileEditForm isFetching={isFetching}/>
+			</div>
+		</Layout>
 	)
 }

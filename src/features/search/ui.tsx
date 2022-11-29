@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 // eslint-disable-next-line import/no-internal-modules
 import { SearchSvg } from "@/shared/assets/searchSvg"
 import { useAction } from "@/shared/lib/redux-std"
-import { SearchInput } from "@/shared/ui/searchInput"
+import { SearchInput } from "@/shared/ui/inputs"
 
 import { actions } from "./model"
 
