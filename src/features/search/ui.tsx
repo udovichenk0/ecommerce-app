@@ -17,8 +17,10 @@ export const SearchProduct = () => {
 		}
 	})
 	function onclick(data:{search: string}){
-		search(data.search)
-		navigate('/search')
+		if(data.search){
+			search(data.search)
+			navigate('/search')
+		}
 	}
 	return (
 		<form

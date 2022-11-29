@@ -26,7 +26,7 @@ useEffect(() => {
     setLoading(true)
 })
 }, [])
-if(!loading) return <Loader/>
+if(!loading) return <div className="h-screen w-full flex items-center justify-center"><Loader/></div> 
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

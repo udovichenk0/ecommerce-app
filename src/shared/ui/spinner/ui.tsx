@@ -1,7 +1,6 @@
 import { Oval } from 'react-loader-spinner'
 export const Loader = () => {
 	return (
-		<div className='w-full h-screen flex items-center justify-center'>
 			<Oval
 			height={50}
 			width={50}
@@ -15,6 +14,5 @@ export const Loader = () => {
 			strokeWidthSecondary={2}
 
 			/>
-		</div>
 	)
 }

@@ -32,7 +32,6 @@ export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 		}
 	})
 	const handle = async (data:IData) => {
-		console.log(data)
 			if(checkUpdate(data, profile)){
 				setLoading(true)
 				const avatar = await readFile(data.avatar[0])

@@ -188,6 +188,7 @@ const searchProducts = async (searchName: string) => {
           searchItems.push(doc.data());
         });
         // throw new Error()
+        console.log(searchItems);
         res(searchItems);
       } catch (error: any) {
         rej(error.message);
