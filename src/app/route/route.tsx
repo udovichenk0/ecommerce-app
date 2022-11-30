@@ -1,6 +1,7 @@
 import { lazy, ReactNode } from "react";
 
-import { RequireAuth } from "@/processes/require-auth";
+import { ProductRequire, WithAuth } from "../hocs";
+const SummaryOrderPage = lazy(() => import("@/pages/Check-out/summary-order"));
 const MainPage = lazy(() => import("@/pages/Home"));
 const SignInPage = lazy(() => import("@/pages/SignIn"));
 const SignUpPage = lazy(() => import("@/pages/SignUp"));
@@ -23,6 +24,7 @@ export enum AppRoutes {
   SHOP = "shop",
   SEARCH = "search",
   PRODUCT = "product",
+  STEP1 = "step1",
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
@@ -36,6 +38,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.EDIT]: "/account/:edit",
   [AppRoutes.SIGNIN]: "/signin",
   [AppRoutes.SIGNUP]: "/signup",
+  [AppRoutes.STEP1]: "/checkout/step1"
 };
 
 export const routes: Record<AppRoutes, { path: string; element: ReactNode }> = {
@@ -69,14 +72,18 @@ export const routes: Record<AppRoutes, { path: string; element: ReactNode }> = {
   },
   [AppRoutes.EDIT]: {
     path: RoutePath.edit,
-    element: <AccountEditPage/>,
+    element: <AccountEditPage/>, 
   },
   [AppRoutes.SIGNIN]: {
     path: RoutePath.signin,
-    element: <SignInPage/>,
+    element: <WithAuth><SignInPage/></WithAuth>,
   },
   [AppRoutes.SIGNUP]: {
     path: RoutePath.signup,
-    element: <SignUpPage/>,
+    element: <WithAuth><SignUpPage/></WithAuth>,
   },
+  [AppRoutes.STEP1]: {
+    path: RoutePath.step1,
+    element: <ProductRequire><SummaryOrderPage/></ProductRequire>
+  }
 };

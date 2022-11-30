@@ -18,10 +18,9 @@ export const RecommendedPage = () => {
 			<section className=" bg-[#f3f3f3] flex items-center h-[400px]">
 					<div className=" basis-1/2 p-8">
 						<div className="text-[48px] font-light mb-5">Recommended Products</div>
-
 					</div>
 					<div className="h-full w-full bg-cover basis-1/2">
-						<img src={recommendedGirl} className='h-full bg-contain w-full object-cover' alt="" />
+						<img src={recommendedGirl} className='h-full bg-contain w-full object-cover' alt="smiling-woman" />
 					</div>
 				</section>
 				<div className="px-10 mt-28">

@@ -6,10 +6,12 @@ type PropsType = {
 }
 export const Layout = ({children, header}: PropsType) => {
 	return (
-		<div className="grid h-screen grid-rows-[auto,1fr,auto] grid-cols-[100%]">
-			{header}
-				{children}
-			<Footer/>
-		</div>
+			<div className="grid h-screen grid-rows-[auto,1fr,auto] grid-cols-[100%]">
+				{header}
+				<div className="container pb-28 h-full w-full justify-center">
+					{children}
+				</div>
+				<Footer/>
+			</div>
 	)
 }

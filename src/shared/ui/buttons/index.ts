@@ -1,7 +1,7 @@
 export * from "./ArrowBtn/";
 export * from "./ColorPicker";
 export * from "./SignIn";
-export * from "./SignUp";
+export * from "./black-button-sm";
 export * from "./backBtn";
 export * from "./github";
 export * from "./google";
@@ -9,5 +9,5 @@ export * from "./loadmore";
 export * from "./updateBasket";
 export * from "./ShopBag";
 export * from "./menu-button";
-export * from "./black-button";
+export * from "./black-button-lg";
 export * from "./grey-button";

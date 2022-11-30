@@ -55,11 +55,12 @@ export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 						})}
 						</div>
 						<div className="absolute bottom-0 border-t-[1px] border-[#e1e1e1] w-full left-0 p-7 flex items-center justify-between">
-							<div>
-								<h2 className="text-[20px] pb-5">Subtotal Amout:</h2>
+							<div className="flex items-center gap-5">
+								<h2 className="text-[20px]">Subtotal Amout:</h2>
 								<h1 className="font-medium text-[30px]">${countTotalPrice(basket)}</h1>
 							</div>
-							<BaseButton label={'CHECK OUT'} action={() => isSignIn? () => console.log(1) : setModelOpen(true)} disabled={!basket.length}/>
+							<BaseButton label={'CHECK OUT'} 
+							action={() => isSignIn? () => console.log(1) : setModelOpen(true)} disabled={!basket.length}/>
 							{isModelOpened && <Modal setModelOpen={setModelOpen}>
 								<CheckOutModal setModelOpen={setModelOpen}/>
 							</Modal>}

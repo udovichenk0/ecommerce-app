@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { basketModel } from '@/entities/basket'
 import { viewerModel } from '@/entities/viewer'
@@ -9,7 +9,7 @@ import { firebase } from '@/shared/api'
 import logo from '@/shared/assets/logo.png'
 import { useAppSelector } from '@/shared/lib/redux-std'
 import { useAuth } from '@/shared/lib/useAuth'
-import { ShopBag, SignBtn, SingUp } from '@/shared/ui/buttons'
+import { ShopBag, LGreyButton, BlackBtnSm } from '@/shared/ui/buttons'
 
 import { BasketSideMenu } from './basket'
 import { links } from './config'
@@ -22,7 +22,7 @@ export const Header = () => {
 	const [isOpened, setOpen] = useState<boolean>(false)
 	const basket = useAppSelector(basketModel.selectors.basket)
 	const profile = useAppSelector(viewerModel.selectors.profile)
-
+	const navigate = useNavigate()
 	useEffect(() => {
 		if(useAuth(profile)) firebase.setBasket(basket, profile.uid)
 	}, [basket])
@@ -49,10 +49,10 @@ export const Header = () => {
 				<SearchProduct/>
 				<ShopBag setOpen={setOpen} basketLength={basket.length}/>
 				{useAuth(profile)? <Profile name={profile.name} photo={profile.avatar}/>
-				:	<>
-					<SingUp/>
-					<SignBtn title='Sign In' link='/signin'/>
-					</>
+				:	<div className='flex gap-5'>
+					<BlackBtnSm label='Sign Up' action={() => navigate('/signup')}/>
+					<LGreyButton label='Sign In' action={() => navigate('/signin')}/>
+					</div>
 				}
 				<BasketSideMenu isOpened={isOpened} setOpen={setOpen}/>
 			</div>

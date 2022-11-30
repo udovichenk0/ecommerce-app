@@ -3,9 +3,11 @@ import { useEffect } from 'react'
 import { Card } from '@/entities/card'
 // eslint-disable-next-line import/no-internal-modules
 import featuredGuy from '@/shared/assets/featuredGuy.webp'
+import { ProductType } from '@/shared/lib/types'
 import { useGetFeatureProducts } from '@/shared/lib/useGetFeatureProducts'
 import { Layout } from "@/shared/ui/layouts"
 import { Header } from "@/widgets/header"
+
 export const FeaturedPage = () => {
 	const {featured, getFeatured} = useGetFeatureProducts()
 	useEffect(() => {
@@ -17,18 +19,17 @@ export const FeaturedPage = () => {
 			<section className=" bg-[#f3f3f3] flex items-center h-[400px]">
 					<div className=" basis-1/2 p-8">
 						<div className="text-[48px] font-light mb-5">Featured Products</div>
-
 					</div>
 					<div className="h-full w-full bg-cover basis-1/2">
-						<img src={featuredGuy} className='h-full bg-contain w-full object-cover' alt="" />
+						<img src={featuredGuy} className='h-full bg-contain w-full object-cover' alt="smiling-man" />
 					</div>
 				</section>
 				<div className="px-10 mt-28">
 					<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">
 						{
-							featured?.map(({name, image, subtitle, id}:any, ind: number) => {
+							featured?.map(({name, image, subtitle, id}:ProductType) => {
 								return (
-									<Card key={ind} name={name} image={image} id={id} subtitle={subtitle}/>
+									<Card key={id} name={name} image={image} id={id} subtitle={subtitle}/>
 								)
 							})
 						}
