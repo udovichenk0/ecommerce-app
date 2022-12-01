@@ -51,7 +51,7 @@ export const Header = () => {
 				{useAuth(profile)? <Profile name={profile.name} photo={profile.avatar}/>
 				:	<div className='flex gap-5'>
 					<BlackBtnSm label='Sign Up' action={() => navigate('/signup')}/>
-					<LGreyButton label='Sign In' action={() => navigate('/signin')}/>
+					<LGreyButton label='Sign In' action={() => navigate("/signin", {replace:true})}/>
 					</div>
 				}
 				<BasketSideMenu isOpened={isOpened} setOpen={setOpen}/>

@@ -1,5 +1,6 @@
 
 import {  useRef, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { BasketItem, basketModel } from "@/entities/basket"
 import { BasketType } from "@/entities/basket/types"
@@ -19,12 +20,16 @@ interface IProps {
 }
 
 export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
-	const reference = useRef<HTMLHeadingElement>(null)
-	const basket = useAppSelector(basketModel.selectors.basket)
 	const [isModelOpened, setModelOpen] = useState<boolean>(false)
+	const navigate = useNavigate()
+	const reference = useRef<HTMLHeadingElement>(null)
+
+	const basket = useAppSelector(basketModel.selectors.basket)
 	const profile = useAppSelector(viewerModel.selectors.profile)
 	const isSignIn = useAuth(profile)
+
 		useClickOutside(() => !isModelOpened && setOpen(false), reference, isOpened)
+		
 	return (
 		<div ref={reference}>
 			<BasketSkelet isOpened={isOpened}>
@@ -60,7 +65,7 @@ export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 								<h1 className="font-medium text-[30px]">${countTotalPrice(basket)}</h1>
 							</div>
 							<BaseButton label={'CHECK OUT'} 
-							action={() => isSignIn? () => console.log(1) : setModelOpen(true)} disabled={!basket.length}/>
+							action={() => isSignIn? () => navigate : setModelOpen(true)} disabled={!basket.length}/>
 							{isModelOpened && <Modal setModelOpen={setModelOpen}>
 								<CheckOutModal setModelOpen={setModelOpen}/>
 							</Modal>}

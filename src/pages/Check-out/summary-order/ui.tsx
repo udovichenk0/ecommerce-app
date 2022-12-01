@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 
 import { BasketItem, basketModel } from "@/entities/basket"
 import { BasketType } from "@/entities/basket/types"
+import { countTotalPrice } from "@/shared/lib/count-total-price"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { BlackBtnSm, LGreyButton } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layouts"
@@ -24,7 +25,7 @@ export const SummaryOrder = () => {
 								<p>Review items in your basket.</p>
 							</>
 						</div>
-						<div className="w-[900px] mb-5">
+						<div className="w-full mb-5">
 						{basket.map(({selectedColor, selectedSize, quantity, price, name, image, id}:BasketType) => {
 							return (
 								<div key={id}>
@@ -41,6 +42,10 @@ export const SummaryOrder = () => {
 								
 							)
 						})}
+						</div>
+						<div className="flex gap-2 items-center self-end mb-5">
+							<p className="font-bold text-xl">Subtotal:</p> 
+							<p className="font-medium text-xl">${countTotalPrice(basket)}</p>
 						</div>
 					</div>
 				</CheckoutTemplate>

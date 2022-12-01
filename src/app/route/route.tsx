@@ -1,6 +1,8 @@
 import { lazy, ReactNode } from "react";
 
+// eslint-disable-next-line boundaries/element-types
 import { ProductRequire, WithAuth } from "../hocs";
+const ShipDetailPage = lazy(() => import("@/pages/Check-out/ship-detail"));
 const SummaryOrderPage = lazy(() => import("@/pages/Check-out/summary-order"));
 const MainPage = lazy(() => import("@/pages/Home"));
 const SignInPage = lazy(() => import("@/pages/SignIn"));
@@ -25,6 +27,7 @@ export enum AppRoutes {
   SEARCH = "search",
   PRODUCT = "product",
   STEP1 = "step1",
+  STEP2 = 'step2'
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
@@ -38,7 +41,8 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.EDIT]: "/account/:edit",
   [AppRoutes.SIGNIN]: "/signin",
   [AppRoutes.SIGNUP]: "/signup",
-  [AppRoutes.STEP1]: "/checkout/step1"
+  [AppRoutes.STEP1]: "/checkout/step1",
+  [AppRoutes.STEP2]: '/checkout/step2',
 };
 
 export const routes: Record<AppRoutes, { path: string; element: ReactNode }> = {
@@ -68,22 +72,26 @@ export const routes: Record<AppRoutes, { path: string; element: ReactNode }> = {
   },
   [AppRoutes.ACCOUNT]: {
     path: RoutePath.account,
-    element: <AccountPage/> ,
+    element: <WithAuth><AccountPage/></WithAuth> ,
   },
   [AppRoutes.EDIT]: {
     path: RoutePath.edit,
-    element: <AccountEditPage/>, 
+    element: <WithAuth><AccountEditPage/></WithAuth>, 
   },
   [AppRoutes.SIGNIN]: {
     path: RoutePath.signin,
-    element: <WithAuth><SignInPage/></WithAuth>,
+    element: <SignInPage/>,
   },
   [AppRoutes.SIGNUP]: {
     path: RoutePath.signup,
-    element: <WithAuth><SignUpPage/></WithAuth>,
+    element: <SignUpPage/>,
   },
   [AppRoutes.STEP1]: {
     path: RoutePath.step1,
     element: <ProductRequire><SummaryOrderPage/></ProductRequire>
+  },
+  [AppRoutes.STEP2]:{
+    path: RoutePath.step2,
+    element: <ProductRequire><ShipDetailPage/></ProductRequire>
   }
 };
