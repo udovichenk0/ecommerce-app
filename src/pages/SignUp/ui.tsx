@@ -20,7 +20,7 @@ export const SignUp = () => {
 				<SpaLayout 
 				title={'Sign up to Salinaka'} 
 				form={<Auth.SignUp.AuthSignUpForm/>}
-				SignButton={<LGreyButton title="Sign In" link="/signin"/>}
+				SignButton={<LGreyButton label="Sign In" action={() => navigate('/signin')}/>}
 				text='Have an account?'
 				>
 					<div className="w-[60%] flex flex-col gap-3">
