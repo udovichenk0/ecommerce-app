@@ -43,7 +43,6 @@ const slice = createSlice({
     startSignOut(state) {
       state.isFetching = true;
     },
-
     startEditProfile(state, action: any) {
       state.isFetching = true;
     },

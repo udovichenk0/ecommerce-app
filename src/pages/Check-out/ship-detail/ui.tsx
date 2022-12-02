@@ -29,14 +29,12 @@ export const ShipDetail = () => {
 			mobile: profile.mobile
 		}
 	})
-	console.log(checkbox)
 	return (
 		<Layout header={<Header/>}>
 				<CheckoutTemplate 
 				step={2} 
-				backBtn={<LGreyButton label="Back" action={() => navigate(-1)}/>}
+				backBtn={<LGreyButton label="Go Back" action={() => navigate(-1)}/>}
 				nextBtn={<BlackBtnSm label="Next Step" action={() => navigate('/checkout/step3')}/>}>
-					<div className="w-full flex flex-col items-center">
 						<h2 className="text-2xl font-bold mb-5">Shipping Details</h2>
 						<form action="" className="mb-10 w-full">
 						<div className="w-full flex flex-col">
@@ -79,7 +77,7 @@ export const ShipDetail = () => {
 								</div>
 							</>
 						</form>
-						<div className="w-full flex justify-end gap-4 mb-5">
+						<div className="w-full flex justify-end gap-4">
 							<div className="grid grid-rows-3">
 								<h2 className="flex justify-end">International Shipping:</h2>
 								<h2 className="flex justify-end">Subtotal:</h2>
@@ -91,7 +89,6 @@ export const ShipDetail = () => {
 								<p className="flex justify-end">{checkbox? countTotalPrice(basket) + 50 : countTotalPrice(basket)}</p>
 							</div>
 						</div>
-					</div>
 				</CheckoutTemplate>
 				
 		</Layout>

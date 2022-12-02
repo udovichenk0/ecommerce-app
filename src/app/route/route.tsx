@@ -4,6 +4,7 @@ import { lazy, ReactNode } from "react";
 import { ProductRequire, WithAuth } from "../hocs";
 const ShipDetailPage = lazy(() => import("@/pages/Check-out/ship-detail"));
 const SummaryOrderPage = lazy(() => import("@/pages/Check-out/summary-order"));
+const Payment = lazy(() => import("@/pages/Check-out/payment"));
 const MainPage = lazy(() => import("@/pages/Home"));
 const SignInPage = lazy(() => import("@/pages/SignIn"));
 const SignUpPage = lazy(() => import("@/pages/SignUp"));
@@ -27,7 +28,8 @@ export enum AppRoutes {
   SEARCH = "search",
   PRODUCT = "product",
   STEP1 = "step1",
-  STEP2 = 'step2'
+  STEP2 = "step2",
+  STEP3 = "step3",
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
@@ -38,11 +40,12 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.SEARCH]: "/search",
   [AppRoutes.PRODUCT]: "/product/:id",
   [AppRoutes.ACCOUNT]: "/account",
-  [AppRoutes.EDIT]: "/account/:edit",
+  [AppRoutes.EDIT]: "/account/edit",
   [AppRoutes.SIGNIN]: "/signin",
   [AppRoutes.SIGNUP]: "/signup",
   [AppRoutes.STEP1]: "/checkout/step1",
   [AppRoutes.STEP2]: '/checkout/step2',
+  [AppRoutes.STEP3]: '/checkout/step3',
 };
 
 export const routes: Record<AppRoutes, { path: string; element: ReactNode }> = {
@@ -88,10 +91,27 @@ export const routes: Record<AppRoutes, { path: string; element: ReactNode }> = {
   },
   [AppRoutes.STEP1]: {
     path: RoutePath.step1,
-    element: <ProductRequire><SummaryOrderPage/></ProductRequire>
+    element: 
+            <ProductRequire>
+              <WithAuth>
+                <SummaryOrderPage/>
+              </WithAuth>
+            </ProductRequire>
   },
   [AppRoutes.STEP2]:{
     path: RoutePath.step2,
-    element: <ProductRequire><ShipDetailPage/></ProductRequire>
+    element: <ProductRequire>
+              <WithAuth>
+                <ShipDetailPage/>
+              </WithAuth>
+            </ProductRequire>
+  },
+  [AppRoutes.STEP3]:{
+    path: RoutePath.step3,
+    element:<ProductRequire>
+          <WithAuth>
+            <Payment/>
+          </WithAuth>
+        </ProductRequire>
   }
 };

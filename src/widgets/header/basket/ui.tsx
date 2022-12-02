@@ -65,7 +65,7 @@ export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 								<h1 className="font-medium text-[30px]">${countTotalPrice(basket)}</h1>
 							</div>
 							<BaseButton label={'CHECK OUT'} 
-							action={() => isSignIn? () => navigate : setModelOpen(true)} disabled={!basket.length}/>
+							action={() => isSignIn? navigate('/checkout/step1') : setModelOpen(true)} disabled={!basket.length}/>
 							{isModelOpened && <Modal setModelOpen={setModelOpen}>
 								<CheckOutModal setModelOpen={setModelOpen}/>
 							</Modal>}

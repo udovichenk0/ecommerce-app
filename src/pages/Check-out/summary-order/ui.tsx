@@ -18,7 +18,6 @@ export const SummaryOrder = () => {
 				step={1} 
 				backBtn={<LGreyButton label="Continue Shopping" action={() => navigate('/', {replace:true})}/>}
 				nextBtn={<BlackBtnSm label="Next Step" action={() => navigate('/checkout/step2')}/>}>
-					<div className="w-full flex flex-col items-center">
 						<div className="w-full flex flex-col items-center mb-10">
 							<>
 								<h2 className="text-2xl font-bold mb-5">Order Summary</h2>
@@ -47,7 +46,6 @@ export const SummaryOrder = () => {
 							<p className="font-bold text-xl">Subtotal:</p> 
 							<p className="font-medium text-xl">${countTotalPrice(basket)}</p>
 						</div>
-					</div>
 				</CheckoutTemplate>
 				
 		</Layout>
