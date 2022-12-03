@@ -998,18 +998,6 @@
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.0.2.tgz#1c17eadb2fa77f80a796ad5ea9bf108e6993ef06"
   integrity sha512-GRSOFhJzjGN+d4sKHTMSvNeUPoZiDHWmRnXfzaxrqe7dE/Nzlc8BiMSJdLDESZlndM7jIUrZ/F4yWqVYlI0rwQ==
 
-"@stripe/react-stripe-js@^1.15.0":
-  version "1.15.0"
-  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-1.15.0.tgz#a381de453dfac5fc47d2d604dfa1c6a9b6fc881e"
-  integrity sha512-nqIOuAbbAN1p/zj2d2vykMzd097ZiHbu0+EpPRcfiswBRQIQIZaPrUwmj6HGD8BRA6Wp89mZen1UJbqtsfc3ZA==
-  dependencies:
-    prop-types "^15.7.2"
-
-"@stripe/stripe-js@^1.45.0":
-  version "1.45.0"
-  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.45.0.tgz#d1719b8d631366fc039f0be69bc7dac6c31207dc"
-  integrity sha512-cF7QA0D4JZezzfIzH2aAx7EsmFcvdZPq5Rc2GjprD5jjD3Sd5/XDWSjCJ7dlBLFjntO5yu+9zy23/nDXl66o6Q==
-
 "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"

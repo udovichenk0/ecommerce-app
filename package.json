@@ -12,8 +12,6 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
-    "@stripe/react-stripe-js": "^1.15.0",
-    "@stripe/stripe-js": "^1.45.0",
     "@types/node": "^18.11.4",
     "@types/redux-persist": "^4.3.1",
     "eslint-plugin-import": "^2.26.0",

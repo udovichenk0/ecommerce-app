@@ -3,8 +3,6 @@ export * from "./ColorPicker";
 export * from "./SignIn";
 export * from "./black-button-sm";
 export * from "./backBtn";
-export * from "./github";
-export * from "./google";
 export * from "./loadmore";
 export * from "./updateBasket";
 export * from "./ShopBag";

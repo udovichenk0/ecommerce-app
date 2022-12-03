@@ -74,6 +74,7 @@ const updateProfile = (payload: UpdateProfileType) => {
 
 const signInWithGithub = async () => {
   return signInWithPopup(auth, githubProvider).then((result) => {
+    console.log(result);
     const user = result.user;
     const { email, uid, photoURL, phoneNumber, displayName } = user;
     return {

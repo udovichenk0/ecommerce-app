@@ -1,12 +1,13 @@
 import { useEffect } from 'react'
 
 import { Card } from '@/entities/card'
-// eslint-disable-next-line import/no-internal-modules
-import featuredGuy from '@/shared/assets/featuredGuy.webp'
 import { ProductType } from '@/shared/lib/types'
 import { useGetFeatureProducts } from '@/shared/lib/useGetFeatureProducts'
 import { Layout } from "@/shared/ui/layouts"
 import { Header } from "@/widgets/header"
+
+// eslint-disable-next-line import/no-internal-modules
+import featuredGuy from './assets/featuredGuy.webp'
 
 export const FeaturedPage = () => {
 	const {featured, getFeatured} = useGetFeatureProducts()

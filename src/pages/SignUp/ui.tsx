@@ -1,33 +1,26 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { viewerModel } from "@/entities/viewer"
-import { Auth, GitHubSignIn, GoogleSignIn } from "@/features/auth"
+import { viewerModel } from "@/entities/session"
+import { AuthSignUpForm } from "@/features/auth"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { useAuth } from "@/shared/lib/useAuth"
 import { LGreyButton } from "@/shared/ui/buttons"
-import { Layout, SpaLayout } from "@/shared/ui/layouts"
+import { Layout } from "@/shared/ui/layouts"
+import { AuthForm } from "@/widgets/auth-form"
 import { Header } from "@/widgets/header"
 export const SignUp = () => {
 
 	const navigate = useNavigate()
-	const profile = useAppSelector(viewerModel.selectors.profile)
-	useEffect(() => {
-		if(useAuth(profile)) navigate('/')
-	}, [profile])
 	return (
 		<Layout header={<Header/>}>
-				<SpaLayout 
+				<AuthForm 
 				title={'Sign up to Salinaka'} 
-				form={<Auth.SignUp.AuthSignUpForm/>}
-				SignButton={<LGreyButton label="Sign In" action={() => navigate('/signin')}/>}
-				text='Have an account?'
-				>
-					<div className="w-[60%] flex flex-col gap-3">
-						<GitHubSignIn.GitHubAuth/>
-						<GoogleSignIn.GoogleAuth/>
-					</div>
-				</SpaLayout>
+				form={<AuthSignUpForm/>}
+				button={<LGreyButton label="Sign In" action={() => navigate('/signin')}/>}
+				text='Have an account?'>
+					<AuthSignUpForm/>
+				</AuthForm>
 		</Layout>
 	)
 }

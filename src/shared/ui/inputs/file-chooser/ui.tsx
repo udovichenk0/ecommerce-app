@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-internal-modules
-import { WritingSvg } from "@/shared/assets/writing"
+import { WritingSvg } from "./icon"
 
 export const FileChooser = ({register, name}:any) => {
 	return (

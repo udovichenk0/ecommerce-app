@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 
 import { BasketItem, basketModel } from "@/entities/basket"
 import { BasketType } from "@/entities/basket/types"
-import { viewerModel } from "@/entities/viewer"
+import { viewerModel } from "@/entities/session"
 import { countTotalPrice } from "@/shared/lib/count-total-price"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { useClickOutside } from "@/shared/lib/use-click-outside"

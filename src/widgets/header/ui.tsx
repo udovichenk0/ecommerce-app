@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { basketModel } from '@/entities/basket'
-import { viewerModel } from '@/entities/viewer'
+import { viewerModel } from '@/entities/session'
 import { SearchProduct } from '@/features/search'
 import { firebase } from '@/shared/api'
-// eslint-disable-next-line import/no-internal-modules
-import logo from '@/shared/assets/logo.png'
 import { useAppSelector } from '@/shared/lib/redux-std'
 import { useAuth } from '@/shared/lib/useAuth'
 import { ShopBag, LGreyButton, BlackBtnSm } from '@/shared/ui/buttons'
 
+// eslint-disable-next-line import/no-internal-modules
+import logo from './assets/logo.png'
 import { BasketSideMenu } from './basket'
 import { links } from './config'
 import { Profile } from './profile'

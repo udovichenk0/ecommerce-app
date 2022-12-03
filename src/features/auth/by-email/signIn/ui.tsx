@@ -1,10 +1,13 @@
 import { Controller, useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 
-import { viewerModel } from "@/entities/viewer"
+
+import { viewerModel } from "@/entities/session"
 import { useAction } from "@/shared/lib/redux-std"
 import { BaseButton } from "@/shared/ui/buttons"
 import { TextInput } from "@/shared/ui/inputs"
+
+
 export const AuthSignInForm = () => {
 	const startSignInWithEmail = useAction(viewerModel.actions.startSignInWithEmail)
 	const {handleSubmit, control, formState:{errors}} = useForm({

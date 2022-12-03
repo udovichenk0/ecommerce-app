@@ -1,3 +1,3 @@
-export * as Auth from './by-email'
-export * from './by-github'
-export * from './by-google'
+export * from "./by-email";
+export * from "./by-oauth";
+export * from "./sign-out";

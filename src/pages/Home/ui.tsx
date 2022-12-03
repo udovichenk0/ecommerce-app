@@ -1,14 +1,15 @@
 import { useEffect } from "react"
 
 import { Card } from "@/entities/card"
-// eslint-disable-next-line import/no-internal-modules
-import woman from '@/shared/assets/woman.png'
 import { useGetFeatureProducts } from "@/shared/lib/useGetFeatureProducts"
 import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 import { ShopNow } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layouts"
 import { Panel } from "@/shared/ui/panel"
 import { Header } from "@/widgets/header"
+
+// eslint-disable-next-line import/no-internal-modules
+import woman from './assets/woman.png'
 
 export const Home = () => {
 	const {featured, getFeatured} = useGetFeatureProducts()

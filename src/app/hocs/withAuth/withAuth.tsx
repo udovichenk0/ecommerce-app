@@ -1,6 +1,6 @@
 import { useNavigate, Navigate } from "react-router-dom"
 
-import { viewerModel } from "@/entities/viewer"
+import { viewerModel } from "@/entities/session"
 import { useAppSelector } from "@/shared/lib/redux-std"
 
 export const WithAuth = ({children}:any) =>{

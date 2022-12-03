@@ -1,13 +1,14 @@
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { SignOut } from '@/features/sign-out'
+import { SignOut } from '@/features/auth/sign-out'
 // eslint-disable-next-line import/no-internal-modules
 import defaultUser from '@/shared/assets/defaultUser.png'
 import { sliceName } from '@/shared/lib/slice-name'
 import { useClickOutside } from '@/shared/lib/use-click-outside'
 import { GreyButton } from '@/shared/ui/buttons'
 import { ProfileDropDown } from '@/shared/ui/profile-drop-down'
+
 
 export const Profile = ({name, photo}: {name:string, photo: string}) => {
 	const [isOpened, setOpen] = useState<boolean>(false)

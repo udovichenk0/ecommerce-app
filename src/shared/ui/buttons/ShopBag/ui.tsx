@@ -1,8 +1,7 @@
-import { useEffect, useRef } from "react"
-
-// eslint-disable-next-line import/no-internal-modules
-import { Cart } from "@/shared/assets/bag"
 import { correctLength } from "@/shared/lib/correct-length"
+
+import { Cart } from "./icon"
+
 
 interface IProps {
 	setOpen: (isOpened: boolean) => void

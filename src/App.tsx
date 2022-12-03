@@ -5,8 +5,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { basketModel } from "@/entities/basket";
-import { viewerModel } from "@/entities/viewer";
-import { auth, firebase } from "@/shared/api";
+import { api, viewerModel } from "@/entities/session";
+import { auth } from "@/shared/api";
 import { Loader } from "@/shared/ui/spinner";
 
 import { routes } from "./app/route";
@@ -18,7 +18,7 @@ function App() {
 useEffect(() => {
   onAuthStateChanged(auth, async (user) => {
     if(user) {
-      const data = await firebase.getUser(user.uid)
+      const data = await api.getUser(user.uid)
       store.dispatch(viewerModel.actions.setProfile(data))
       store.dispatch(basketModel.actions.setBasket(data?.basket))
       setLoading(true)

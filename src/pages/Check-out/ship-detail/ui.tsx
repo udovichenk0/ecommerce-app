@@ -4,9 +4,7 @@ import PhoneInput from "react-phone-input-2"
 import { useNavigate } from "react-router-dom"
 
 import { basketModel } from "@/entities/basket"
-import { viewerModel } from "@/entities/viewer"
-// eslint-disable-next-line import/no-internal-modules
-import { DoneSvg } from "@/shared/assets/done"
+import { viewerModel } from "@/entities/session"
 import { countTotalPrice } from "@/shared/lib/count-total-price"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { BlackBtnSm, LGreyButton } from "@/shared/ui/buttons"
@@ -14,6 +12,8 @@ import { InputEditor } from "@/shared/ui/editor"
 import { Layout } from "@/shared/ui/layouts"
 import { CheckoutTemplate } from "@/widgets/checkout-layout"
 import { Header } from "@/widgets/header"
+
+import { DoneSvg } from "../assets"
 
 export const ShipDetail = () => {
 	const navigate = useNavigate()

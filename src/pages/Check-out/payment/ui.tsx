@@ -2,6 +2,7 @@
 import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from "react-accessible-accordion"
 import { useNavigate } from "react-router-dom"
 
+import { CheckoutForm } from "@/features/payment"
 import { BlackBtnSm, LGreyButton } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layouts"
 import { CheckoutTemplate } from "@/widgets/checkout-layout"
@@ -49,6 +50,7 @@ export const Payment = () => {
 									)
 								})}
 							</div>
+							<CheckoutForm/>
 						</div>
 					</div>
                 </AccordionItemPanel>

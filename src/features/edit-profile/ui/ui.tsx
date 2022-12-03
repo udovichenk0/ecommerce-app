@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 import './style.css'
 import 'react-phone-input-2/lib/style.css'
-import { viewerModel } from "@/entities/viewer"
+import { viewerModel } from "@/entities/session"
 // eslint-disable-next-line import/no-internal-modules
 import bgDefault from '@/shared/assets/accBgDefault.jpg'
 import { readFile } from "@/shared/lib/fileReader"

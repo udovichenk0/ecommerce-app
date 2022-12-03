@@ -1,11 +1,10 @@
 import { Controller, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
-// eslint-disable-next-line import/no-internal-modules
-import { SearchSvg } from "@/shared/assets/searchSvg"
 import { useAction } from "@/shared/lib/redux-std"
 import { SearchInput } from "@/shared/ui/inputs"
 
+import { SearchSvg } from "./assets"
 import { actions } from "./model"
 
 export const SearchProduct = () => {

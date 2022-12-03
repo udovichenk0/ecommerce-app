@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { ofType } from "redux-observable";
 import { exhaustMap, from, map, tap } from "rxjs";
 
-import { viewerModel } from "@/entities/viewer";
+import { viewerModel } from "@/entities/session";
 import { firebase } from "@/shared/api";
 
 const editProfileEpic = (action$: any) =>
