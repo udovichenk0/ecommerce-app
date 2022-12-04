@@ -41,9 +41,9 @@ const Product = () => {
 	}
 	return (
 		<Layout header={<Header/>}>
-			{notifications.color && 
+			{/* {notifications.color && 
 			<Notification onDelete={setNotifications} color={notifications.color} message={notifications.message}/>
-			}
+			} */}
 			<div className="container pb-20" >
 				<div className="mb-10 px-20">
 						<BackButton/>

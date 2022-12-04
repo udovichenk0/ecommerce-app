@@ -11,6 +11,7 @@ import { Loader } from "@/shared/ui/spinner";
 
 import { routes } from "./app/route";
 import { persistor, store } from "./app/store";
+import { NotificationPopup } from "./entities/notification";
 
 
 function App() {
@@ -31,19 +32,20 @@ if(!loading) return <div className="h-screen w-full flex items-center justify-ce
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
-        <div className=''>
-        <Suspense fallback='loading'>
-          <Routes>
-            {Object.values(routes).map(({path, element}) => {
-              return (
-                <Route key={path}
-                path={path} 
-                element={element}/>
-              )
-            })}
-          </Routes>
-        </Suspense>
-      </div>
+          <div className=''>
+          <Suspense fallback='loading'>
+            <Routes>
+              {Object.values(routes).map(({path, element}) => {
+                return (
+                  <Route key={path}
+                  path={path} 
+                  element={element}/>
+                )
+              })}
+            </Routes>
+          </Suspense>
+            <NotificationPopup/>
+        </div>
       </BrowserRouter>
     </PersistGate>
     </Provider>

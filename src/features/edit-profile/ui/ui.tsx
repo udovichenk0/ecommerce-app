@@ -20,8 +20,10 @@ import { IData } from "../types"
 export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 	const profile = useAppSelector(viewerModel.selectors.profile)
 	const [loading, setLoading] = useState<boolean>(false)
-	const editProfile = useAction(viewerModel.actions.startEditProfile)
 	const navigate = useNavigate()
+
+	const editProfile = useAction(viewerModel.actions.startEditProfile)
+
 	const {register, handleSubmit, control} = useForm({
 		defaultValues: {
 			email: profile.email,

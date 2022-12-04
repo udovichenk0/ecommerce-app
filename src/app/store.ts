@@ -13,11 +13,12 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import { basketModel } from "@/entities/basket";
+import { notifyModel } from "@/entities/notification";
 import { productModel } from "@/entities/products";
 import { viewerModel } from "@/entities/session";
+import { signOutModel } from "@/features/auth/sign-out";
 import { editProfileModel } from "@/features/edit-profile";
 import { searchModel } from "@/features/search";
-import { signOutModel } from "@/features/auth/sign-out";
 
 const epicMiddleware = createEpicMiddleware();
 const rootEpics = combineEpics(
@@ -35,6 +36,7 @@ const rootReducers = combineReducers({
   ...searchModel.reducers,
   ...basketModel.reducer,
   ...viewerModel.reducer,
+  ...notifyModel.reducers,
 });
 const persistConfig = {
   key: "root",

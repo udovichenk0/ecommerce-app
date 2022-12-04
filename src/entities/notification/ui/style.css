@@ -1,0 +1,10 @@
+@keyframes example {
+	from {transform: translateX(40px)}
+	to {transform: translateX(0px)}
+  }
+
+
+.animation{
+	animation-name: example;
+	animation-duration: 0.3s;
+}
