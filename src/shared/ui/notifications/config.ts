@@ -1,4 +1,4 @@
-export const Color = {
+export const Types = {
   info: "info",
   success: "success",
   warning: "warning",

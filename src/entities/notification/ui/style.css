@@ -1,10 +1,23 @@
-@keyframes example {
-	from {transform: translateX(40px)}
-	to {transform: translateX(0px)}
+
+@keyframes slideInToast {
+	0% {
+	  opacity: 0;
+	  transform: translateX(120%);
+	}
+	20% {
+	  opacity: 1;
+	  transform: translateX(0);
+	}
+	90% {
+	  opacity: 1;
+	  transform: translateX(0);
+	}
+	100% {
+	  opacity: 0;
+	  transform: translateX(120%);
+	}
   }
 
-
 .animation{
-	animation-name: example;
-	animation-duration: 0.3s;
+	animation: slideInToast 4s ease;
 }

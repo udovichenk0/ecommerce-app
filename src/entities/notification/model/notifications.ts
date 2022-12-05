@@ -6,6 +6,7 @@ import { createBaseSelector } from "@/shared/lib/redux-std";
 const reducerName = "entity/notification";
 interface ISnackbar {
   message: string;
+  type: "success" | "warning" | "error" | "info";
 }
 
 const initialState = {
@@ -22,7 +23,6 @@ const slice = createSlice({
       state.notifications.push({ ...action.payload, key: uuidv4() });
     },
     closeSnackbar(state, action) {
-      console.log(action.payload);
       state.notifications = state.notifications.filter(
         (alert) => alert.key != action.payload
       );

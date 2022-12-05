@@ -17,7 +17,6 @@ import { notifyModel } from "@/entities/notification";
 import { productModel } from "@/entities/products";
 import { viewerModel } from "@/entities/session";
 import { signOutModel } from "@/features/auth/sign-out";
-import { editProfileModel } from "@/features/edit-profile";
 import { searchModel } from "@/features/search";
 
 const epicMiddleware = createEpicMiddleware();
@@ -28,8 +27,8 @@ const rootEpics = combineEpics(
   viewerModel.epics.signInEpic,
   viewerModel.epics.signInGithubEpic,
   viewerModel.epics.signInGoogleEpic,
-  signOutModel.epics.signOutEpic,
-  editProfileModel.epics.editProfileEpic
+  viewerModel.epics.editProfileEpic,
+  signOutModel.epics.signOutEpic
 );
 const rootReducers = combineReducers({
   ...productModel.reducers,

@@ -9,3 +9,16 @@
 	color: #3b9620;
 	background-color: #f0fbed;
 }
+
+.error{
+	border: 1px solid #b92424;
+	color: #b92424;
+	background-color: #fbeded;
+}
+
+.info{
+	border: 1px solid #248ab9;
+	color: #248ab9;
+	background-color: #edf1fb;
+}
+

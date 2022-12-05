@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 import './style.css'
 import 'react-phone-input-2/lib/style.css'
+import { notifyModel } from "@/entities/notification"
 import { viewerModel } from "@/entities/session"
 // eslint-disable-next-line import/no-internal-modules
 import bgDefault from '@/shared/assets/accBgDefault.jpg'
@@ -21,9 +22,8 @@ export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 	const profile = useAppSelector(viewerModel.selectors.profile)
 	const [loading, setLoading] = useState<boolean>(false)
 	const navigate = useNavigate()
-
+	const notification = useAction(notifyModel.actions.enqueueSnackbar)
 	const editProfile = useAction(viewerModel.actions.startEditProfile)
-
 	const {register, handleSubmit, control} = useForm({
 		defaultValues: {
 			email: profile.email,
@@ -50,6 +50,7 @@ export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 	useEffect(() => {
 		if(loading && !isFetching){
 			navigate('/account')
+			notification({message: 'Profile Updated Successfully!', type: 'success'})
 		}
 	}, [handle])
 	return (

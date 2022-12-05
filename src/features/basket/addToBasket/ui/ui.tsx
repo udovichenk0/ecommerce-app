@@ -8,13 +8,11 @@ interface IProps {
 	setNotification: any
 }
 export const AddToBasket = ({product, setNotification}: IProps) => {
-	const snackbars = useAppSelector(notifyModel.selectors.notifications)
 	const enqueueSnackbar = useAction(notifyModel.actions.enqueueSnackbar)
 	
 	const AddToBasket = useAction(basketModel.actions.addToBasket)
 	const handleOnClick = () => {
-		setNotification({color: 'success', message: 'Item added to basket'})
-		enqueueSnackbar({message: 'this is a snackbar'})
+		enqueueSnackbar({message: 'Product is added to basket', type: 'success'})
 		AddToBasket(product)
 	}
 	return (

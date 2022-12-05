@@ -1,4 +1,5 @@
 import { basketModel } from "@/entities/basket"
+import { notifyModel } from "@/entities/notification"
 import { useAction } from "@/shared/lib/redux-std"
 import { UpdateCart } from "@/shared/ui/buttons"
 
@@ -9,8 +10,9 @@ interface IProps {
 
 export const RemoveFromBasket = ({id, setNotification}: IProps) => {
 	const RemoveFromBasket = useAction(basketModel.actions.removeFromBasket)
+	const enqueueSnackbar = useAction(notifyModel.actions.enqueueSnackbar)
 	const handleOnClick = (id?:string) => {
-		setNotification({color: 'warning', message: 'Item removed from basket'})
+		enqueueSnackbar({message: 'Product is removed from basket', type: 'warning'})
 		RemoveFromBasket(id)
 	}
 	return (

@@ -1,8 +1,5 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ofType } from "redux-observable";
-import { catchError, exhaustMap, from, map } from "rxjs";
 
-import { firebase } from "@/shared/api";
 import { createBaseSelector } from "@/shared/lib/redux-std";
 import { ProfileType } from "@/shared/lib/types";
 

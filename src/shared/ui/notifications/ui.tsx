@@ -1,51 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom"
 
 import './notification.css'
-import { Color } from "./config"
+import { Types } from "./config"
 
+interface IProps {
+	type?: string
+	message: string
+	onDelete:(id:string) => void
+	id: string
+}
 
 export const Notification = ({
-	color = Color.info,
+	type = Types.info,
 	message,
 	onDelete,
 	id
-}:any) => {
+}:IProps) => {
 	useEffect(() => {
-		const timeoutId = setTimeout(() => onDelete(id), 2000);
+		const timeoutId = setTimeout(() => onDelete(id), 4000);
 		return () => {
 			clearTimeout(timeoutId);
 		};
 	}, [onDelete]);
 	return (
-		<div className={`${color}`}>
-			<div className="p-5 font-medium text-[18px]">
-				{message}
+		<div className={`${type} w-[350px]`}>
+			<div className="px-6 py-5">
+				<h2 className="font-medium text-[20px]">{message}</h2>
 			</div>
 		</div>
 	)
 }
-
-
-
-
-// export const Notification = ({
-// 	color = Color.info,
-// 	message,
-// 	onDelete
-// }:any) => {
-// 	useEffect(() => {
-// 		const timeoutId = setTimeout(() => onDelete(false), 2000);
-// 		return () => {
-// 			clearTimeout(timeoutId);
-// 		};
-// 	}, [onDelete]);
-// 	return createPortal(
-// 		<div className={`fixed top-20 right-20 ${color} z-50`}>
-// 			<div className="p-5 font-medium text-[18px]">
-// 				{message}
-// 			</div>
-// 		</div>,
-// 		document.getElementById('notification-root') as any
-// 	)
-// }

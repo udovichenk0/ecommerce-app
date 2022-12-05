@@ -88,9 +88,20 @@ const signInGoogleEpic = (action$: any) =>
     )
   );
 
+const editProfileEpic = (action$: any) =>
+  action$.pipe(
+    ofType(actions.startEditProfile),
+    exhaustMap((action: any) =>
+      from(firebase.updateProfile(action.payload)).pipe(
+        map((resp) => actions.setProfile(resp))
+      )
+    )
+  );
+
 export const epics = {
   authEpic,
   signInEpic,
   signInGithubEpic,
   signInGoogleEpic,
+  editProfileEpic,
 };
