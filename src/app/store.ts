@@ -16,6 +16,7 @@ import { basketModel } from "@/entities/basket";
 import { notifyModel } from "@/entities/notification";
 import { productModel } from "@/entities/products";
 import { viewerModel } from "@/entities/session";
+import { oauthModel } from "@/features/auth";
 import { signOutModel } from "@/features/auth/sign-out";
 import { searchModel } from "@/features/search";
 
@@ -25,10 +26,10 @@ const rootEpics = combineEpics(
   searchModel.epics.searchEpic,
   viewerModel.epics.authEpic,
   viewerModel.epics.signInEpic,
-  viewerModel.epics.signInGithubEpic,
-  viewerModel.epics.signInGoogleEpic,
   viewerModel.epics.editProfileEpic,
-  signOutModel.epics.signOutEpic
+  signOutModel.epics.signOutEpic,
+  oauthModel.epics.signInGithubEpic,
+  oauthModel.epics.signInGoogleEpic
 );
 const rootReducers = combineReducers({
   ...productModel.reducers,

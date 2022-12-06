@@ -1,7 +1,7 @@
 import { lazy, ReactNode } from "react";
 
 // eslint-disable-next-line boundaries/element-types
-import { ProductRequire, WithAuth } from "../hocs";
+import { ProductRequire, WithAuth, WithNoAuth } from "../hocs";
 const ShipDetailPage = lazy(() => import("@/pages/Check-out/ship-detail"));
 const SummaryOrderPage = lazy(() => import("@/pages/Check-out/summary-order"));
 const Payment = lazy(() => import("@/pages/Check-out/payment"));
@@ -83,11 +83,11 @@ export const routes: Record<AppRoutes, { path: string; element: ReactNode }> = {
   },
   [AppRoutes.SIGNIN]: {
     path: RoutePath.signin,
-    element: <SignInPage/>,
+    element: <WithNoAuth><SignInPage/></WithNoAuth>,
   },
   [AppRoutes.SIGNUP]: {
     path: RoutePath.signup,
-    element: <SignUpPage/>,
+    element: <WithNoAuth><SignUpPage/></WithNoAuth>,
   },
   [AppRoutes.STEP1]: {
     path: RoutePath.step1,

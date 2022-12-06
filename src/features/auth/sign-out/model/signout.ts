@@ -7,7 +7,7 @@ import { firebase } from "@/shared/api";
 
 const signOutEpic = (action$: any) =>
   action$.pipe(
-    ofType("entity/viewer" + "/startSignOut"),
+    ofType("entity/session" + "/startSignOut"),
     switchMap(() =>
       from(firebase.signUserOut()).pipe(
         switchMap(() =>

@@ -8,7 +8,7 @@ export const GoogleAuth = () => {
 	const signinWithGoogle = useAction(viewerModel.actions.startSigninWithGoogle)
 	return (
 		<button 
-		onClick={signinWithGoogle}
+		onClick={() => signinWithGoogle()}
 		className="hover:bg-[#f2f3f4] transition-all delay-75 p-4 bg-white border-[1px] border-[#c5c5c5] font-bold text-[#3a3a3a] w-full flex items-center justify-between">
 			<GoogleSvg/>
 			Continue with Google
