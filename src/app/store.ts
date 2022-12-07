@@ -16,8 +16,9 @@ import { basketModel } from "@/entities/basket";
 import { notifyModel } from "@/entities/notification";
 import { productModel } from "@/entities/products";
 import { viewerModel } from "@/entities/session";
-import { oauthModel } from "@/features/auth";
+import { emailModel, oauthModel } from "@/features/auth";
 import { signOutModel } from "@/features/auth/sign-out";
+import { profileModel } from "@/features/edit-profile";
 import { searchModel } from "@/features/search";
 
 const epicMiddleware = createEpicMiddleware();
@@ -25,8 +26,8 @@ const rootEpics = combineEpics(
   productModel.epics.getProducts,
   searchModel.epics.searchEpic,
   viewerModel.epics.authEpic,
-  viewerModel.epics.signInEpic,
-  viewerModel.epics.editProfileEpic,
+  emailModel.epics.signInEpic,
+  profileModel.epics.editProfileEpic,
   signOutModel.epics.signOutEpic,
   oauthModel.epics.signInGithubEpic,
   oauthModel.epics.signInGoogleEpic

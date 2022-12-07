@@ -28,7 +28,7 @@ export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 	const profile = useAppSelector(viewerModel.selectors.profile)
 	const isSignIn = useAuth(profile)
 
-		useClickOutside(() => !isModelOpened && setOpen(false), reference, isOpened)
+	useClickOutside(() => !isModelOpened && setOpen(false), reference, isOpened)
 		
 	return (
 		<div ref={reference}>
@@ -41,7 +41,7 @@ export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 							</div>
 							<MenuButton action={() => setOpen(false)} label={'Close'}/>
 						</div>
-						<div className="">
+						<div>
 							{basket.map(({selectedColor, selectedSize, quantity, price, name, image, id}:BasketType) => {
 							return (
 								<div key={id}>

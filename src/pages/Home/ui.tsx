@@ -1,10 +1,11 @@
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { Card } from "@/entities/card"
 import { useGetFeatureProducts } from "@/shared/lib/useGetFeatureProducts"
 import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
-import { ShopNow } from "@/shared/ui/buttons"
-import { Layout } from "@/shared/ui/layouts"
+import { BaseButton } from "@/shared/ui/buttons"
+import { HeroLayout, Layout } from "@/shared/ui/layouts"
 import { Panel } from "@/shared/ui/panel"
 import { Header } from "@/widgets/header"
 
@@ -13,6 +14,7 @@ import woman from './assets/woman.png'
 
 export const Home = () => {
 	const {featured, getFeatured} = useGetFeatureProducts()
+	const navigate = useNavigate()
 	const {getRecommended, recommended} = useGetRecommendedProducts()
 	useEffect(() => {
 		getFeatured()
@@ -20,20 +22,17 @@ export const Home = () => {
 	}, [])
 	return (
 		<Layout header={<Header/>}>
-				<section className=" bg-[#f3f3f3] flex items-center h-[400px]">
-					<div className=" basis-1/2 p-8">
-						<div className="text-[48px] font-light leading-[0px] mb-6"><span className="font-medium leading-[0px]">See</span>  everything</div>
-						<div className="text-[48px] font-light mb-5">with <span className="font-medium">Clarity</span> </div>
+				<HeroLayout image={woman}>
+					<div className="p-8 md:basis-1/2">
+						<div className="text-[37px] lg:text-[48px] font-light leading-[0px] mb-6"><span className="font-medium leading-[0px]">See</span>  everything</div>
+						<div className="text-[37px] lg:text-[48px] font-light mb-5">with <span className="font-medium">Clarity</span> </div>
 						<p className="mb-10 text-light-dark text-base font-semibold">
 						Buying eyewear should leave you happy and good-looking, with money in your pocket. 
 						Glasses, sunglasses, and contacts—we have got your eyes covered.
 						</p>
-						<ShopNow title="Show Now"/>
+						<BaseButton label="Shop Now" action={() => navigate('shop')}/>
 					</div>
-					<div className="h-full w-full bg-cover basis-1/2">
-						<img src={woman} className='h-full bg-contain w-full object-cover' alt="" />
-					</div>
-				</section>
+				</HeroLayout>
 				<div className="px-10 mt-28">
 					<Panel title={'Featured Products'} link={'/featured'}/>
 					<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">

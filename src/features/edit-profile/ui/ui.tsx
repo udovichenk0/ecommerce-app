@@ -50,7 +50,7 @@ export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 	useEffect(() => {
 		if(loading && !isFetching){
 			navigate('/account')
-			notification({message: 'Profile Updated Successfully!', type: 'success'})
+			notification({message: 'Profile Updated!', type: 'success'})
 		}
 	}, [handle])
 	return (

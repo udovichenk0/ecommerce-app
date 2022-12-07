@@ -23,7 +23,7 @@ export const SearchProduct = () => {
 	}
 	return (
 		<form
-		className="w-[300px] mr-7 relative"
+		className="w-full relative"
 		action="" onSubmit={handleSubmit(onclick)}>
 			<button className="w-[47px] h-[47px] absolute left-0 flex items-center justify-center ">
 				<SearchSvg/>

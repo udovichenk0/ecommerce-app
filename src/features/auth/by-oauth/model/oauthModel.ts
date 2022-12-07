@@ -25,8 +25,8 @@ const signInGithubEpic = (action$: any) =>
           return (
             viewerModel.actions.setProfile(response),
             notifyModel.actions.enqueueSnackbar({
-              message: "Failed to signin",
-              type: "error",
+              message: "Successfully signed in",
+              type: "success",
             })
           );
         }),

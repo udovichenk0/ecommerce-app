@@ -33,7 +33,7 @@ if(!loading) return <div className="h-screen w-full flex items-center justify-ce
       <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
           <div className=''>
-          <Suspense fallback='loading'>
+          <Suspense fallback={null}>
             <Routes>
               {Object.values(routes).map(({path, element}) => {
                 return (

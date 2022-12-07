@@ -9,6 +9,13 @@ module.exports = {
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(270px, 1fr))',
         'auto-row': 'auto 1fr auto',
+      },
+      screens: {
+        "sm": "	730px",
+        "md": "	868px",
+        "lg": "	1024px",
+        "xl": "	1280px",
+        "2xl": "	1536px",
       }
     },
     colors: {
