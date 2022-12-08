@@ -5,9 +5,8 @@ import { useAction, useAppSelector } from "@/shared/lib/redux-std"
 import { UpdateCart } from "@/shared/ui/buttons"
 interface IProps {
 	product: BasketType
-	setNotification: any
 }
-export const AddToBasket = ({product, setNotification}: IProps) => {
+export const AddToBasket = ({product}: IProps) => {
 	const enqueueSnackbar = useAction(notifyModel.actions.enqueueSnackbar)
 	
 	const AddToBasket = useAction(basketModel.actions.addToBasket)

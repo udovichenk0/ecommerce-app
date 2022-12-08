@@ -33,15 +33,16 @@ export const ShopPage = () => {
 								</div>
 							)
 						})
-						: selectors.products.map(({image, name,subtitle, price}, id) => {
+						: selectors.products.map(({image, name,subtitle, price, id}) => {
 						return (
-							<div key={id}>
+							<div key={id} className='flex justify-center'>
 								<ShopCard 
 								image={image} 
 								name={name} 
 								subtitle={subtitle}
 								price={price}
 								isFetching={selectors.isFetching}
+								id={id}
 								/>
 							</div>
 						)
@@ -50,9 +51,9 @@ export const ShopPage = () => {
 				</div>
 				<div className="w-full flex justify-center pb-28">
 				{selectors.lastRefKey && <UIloadmore 
-								onLoadMore={() => fetchProducts(selectors.lastRefKey)} 
-								isFetching={selectors.isFetching}
-								/>}
+					onLoadMore={() => fetchProducts(selectors.lastRefKey)} 
+					isFetching={selectors.isFetching}
+				/>}
 				</div>
 			</div>
 		</Layout>

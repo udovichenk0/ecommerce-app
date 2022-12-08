@@ -5,10 +5,9 @@ import { UpdateCart } from "@/shared/ui/buttons"
 
 interface IProps {
 	id?:string
-	setNotification: any
 }
 
-export const RemoveFromBasket = ({id, setNotification}: IProps) => {
+export const RemoveFromBasket = ({id}: IProps) => {
 	const RemoveFromBasket = useAction(basketModel.actions.removeFromBasket)
 	const enqueueSnackbar = useAction(notifyModel.actions.enqueueSnackbar)
 	const handleOnClick = (id?:string) => {

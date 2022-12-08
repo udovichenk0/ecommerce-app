@@ -23,15 +23,13 @@ export const Home = () => {
 	return (
 		<Layout header={<Header/>}>
 				<HeroLayout image={woman}>
-					<div className="p-8 md:basis-1/2">
-						<div className="text-[37px] lg:text-[48px] font-light leading-[0px] mb-6"><span className="font-medium leading-[0px]">See</span>  everything</div>
-						<div className="text-[37px] lg:text-[48px] font-light mb-5">with <span className="font-medium">Clarity</span> </div>
-						<p className="mb-10 text-light-dark text-base font-semibold">
+					<div className="text-[37px] lg:text-[48px] font-light leading-[0px] mb-6"><span className="font-medium leading-[0px]">See</span>  everything</div>
+					<div className="text-[37px] lg:text-[48px] font-light mb-5">with <span className="font-medium">Clarity</span> </div>
+					<p className="mb-10 text-light-dark text-base font-semibold">
 						Buying eyewear should leave you happy and good-looking, with money in your pocket. 
 						Glasses, sunglasses, and contacts—we have got your eyes covered.
-						</p>
-						<BaseButton label="Shop Now" action={() => navigate('shop')}/>
-					</div>
+					</p>
+					<BaseButton label="Shop Now" action={() => navigate('shop')}/>
 				</HeroLayout>
 				<div className="px-10 mt-28">
 					<Panel title={'Featured Products'} link={'/featured'}/>
