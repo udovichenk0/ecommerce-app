@@ -2,8 +2,9 @@ import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ofType } from "redux-observable";
 import { catchError, exhaustMap, filter, from, map, of } from "rxjs";
 
-import { firebase } from "@/shared/api";
 import { createBaseSelector } from "@/shared/lib/redux-std";
+
+import { api } from "../api";
 
 const initialState = {
   products: [],
@@ -45,7 +46,7 @@ const getProducts = (action$: any): any =>
         typeof action.payload === "string" || action.payload === null
     ),
     exhaustMap((action: PayloadAction<null | string>) =>
-      from(firebase.getProducts(action.payload)).pipe(
+      from(api.getProducts(action.payload)).pipe(
         map((response: any) =>
           slice.actions.fetchingSuccess({
             products: response.products,

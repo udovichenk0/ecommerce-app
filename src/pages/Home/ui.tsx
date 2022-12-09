@@ -32,7 +32,7 @@ export const Home = () => {
 					<BaseButton label="Shop Now" action={() => navigate('shop')}/>
 				</HeroLayout>
 				<div className="px-10 mt-28">
-					<Panel title={'Featured Products'} link={'/featured'}/>
+					<Panel title={'Featured Products'} link={'featured'}/>
 					<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">
 						{
 							featured?.map(({name, image, subtitle, id}:any, ind: number) => {
@@ -44,8 +44,8 @@ export const Home = () => {
 					</div>
 				</div>
 				<div className="px-10 mt-28">
-					<Panel title={'Recommended Products'} link={'/recommended'}/>
-					<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">
+					<Panel title={'Recommended Products'} link={'recommended'}/>
+					<div className="grid grid-cols-auto-fit gap-5">
 						{
 							recommended?.map(({name, image, subtitle, id}:any, ind: number) => {
 								return (

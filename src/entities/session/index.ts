@@ -1,3 +1,3 @@
 export * as viewerModel from "./model";
 export * from "./ui";
-export * from "./api";
+export * as sessionApi from "./api";

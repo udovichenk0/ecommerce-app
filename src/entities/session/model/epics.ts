@@ -1,7 +1,7 @@
 import { ofType } from "redux-observable";
 import { catchError, exhaustMap, from, map } from "rxjs";
 
-import { firebase } from "@/shared/api";
+import { sessionApi } from "..";
 
 import { actions } from "./session";
 
@@ -9,7 +9,7 @@ const authEpic = (action$: any) =>
   action$.pipe(
     ofType("entity/session" + "/startAuthentication"),
     exhaustMap(({ payload }) =>
-      from(firebase.createAccount(payload.email, payload.password)).pipe(
+      from(sessionApi.api.createAccount(payload.email, payload.password)).pipe(
         map((response) => {
           const user = response.user;
           const data = {
@@ -22,7 +22,7 @@ const authEpic = (action$: any) =>
             uid: user.uid,
             joinedData: user.metadata.creationTime,
           };
-          firebase.addUser(data, user.uid);
+          sessionApi.api.addUser(data, user.uid);
           return actions.setProfile(data);
         })
       )

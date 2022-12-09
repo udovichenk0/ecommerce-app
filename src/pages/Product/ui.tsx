@@ -26,8 +26,6 @@ const Product = () => {
 	const [selectedColor, setSelectedColor] = useState<string>()
 	const [selectedSize, setSelectedSize] = useState<number>()
 	const {getRecommended, recommended, isRecommendLoading} = useGetRecommendedProducts()
-
-	const [notifications, setNotifications] = useState<any>(false);
 	useEffect(() => {
 		getRecommended()
 	}, [])

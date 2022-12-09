@@ -2,14 +2,13 @@ import { ofType } from "redux-observable";
 import { from, of, switchMap } from "rxjs";
 
 import { basketModel } from "@/entities/basket";
-import { viewerModel } from "@/entities/session";
-import { firebase } from "@/shared/api";
+import { sessionApi, viewerModel } from "@/entities/session";
 
 const signOutEpic = (action$: any) =>
   action$.pipe(
     ofType("entity/session" + "/startSignOut"),
     switchMap(() =>
-      from(firebase.signUserOut()).pipe(
+      from(sessionApi.api.signUserOut()).pipe(
         switchMap(() =>
           of(
             viewerModel.actions.clearProfile(),

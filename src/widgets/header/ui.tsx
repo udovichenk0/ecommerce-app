@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { basketModel } from '@/entities/basket'
+import { basketApi, basketModel } from '@/entities/basket'
 import { viewerModel } from '@/entities/session'
 import { SearchProduct } from '@/features/search'
-import { firebase } from '@/shared/api'
 // eslint-disable-next-line import/no-internal-modules
 import logo from '@/shared/assets/logo.png'
 import { useAppSelector } from '@/shared/lib/redux-std'
@@ -25,7 +24,7 @@ export const Header = () => {
 	const profile = useAppSelector(viewerModel.selectors.profile)
 	const navigate = useNavigate()
 	useEffect(() => {
-		if(useAuth(profile)) firebase.setBasket(basket, profile.uid)
+		if(useAuth(profile)) basketApi.api.setBasket(basket, profile.uid)
 	}, [basket])
 	return (
 			<div className='container pt-8 pb-20'>

@@ -9,8 +9,9 @@ import {
   switchMap,
 } from "rxjs";
 
-import { firebase } from "@/shared/api";
 import { createBaseSelector } from "@/shared/lib/redux-std";
+
+import { api } from "../api";
 const initialState = {
   foundProducts: [],
   isSearchedFetching: false,
@@ -41,7 +42,7 @@ const searchEpic: Epic = (action$) =>
     ofType(reducerPath + "/startSearchFetching"),
     distinctUntilChanged(),
     switchMap(({ payload }: any) =>
-      from(firebase.searchProducts(payload)).pipe(
+      from(api.searchProducts(payload)).pipe(
         map(slice.actions.foundProductsSuccess),
         catchError((err: any) =>
           of(err).pipe(

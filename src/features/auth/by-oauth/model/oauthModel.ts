@@ -1,15 +1,15 @@
 import { ofType } from "redux-observable";
-import { catchError, concat, exhaustMap, from, map, mergeMap, of } from "rxjs";
+import { catchError, exhaustMap, from, map, mergeMap, of } from "rxjs";
 
 import { notifyModel } from "@/entities/notification";
-import { viewerModel } from "@/entities/session";
+import { sessionApi, viewerModel } from "@/entities/session";
 import { firebase } from "@/shared/api";
 
 const signInGithubEpic = (action$: any) =>
   action$.pipe(
     ofType("entity/session" + "/startsignInWithGitHub"),
     mergeMap(() =>
-      from(firebase.signInWithGithub()).pipe(
+      from(sessionApi.api.signInWithGithub()).pipe(
         map((response: any) => {
           const data = {
             avatar: response.photoURL,
@@ -21,7 +21,7 @@ const signInGithubEpic = (action$: any) =>
             uid: response.uid,
             joinedData: response.creationTime,
           };
-          if (response.isNewUser) firebase.addUser(data, response.uid);
+          if (response.isNewUser) sessionApi.api.addUser(data, response.uid);
           return (
             viewerModel.actions.setProfile(response),
             notifyModel.actions.enqueueSnackbar({
@@ -46,7 +46,7 @@ const signInGoogleEpic = (action$: any) =>
   action$.pipe(
     ofType("entity/session" + "/startSigninWithGoogle"),
     exhaustMap(() =>
-      from(firebase.signInWithGoogle()).pipe(
+      from(sessionApi.api.signInWithGoogle()).pipe(
         map((response: any) => {
           const data = {
             avatar: response.photoURL,
@@ -58,7 +58,7 @@ const signInGoogleEpic = (action$: any) =>
             uid: response.uid,
             joinedData: response.creationTime,
           };
-          if (response.isNewUser) firebase.addUser(data, response.uid);
+          if (response.isNewUser) sessionApi.api.addUser(data, response.uid);
           return (
             viewerModel.actions.setProfile(response),
             notifyModel.actions.enqueueSnackbar({
