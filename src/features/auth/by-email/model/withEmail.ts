@@ -11,7 +11,7 @@ interface IPayload {
 }
 const signInEpic = (action$: any) =>
   action$.pipe(
-    ofType("entity/session" + "/startSignInWithEmail"),
+    ofType(viewerModel.actions.startSignInWithEmail),
     exhaustMap(({ payload }: PayloadAction<IPayload>) =>
       from(sessionApi.api.signIn(payload.email, payload.password)).pipe(
         map(

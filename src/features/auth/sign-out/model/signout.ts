@@ -6,7 +6,7 @@ import { sessionApi, viewerModel } from "@/entities/session";
 
 const signOutEpic = (action$: any) =>
   action$.pipe(
-    ofType("entity/session" + "/startSignOut"),
+    ofType(viewerModel.actions.startSignOut),
     switchMap(() =>
       from(sessionApi.api.signUserOut()).pipe(
         switchMap(() =>

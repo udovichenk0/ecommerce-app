@@ -3,11 +3,10 @@ import { catchError, exhaustMap, from, map, mergeMap, of } from "rxjs";
 
 import { notifyModel } from "@/entities/notification";
 import { sessionApi, viewerModel } from "@/entities/session";
-import { firebase } from "@/shared/api";
 
 const signInGithubEpic = (action$: any) =>
   action$.pipe(
-    ofType("entity/session" + "/startsignInWithGitHub"),
+    ofType(viewerModel.actions.startsignInWithGitHub),
     mergeMap(() =>
       from(sessionApi.api.signInWithGithub()).pipe(
         map((response: any) => {
@@ -44,7 +43,7 @@ const signInGithubEpic = (action$: any) =>
 
 const signInGoogleEpic = (action$: any) =>
   action$.pipe(
-    ofType("entity/session" + "/startSigninWithGoogle"),
+    ofType(viewerModel.actions.startSigninWithGoogle),
     exhaustMap(() =>
       from(sessionApi.api.signInWithGoogle()).pipe(
         map((response: any) => {
@@ -66,7 +65,15 @@ const signInGoogleEpic = (action$: any) =>
               type: "success",
             })
           );
-        })
+        }),
+        catchError((error: unknown) =>
+          of(
+            notifyModel.actions.enqueueSnackbar({
+              message: "Failed to signin",
+              type: "error",
+            })
+          )
+        )
       )
     )
   );
