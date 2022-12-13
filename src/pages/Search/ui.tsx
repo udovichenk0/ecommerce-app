@@ -21,10 +21,11 @@ const SearchPage = () => {
 					</div>
 					: searchProducts.length
 					
-					? searchProducts.map(({image, name, subtitle, price}, id) => {
+					? searchProducts.map(({image, name, subtitle, price, id}) => {
 					return (
 						<div key={id}>
 							<ShopCard 
+						id={id}
 						image={image} 
 						name={name} 
 						subtitle={subtitle} 
