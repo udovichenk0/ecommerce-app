@@ -3,7 +3,7 @@ import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, Ac
 import { useNavigate } from "react-router-dom"
 
 import { CheckoutForm } from "@/features/payment"
-import { BlackBtnSm, LGreyButton } from "@/shared/ui/buttons"
+import { BaseButton, SquareButton } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layouts"
 import { CheckoutTemplate } from "@/widgets/checkout-layout"
 import { Header } from "@/widgets/header"
@@ -19,8 +19,8 @@ export const Payment = () => {
 		<Layout header={<Header/>}>
 		<CheckoutTemplate 
 		step={3} 
-		backBtn={<LGreyButton label="Go Back" action={() => navigate(-1)}/>}
-		nextBtn={<BlackBtnSm label="Next Step" action={() => navigate('/checkout/step3')}/>}>
+		backBtn={<SquareButton label="Go Back" action={() => navigate(-1)}/>}
+		nextBtn={<BaseButton size="md" label="Next Step" action={() => navigate('/checkout/step3')}/>}>
 			<Accordion>
             <AccordionItem>
                 <AccordionItemHeading>

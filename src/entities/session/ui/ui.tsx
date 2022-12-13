@@ -19,7 +19,7 @@ export const Profile = ({profile, isFetching}: {profile: ProfileType, isFetching
 						<div className='w-[96px] h-[96px] bg-white rounded-full flex justify-center items-center'>
 							<img className='w-[90px] h-[90px] rounded-full' src={profile.avatar || defaultUser} alt={profile.name} />
 						</div>
-						<BaseButton action={() => navigate('edit')} label={'Edit Account'}/>
+						<BaseButton size='lg' action={() => navigate('edit')} label={'Edit Account'}/>
 				</div>
 			</div>
 			<div className='pt-20 grid gap-8'>

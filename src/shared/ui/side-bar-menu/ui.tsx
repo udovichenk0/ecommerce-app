@@ -16,7 +16,7 @@ export const CheckOutModal = ({setModelOpen}: IProps) => {
 					className='py-[15px] px-[20px] text-base border-2 border-[#e1e1e1] text-light-dark font-bold'>
 						Continue shopping
 					</button>
-					<BaseButton label="Sign in to checkout" action={() => navigate('/signin')}/>
+					<BaseButton size="lg" label="Sign in to checkout" action={() => navigate('/signin')}/>
 				</div>
 			</div>
 		</div>

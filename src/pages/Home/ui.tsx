@@ -29,7 +29,7 @@ export const Home = () => {
 						Buying eyewear should leave you happy and good-looking, with money in your pocket. 
 						Glasses, sunglasses, and contacts—we have got your eyes covered.
 					</p>
-					<BaseButton label="Shop Now" action={() => navigate('shop')}/>
+					<BaseButton size="lg" label="Shop Now" action={() => navigate('shop')}/>
 				</HeroLayout>
 				<div className="px-10 mt-28">
 					<Panel title={'Featured Products'} link={'featured'}/>

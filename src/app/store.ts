@@ -25,7 +25,6 @@ const epicMiddleware = createEpicMiddleware();
 const rootEpics = combineEpics(
   productModel.epics.getProducts,
   searchModel.epics.searchEpic,
-  viewerModel.epics.authEpic,
   emailModel.epics.signInEpic,
   profileModel.epics.editProfileEpic,
   signOutModel.epics.signOutEpic,
@@ -44,7 +43,6 @@ const persistConfig = {
   storage,
   whitelist: ["entity/basket"],
 };
-
 export const persistedReducer = persistReducer(persistConfig, rootReducers);
 
 export const store = configureStore({

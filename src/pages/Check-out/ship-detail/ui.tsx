@@ -7,8 +7,8 @@ import { basketModel } from "@/entities/basket"
 import { viewerModel } from "@/entities/session"
 import { countTotalPrice } from "@/shared/lib/count-total-price"
 import { useAppSelector } from "@/shared/lib/redux-std"
-import { BlackBtnSm, LGreyButton } from "@/shared/ui/buttons"
-import { InputEditor } from "@/shared/ui/editor"
+import { BaseButton, SquareButton } from "@/shared/ui/buttons"
+import { InputEditor } from "@/shared/ui/inputs"
 import { Layout } from "@/shared/ui/layouts"
 import { CheckoutTemplate } from "@/widgets/checkout-layout"
 import { Header } from "@/widgets/header"
@@ -20,7 +20,7 @@ export const ShipDetail = () => {
 	const profile = useAppSelector(viewerModel.selectors.profile)
 	const basket = useAppSelector(basketModel.selectors.basket)
 	const [checkbox, setCheckbox] = useState<boolean>(false)
-	const {register, handleSubmit, control} = useForm({
+	const {register, control} = useForm({
 		defaultValues: {
 			email: profile.email,
 			name: profile.name,
@@ -33,8 +33,8 @@ export const ShipDetail = () => {
 		<Layout header={<Header/>}>
 				<CheckoutTemplate 
 				step={2} 
-				backBtn={<LGreyButton label="Go Back" action={() => navigate(-1)}/>}
-				nextBtn={<BlackBtnSm label="Next Step" action={() => navigate('/checkout/step3')}/>}>
+				backBtn={<SquareButton label="Go Back" action={() => navigate(-1)}/>}
+				nextBtn={<BaseButton size='md' label="Next Step" action={() => navigate('/checkout/step3')}/>}>
 						<h2 className="text-2xl font-bold mb-5">Shipping Details</h2>
 						<form action="" className="mb-10 w-full">
 						<div className="w-full flex flex-col">

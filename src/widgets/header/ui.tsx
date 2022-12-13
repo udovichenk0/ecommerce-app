@@ -7,8 +7,7 @@ import { SearchProduct } from '@/features/search'
 // eslint-disable-next-line import/no-internal-modules
 import logo from '@/shared/assets/logo.png'
 import { useAppSelector } from '@/shared/lib/redux-std'
-import { useAuth } from '@/shared/lib/useAuth'
-import { ShopBag, LGreyButton, BlackBtnSm, BurgerButton } from '@/shared/ui/buttons'
+import { ShopBag, SquareButton, BurgerButton, BaseButton } from '@/shared/ui/buttons'
 
 import { BasketSideMenu } from './basket'
 import { links } from './config'
@@ -24,7 +23,7 @@ export const Header = () => {
 	const profile = useAppSelector(viewerModel.selectors.profile)
 	const navigate = useNavigate()
 	useEffect(() => {
-		if(useAuth(profile)) basketApi.api.setBasket(basket, profile.uid)
+		if(profile.name) basketApi.api.setBasket(basket, profile.uid)
 	}, [basket])
 	return (
 			<div className='container pt-8 pb-20'>
@@ -55,10 +54,10 @@ export const Header = () => {
 							<SearchProduct/>
 						</div>
 						<ShopBag setOpen={setOpen} basketLength={basket.length}/>
-						{useAuth(profile)? <Profile name={profile.name} photo={profile.avatar}/>
+						{profile.name? <Profile name={profile.name} photo={profile.avatar}/>
 						:	<div className='flex gap-5'>
-							<BlackBtnSm label='Sign Up' action={() => navigate('/signup')}/>
-							<LGreyButton label='Sign In' action={() => navigate("/signin", {replace:true})}/>
+							<BaseButton size='md' label='Sign Up' action={() => navigate('/signup')}/>
+							<SquareButton label='Sign In' action={() => navigate("/signin", {replace:true})}/>
 							</div>
 						}
 						<BasketSideMenu isOpened={isOpened} setOpen={setOpen}/>

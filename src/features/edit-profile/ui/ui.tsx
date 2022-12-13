@@ -12,8 +12,7 @@ import bgDefault from '@/shared/assets/accBgDefault.jpg'
 import { readFile } from "@/shared/lib/fileReader"
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"
 import { BaseButton } from "@/shared/ui/buttons"
-import { InputEditor } from "@/shared/ui/editor"
-import { FileChooser } from "@/shared/ui/inputs"
+import { FileChooser, InputEditor } from "@/shared/ui/inputs"
 
 import { checkUpdate } from "../lib"
 import { IData } from "../types"
@@ -94,7 +93,7 @@ export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 						<button
 						onClick={() => navigate('/account')}
 						className="font-bold text-[#7d7d7d] bg-[#f2f2f2] border-[1px] border-[#e1e1e1] py-[15px] px-[20px]">Back to Profile</button>
-						{<BaseButton disabled={isFetching} 
+						{<BaseButton size="lg" disabled={isFetching} 
 						label={isFetching? 'Updating Profile..' : 'Update Profile'} 
 						action={handleSubmit(handle)}/>}
 					</div>

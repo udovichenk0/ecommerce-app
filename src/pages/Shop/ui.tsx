@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { ShopCard } from "@/entities/card/shop-card"
 import { productModel } from "@/entities/products"
 import { useAction, useAppSelector } from "@/shared/lib/redux-std"
-import { UIloadmore } from "@/shared/ui/buttons"
+import { BaseButton } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layouts"
 import { Skeleton } from "@/shared/ui/skeleton"
 import { Header } from "@/widgets/header"
@@ -50,10 +50,7 @@ export const ShopPage = () => {
 					</div>
 				</div>
 				<div className="w-full flex justify-center pb-28">
-				{selectors.lastRefKey && <UIloadmore 
-					onLoadMore={() => fetchProducts(selectors.lastRefKey)} 
-					isFetching={selectors.isFetching}
-				/>}
+				{selectors.lastRefKey && <BaseButton size="xl" action={() => fetchProducts(selectors.lastRefKey)} label='Show more items'/>}
 				</div>
 			</div>
 		</Layout>

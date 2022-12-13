@@ -4,7 +4,7 @@ import { BasketItem, basketModel } from "@/entities/basket"
 import { BasketType } from "@/entities/basket/types"
 import { countTotalPrice } from "@/shared/lib/count-total-price"
 import { useAppSelector } from "@/shared/lib/redux-std"
-import { BlackBtnSm, LGreyButton } from "@/shared/ui/buttons"
+import { BaseButton, SquareButton } from "@/shared/ui/buttons"
 import { Layout } from "@/shared/ui/layouts"
 import { CheckoutTemplate } from "@/widgets/checkout-layout"
 import { Header } from "@/widgets/header"
@@ -16,8 +16,8 @@ export const SummaryOrder = () => {
 		<Layout header={<Header/>}>
 				<CheckoutTemplate 
 				step={1} 
-				backBtn={<LGreyButton label="Continue Shopping" action={() => navigate('/', {replace:true})}/>}
-				nextBtn={<BlackBtnSm label="Next Step" action={() => navigate('/checkout/step2')}/>}>
+				backBtn={<SquareButton label="Continue Shopping" action={() => navigate('/', {replace:true})}/>}
+				nextBtn={<BaseButton size="md" label="Next Step" action={() => navigate('/checkout/step2')}/>}>
 						<div className="w-full flex flex-col items-center mb-10">
 							<>
 								<h2 className="text-2xl font-bold mb-5">Order Summary</h2>
