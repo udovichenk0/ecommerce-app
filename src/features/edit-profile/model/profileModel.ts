@@ -1,14 +1,32 @@
+import { redirect } from "react-router-dom";
 import { ofType } from "redux-observable";
-import { exhaustMap, from, map, of } from "rxjs";
+import {
+  exhaustMap,
+  from,
+  map,
+  merge,
+  mergeMap,
+  of,
+  switchMap,
+  tap,
+} from "rxjs";
 
+import { notifyModel } from "@/entities/notification";
 import { sessionApi, viewerModel } from "@/entities/session";
-
 const editProfileEpic = (action$: any) =>
   action$.pipe(
     ofType(viewerModel.actions.startEditProfile),
     exhaustMap((action: any) =>
-      from(sessionApi.api.updateProfile(action.payload)).pipe(
-        map((resp) => viewerModel.actions.setProfile(resp))
+      from(sessionApi.api.updateProfile(action.payload.profile)).pipe(
+        mergeMap((action: any) =>
+          of(
+            viewerModel.actions.setProfile(action),
+            notifyModel.actions.enqueueSnackbar({
+              message: "Profile Updated!",
+              type: "success",
+            })
+          )
+        )
       )
     )
   );

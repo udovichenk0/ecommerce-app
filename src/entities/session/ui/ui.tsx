@@ -6,8 +6,10 @@ import defaultUser from '@/shared/assets/defaultUser.png'
 import { ProfileType } from '@/shared/lib/types'
 import { BaseButton } from '@/shared/ui/buttons'
 
+import { viewerModel } from '..'
 
-export const Profile = ({profile, isFetching}: {profile: ProfileType, isFetching: boolean}) => {
+
+export const Profile = ({profile, isFetching}: {profile: viewerModel.ProfileType, isFetching: boolean}) => {
 	const navigate = useNavigate()
 	return (
 		<div className="w-[700px] border-[1px] border-[#e1e1e1] p-4 relative mb-20">

@@ -4,4 +4,5 @@ export type PropsType = {
   placeholder?: string;
   name: string;
   disabled?: boolean;
+  errors?: any;
 };

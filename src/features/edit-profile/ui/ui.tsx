@@ -1,55 +1,50 @@
+
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import PhoneInput from "react-phone-input-2"
 import { useNavigate } from "react-router-dom"
+import * as yup from 'yup';
 
 import './style.css'
 import 'react-phone-input-2/lib/style.css'
-import { notifyModel } from "@/entities/notification"
 import { viewerModel } from "@/entities/session"
 // eslint-disable-next-line import/no-internal-modules
 import bgDefault from '@/shared/assets/accBgDefault.jpg'
 import { readFile } from "@/shared/lib/fileReader"
-import { useAction, useAppSelector } from "@/shared/lib/redux-std"
+import { useAction } from "@/shared/lib/redux-std"
 import { BaseButton } from "@/shared/ui/buttons"
 import { FileChooser, InputEditor } from "@/shared/ui/inputs"
 
+import { useGetForm } from '../config';
 import { checkUpdate } from "../lib"
 import { IData } from "../types"
 
-export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
-	const profile = useAppSelector(viewerModel.selectors.profile)
+export const ProfileEditForm = ({isFetching, profile}:{isFetching:boolean, profile: any}) => {
 	const [loading, setLoading] = useState<boolean>(false)
 	const navigate = useNavigate()
-	const notification = useAction(notifyModel.actions.enqueueSnackbar)
 	const editProfile = useAction(viewerModel.actions.startEditProfile)
-	const {register, handleSubmit, control} = useForm({
-		defaultValues: {
-			email: profile.email,
-			name: profile.name,
-			avatar: profile.avatar,
-			address: profile.address,
-			mobile: profile.mobile
-		}
-	})
+	const {handleSubmit, register, control, errors} = useGetForm(profile)
+	
 	const handle = async (data:IData) => {
 			if(checkUpdate(data, profile)){
-				setLoading(true)
 				const avatar = await readFile(data.avatar[0])
+				setLoading(true)
 				editProfile({
-					id: profile.uid,
-					info: {
-						...data, 
-						avatar: avatar || profile.avatar, 
-						mobile: data.mobile.length > 5? data.mobile : null
-					},
+					profile: {
+						id: profile.uid,
+						info: {
+							...data, 
+							avatar: avatar || profile.avatar, 
+							mobile: data?.mobile?.length > 5? data.mobile : null
+						},
+					}
 				})
 			}
 	}
 	useEffect(() => {
 		if(loading && !isFetching){
 			navigate('/account')
-			notification({message: 'Profile Updated!', type: 'success'})
 		}
 	}, [handle])
 	return (
@@ -67,12 +62,11 @@ export const ProfileEditForm = ({isFetching}:{isFetching:boolean}) => {
 									<FileChooser register={register} name='avatar'/>
 								</div>
 							</div>
-								{/* <FileChooser register={register}/> */}
 					</div>
 				</div>
 				<div className="px-3 pt-20">
 					<div className="flex flex-col gap-y-5 mb-8">
-						<InputEditor label='* Full Name' register={register} name='name' disabled={isFetching}/>
+						<InputEditor label='* Full Name' register={register} name='name' errors={errors} disabled={isFetching}/>
 						<InputEditor label='* Email Address' register={register} disabled={true} name='email'/>
 						<InputEditor disabled={isFetching} placeholder={'#245 Brgy. Maligalig, Arayat Pampanga, Philippines'} label='Address (Will be used for checkout)' register={register} name='address'/>
 						<Controller

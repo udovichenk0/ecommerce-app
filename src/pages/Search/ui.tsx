@@ -9,7 +9,6 @@ import { NotFound } from "./notFound"
 const SearchPage = () => {
 	const searchProducts = useAppSelector(searchModel.selectors.searchedProducts)
 	const isFetching = useAppSelector(searchModel.selectors.isSearchedFetching)
-	console.log(isFetching)
 	return (
 		<Layout header={<Header/>}>
 				<div className="container grid grid-cols-auto-fit gap-5 justify-center">

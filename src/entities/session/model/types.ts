@@ -1,0 +1,10 @@
+export interface ProfileType {
+  address: string;
+  avatar: null | any;
+  basket: any;
+  email: string;
+  joinedData: string;
+  name: string;
+  uid: string;
+  mobile: string;
+}

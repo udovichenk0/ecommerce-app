@@ -14,7 +14,8 @@ import { auth, db } from "@/shared/api";
 const getUser = async (uid: string) =>
   (await getDoc(doc(db, "users", uid))).data();
 
-const updateProfile = (payload: any) => {
+const updateProfile = async (payload: any) => {
+  console.log(payload);
   return updateDoc(doc(db, "users", payload.id), { ...payload.info }).then(() =>
     getUser(payload.id)
   );

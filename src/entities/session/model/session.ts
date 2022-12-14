@@ -1,12 +1,13 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { createBaseSelector } from "@/shared/lib/redux-std";
-import { ProfileType } from "@/shared/lib/types";
+
+import { viewerModel } from "..";
 
 const reducerName = "entity/session";
 
 const initialState = {
-  profile: {} as ProfileType,
+  profile: {},
   isFetching: false,
 };
 type State = typeof initialState;
@@ -18,9 +19,9 @@ const slice = createSlice({
       state.isFetching = true;
     },
     clearProfile(state) {
-      state.profile = {} as ProfileType;
+      state.profile = {};
     },
-    setProfile(state, action: PayloadAction<any>) {
+    setProfile(state, action: PayloadAction<viewerModel.ProfileType>) {
       state.profile = action.payload;
       state.isFetching = false;
     },
