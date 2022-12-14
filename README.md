@@ -9,10 +9,10 @@ eCommerce web application using React, Redux, Redux-observable, Firebase and Tai
 ![image](https://user-images.githubusercontent.com/112856770/207571712-53b49175-451d-4958-9a44-773675ab1e39.png)
 
 # Run Locally
-# 1. Install Dependencies
+## 1. Install Dependencies
 ``` $ yarn install ```
 
-# 2. Create a new firebase project
+## 2. Create a new firebase project
 
 Login to your google account and create a new firebase project [hero](https://console.firebase.google.com/u/0/)
 
@@ -32,5 +32,5 @@ FIREBASE_APP_ID=234598789798798fg3-034
 ```
 After setting up necessary configuration, create a Database and choose Cloud Firestore and start in test mode
 
-# 3. Run development server
+## 3. Run development server
 ``` $ yarn dev```
