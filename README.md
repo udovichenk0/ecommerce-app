@@ -38,3 +38,8 @@ After setting up necessary configuration, create a Database and choose Cloud Fir
 ``` 
 $ yarn dev
 ```
+
+# Features
++ Firebase authentication
++ Account creation and edit
++ Saving to busket
