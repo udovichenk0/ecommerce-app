@@ -16,19 +16,9 @@ Login to your google account and create a new firebase project [hero](https://co
 
 Create an .env file and add the following variables.
 
-// SAMPLE CONFIG .env, you should put the actual config details found on your project settings
-
-FIREBASE_API_KEY=AIzaKJgkjhSdfSgkjhdkKJdkjowf
-FIREBASE_AUTH_DOMAIN=yourauthdomin.firebaseapp.com
-FIREBASE_DB_URL=https://yourdburl.firebaseio.com
-FIREBASE_PROJECT_ID=yourproject-id
-FIREBASE_STORAGE_BUCKET=yourstoragebucket.appspot.com
-FIREBASE_MSG_SENDER_ID=43597918523958
-FIREBASE_APP_ID=234598789798798fg3-034
-
-After setting up necessary configuration, create a Database and choose Cloud Firestore and start in test mode
-
-$ yarn dev
+<clipboard-copy for="blob-path" class="btn btn-sm BtnGroup-item">
+  Copy path
+</clipboard-copy>
 
 
 
