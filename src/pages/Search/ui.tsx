@@ -6,8 +6,6 @@ import { Loader } from "@/shared/ui/spinner"
 import { Header } from "@/widgets/header"
 
 import { NotFound } from "./notFound"
-import { Template } from "./template"
-
 const SearchPage = () => {
 	const searchProducts = useAppSelector(searchModel.selectors.searchedProducts)
 	const isFetching = useAppSelector(searchModel.selectors.isSearchedFetching)
