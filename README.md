@@ -16,10 +16,4 @@ Login to your google account and create a new firebase project [hero](https://co
 
 Create an .env file and add the following variables.
 
-<clipboard-copy for="blob-path" class="btn btn-sm BtnGroup-item">
-  Copy path
-</clipboard-copy>
-
-
-
 
