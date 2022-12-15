@@ -41,7 +41,7 @@ export const ProfileEditForm = ({isFetching, profile}:{isFetching:boolean, profi
 					}
 				})
 			}
-	}
+		}
 	useEffect(() => {
 		if(loading && !isFetching){
 			navigate('/account')

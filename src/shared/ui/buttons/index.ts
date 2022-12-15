@@ -1,5 +1,5 @@
 export * from "./ColorPicker";
-export * from "./square-grey-button";
+export * from "./light-button";
 export * from "./backBtn";
 export * from "./updateBasket";
 export * from "./ShopBag";

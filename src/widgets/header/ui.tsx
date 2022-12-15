@@ -7,7 +7,7 @@ import { SearchProduct } from '@/features/search'
 // eslint-disable-next-line import/no-internal-modules
 import logo from '@/shared/assets/logo.png'
 import { useAppSelector } from '@/shared/lib/redux-std'
-import { ShopBag, SquareButton, BurgerButton, BaseButton } from '@/shared/ui/buttons'
+import { ShopBag, LightButton, BurgerButton, BaseButton } from '@/shared/ui/buttons'
 
 import { BasketSideMenu } from './basket'
 import { links } from './config'
@@ -57,7 +57,7 @@ export const Header = () => {
 						{profile.name? <Profile name={profile.name} photo={profile.avatar}/>
 						:	<div className='flex gap-5'>
 							<BaseButton size='md' label='Sign Up' action={() => navigate('/signup')}/>
-							<SquareButton label='Sign In' action={() => navigate("/signin", {replace:true})}/>
+							<LightButton label='Sign In' action={() => navigate("/signin", {replace:true})}/>
 							</div>
 						}
 						<BasketSideMenu isOpened={isOpened} setOpen={setOpen}/>

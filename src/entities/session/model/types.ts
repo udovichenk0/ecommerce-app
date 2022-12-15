@@ -1,4 +1,4 @@
-export interface ProfileType {
+export type ProfileType = {
   address: string;
   avatar: null | any;
   basket: any;
@@ -7,4 +7,4 @@ export interface ProfileType {
   name: string;
   uid: string;
   mobile: string;
-}
+};
