@@ -21,7 +21,7 @@ const slice = createSlice({
     clearProfile(state) {
       state.profile = {} as ProfileType;
     },
-    setProfile(state, action: PayloadAction<ProfileType>) {
+    setProfile(state, action) {
       state.profile = action.payload;
       state.isFetching = false;
     },

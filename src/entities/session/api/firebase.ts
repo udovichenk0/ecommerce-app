@@ -11,6 +11,8 @@ import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
 import { auth, db } from "@/shared/api";
 
+import { ProfileType } from "../model";
+
 const getUser = async (uid: string) =>
   (await getDoc(doc(db, "users", uid))).data();
 
