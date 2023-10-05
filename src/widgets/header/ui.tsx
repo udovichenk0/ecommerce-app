@@ -56,8 +56,8 @@ export const Header = () => {
 						<ShopBag setOpen={setOpen} basketLength={basket.length}/>
 						{profile.name? <Profile name={profile.name} photo={profile.avatar}/>
 						:	<div className='flex gap-5'>
-							<BaseButton size='md' label='Sign Up' action={() => navigate('/signup')}/>
-							<LightButton label='Sign In' action={() => navigate("/signin", {replace:true})}/>
+							<BaseButton size='md' label='Sign Up' action={() => navigate('/auth/signup')}/>
+							<LightButton label='Sign In' action={() => navigate("/auth/signin", {replace:true})}/>
 							</div>
 						}
 						<BasketSideMenu isOpened={isOpened} setOpen={setOpen}/>

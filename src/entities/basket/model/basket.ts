@@ -1,4 +1,4 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 
 import { createBaseSelector } from "@/shared/lib/redux-std";
 
@@ -46,6 +46,8 @@ const slice = createSlice({
     },
   },
 });
+
+
 const baseSelector = createBaseSelector<State>(reducerPath);
 const basket = createSelector(baseSelector, (state) => state.basket);
 

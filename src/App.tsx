@@ -1,7 +1,8 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { onAuthStateChanged } from "firebase/auth";
 import { Suspense, useEffect, useState } from "react";
-import { Provider } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { RouterProvider } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { basketModel } from "@/entities/basket";
@@ -9,49 +10,33 @@ import { sessionApi, viewerModel } from "@/entities/session";
 import { auth } from "@/shared/api";
 import { Loader } from "@/shared/ui/spinner";
 
-import { routes } from "./app/route";
-import { persistor, store } from "./app/store";
+import { router } from "./app/route";
+import { store, persistor } from "./app/store";
 import { NotificationPopup } from "./entities/notification";
 
-
 function App() {
-  const [loading, setLoading ] = useState(false)
-useEffect(() => {
+  const isLoaded = useSelector(viewerModel.selectors.isLoaded)
+  if(!isLoaded) return <div className="h-screen w-full flex items-center justify-center"><Loader/></div> 
+  return (
+    <div className=''>
+      <Suspense fallback={null}>
+        <RouterProvider router={router}/>
+      </Suspense>
+      <NotificationPopup/>
+    </div>
+  );
+}
+const authAsyncThunk  = createAsyncThunk('authAsyncThunk', async (_, {dispatch}) => {
+  dispatch(viewerModel.actions.startAuth())
+  dispatch(viewerModel.actions.startLoading())
   onAuthStateChanged(auth, async (user) => {
     if(user) {
       const data = await sessionApi.api.getUser(user.uid)
-      store.dispatch(viewerModel.actions.setProfile(data))
-      store.dispatch(basketModel.actions.setBasket(data?.basket))
-      setLoading(true)
+      dispatch(viewerModel.actions.setProfile(data))
+      dispatch(basketModel.actions.setBasket(data?.basket))
     }
-    setLoading(true)
+  })
+  dispatch(viewerModel.actions.endLoading())
 })
-}, [])
-if(!loading) return <div className="h-screen w-full flex items-center justify-center"><Loader/></div> 
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter>
-          <div className=''>
-          <Suspense fallback={null}>
-            <Routes>
-              {Object.values(routes).map(({path, element}) => {
-                return (
-                  <Route key={path}
-                  path={path} 
-                  element={element}/>
-                )
-              })}
-            </Routes>
-          </Suspense>
-            <NotificationPopup/>
-        </div>
-      </BrowserRouter>
-    </PersistGate>
-    </Provider>
-      
-    
-  );
-}
-
+store.dispatch(authAsyncThunk())
 export default App

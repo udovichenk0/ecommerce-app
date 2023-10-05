@@ -2,21 +2,28 @@ import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { createBaseSelector } from "@/shared/lib/redux-std";
 
-import { ProfileType } from "./types";
+import { ProfileType } from './types';
 
 const reducerName = "entity/session";
 
 const initialState = {
   profile: {} as ProfileType,
   isFetching: false,
+  isLoaded: false
 };
 type State = typeof initialState;
 const slice = createSlice({
   name: reducerName,
   initialState,
   reducers: {
-    startAuthentication(state, action) {
+    startAuthentication(state) {
       state.isFetching = true;
+    },
+    startLoading(state){
+      state.isLoaded = false
+    },
+    endLoading(state){
+      state.isLoaded = true
     },
     clearProfile(state) {
       state.profile = {} as ProfileType;
@@ -46,10 +53,11 @@ const slice = createSlice({
 const baseSelector = createBaseSelector<State>(reducerName);
 const profile = createSelector(baseSelector, (state) => state.profile);
 const isFetching = createSelector(baseSelector, (state) => state.isFetching);
-
+const isLoaded = createSelector(baseSelector, (state) => state.isLoaded);
 export const selectors = {
   profile,
   isFetching,
+  isLoaded
 };
 
 export const actions = {
@@ -61,6 +69,8 @@ export const actions = {
   startsignInWithGitHub: slice.actions.startsignInWithGitHub,
   startSigninWithGoogle: slice.actions.startSigninWithGoogle,
   startEditProfile: slice.actions.startEditProfile,
+  startLoading: slice.actions.startLoading,
+  endLoading: slice.actions.endLoading
 };
 
 export const reducer = {

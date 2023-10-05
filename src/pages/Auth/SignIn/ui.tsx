@@ -14,7 +14,7 @@ const navigate = useNavigate()
 		<Layout header={<Header/>}>
 			<AuthForm 
 				title={'Sign in to Salinaka'} 
-				button={<LightButton label="Sign Up" action={() => navigate('/signup')}/>}
+				button={<LightButton label="Sign Up" action={() => navigate('/auth/signup')}/>}
 				text={`Don't have an account?`}>
 				<AuthSignInForm/>
 			</AuthForm>

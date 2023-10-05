@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 import {
   persistStore,
@@ -44,7 +45,6 @@ const persistConfig = {
   whitelist: ["entity/basket"],
 };
 export const persistedReducer = persistReducer(persistConfig, rootReducers);
-
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => {
@@ -56,5 +56,5 @@ export const store = configureStore({
     }).concat(epicMiddleware);
   },
 });
-export const persistor = persistStore(store);
 epicMiddleware.run(rootEpics);
+export const persistor = persistStore(store);

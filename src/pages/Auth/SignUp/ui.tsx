@@ -13,7 +13,7 @@ export const SignUp = () => {
 				<AuthForm 
 				title={'Sign up to Salinaka'} 
 				form={<AuthSignUpForm/>}
-				button={<LightButton label="Sign In" action={() => navigate('/signin')}/>}
+				button={<LightButton label="Sign In" action={() => navigate('/auth/signin')}/>}
 				text='Have an account?'>
 					<AuthSignUpForm/>
 				</AuthForm>
