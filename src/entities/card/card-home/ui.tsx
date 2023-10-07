@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 
-import { ProductType } from "@/shared/lib/types"
 interface IProps {
 	image: string
 	name: string

@@ -1,4 +1,5 @@
-export type ProductType = {
+export type ProductId = string
+export type Product = {
   description: string;
   image: string;
   isFeatured: boolean;
@@ -6,8 +7,9 @@ export type ProductType = {
   name: string;
   sizes: number[];
   subtitle: string;
-  id: string;
+  id: ProductId;
   colors: string[];
   imageCollection: string[];
   price: number;
 };
+

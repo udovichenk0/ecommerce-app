@@ -1,18 +1,15 @@
-import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 import { Card } from '@/entities/card'
-import { ProductType } from '@/shared/lib/types'
-import { useGetRecommendedProducts } from '@/shared/lib/useGetRecommended'
+import { Product } from '@/shared/api/product'
 import { HeroLayout, Layout } from "@/shared/ui/layouts"
 import { Header } from "@/widgets/header"
 
 // eslint-disable-next-line import/no-internal-modules
 import recommendedGirl from './assets/recommendedGirl.webp'
+import { recommendedPage } from './recommended.model'
 export const RecommendedPage = () => {
-	const {recommended, getRecommended} = useGetRecommendedProducts()
-	useEffect(() => {
-		if(!recommended.length) getRecommended()
-	}, [])
+	const recommendedProducts = useSelector(recommendedPage.$$product.selectors.products)
 	return (
 		<Layout header={<Header/>}>
 			<div className="container pb-28 h-full">
@@ -22,7 +19,7 @@ export const RecommendedPage = () => {
 				<div className="px-10 mt-28">
 					<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">
 						{
-							recommended?.map(({name, image, subtitle, id}:ProductType, ind: number) => {
+							recommendedProducts?.map(({name, image, subtitle, id}:Product, ind: number) => {
 								return (
 									<Card key={ind} name={name} image={image} id={id} subtitle={subtitle}/>
 								)

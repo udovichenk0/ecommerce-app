@@ -1,4 +1,4 @@
-export type ProfileType = {
+export type SessionProfile = {
   address: string;
   avatar: null | any;
   basket: any;

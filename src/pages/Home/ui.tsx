@@ -1,9 +1,7 @@
-import { useEffect } from "react"
+import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 import { Card } from "@/entities/card"
-import { useGetFeatureProducts } from "@/shared/lib/useGetFeatureProducts"
-import { useGetRecommendedProducts } from "@/shared/lib/useGetRecommended"
 import { BaseButton } from "@/shared/ui/buttons"
 import { HeroLayout, Layout } from "@/shared/ui/layouts"
 import { Panel } from "@/shared/ui/panel"
@@ -11,15 +9,12 @@ import { Header } from "@/widgets/header"
 
 // eslint-disable-next-line import/no-internal-modules
 import woman from './assets/woman.png'
+import { homePage } from "./home.model"
 
 export const Home = () => {
-	const {featured, getFeatured} = useGetFeatureProducts()
+	const recommendedProducts = useSelector(homePage.$$recommendedProducts.selectors.products)
+	const featuredProducts = useSelector(homePage.$$featuredProducts.selectors.products)
 	const navigate = useNavigate()
-	const {getRecommended, recommended} = useGetRecommendedProducts()
-	useEffect(() => {
-		getFeatured()
-		getRecommended()
-	}, [])
 	return (
 		<Layout header={<Header/>}>
 				<HeroLayout image={woman}>
@@ -35,7 +30,7 @@ export const Home = () => {
 					<Panel title={'Featured Products'} link={'featured'}/>
 					<div className="grid grid-cols-auto-fit gap-5 justify-center items-center">
 						{
-							featured?.map(({name, image, subtitle, id}:any, ind: number) => {
+							featuredProducts?.map(({name, image, subtitle, id}:any, ind: number) => {
 								return (
 									<Card key={ind} name={name} image={image} id={id} subtitle={subtitle}/>
 								)
@@ -47,7 +42,7 @@ export const Home = () => {
 					<Panel title={'Recommended Products'} link={'recommended'}/>
 					<div className="grid grid-cols-auto-fit gap-5">
 						{
-							recommended?.map(({name, image, subtitle, id}:any, ind: number) => {
+							recommendedProducts?.map(({name, image, subtitle, id}:any, ind: number) => {
 								return (
 									<Card key={ind} name={name} image={image} id={id} subtitle={subtitle}/>
 								)

@@ -2,6 +2,13 @@ import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import { PrivatePageGuard, SignedInPageGuard } from "@/entities/session/protected-route";
+import { featurePage } from "@/pages/Featured";
+import { homePage } from "@/pages/Home";
+import { productPage } from "@/pages/Product";
+import { recommendedPage } from "@/pages/Recommended";
+
+import { store } from "../store";
+import { shopPage } from "@/pages/Shop";
 
 const ShipDetailPage = lazy(() => import("@/pages/Check-out/ship-detail"));
 const SummaryOrderPage = lazy(() => import("@/pages/Check-out/summary-order"));
@@ -35,18 +42,25 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <MainPage/>,
+    loader: () => { 
+      store.dispatch(homePage.getRecommendedProductsFx())
+      store.dispatch(homePage.getFeaturedProductsFx())
+    }
   },
   {
     path: '/featured',
     element: <FeaturedPage/>,
+    loader: () => store.dispatch(featurePage.getFeatureProductsFx())
   },
   {
     path: '/recommended',
-    element: <RecommendedPage/>
+    element: <RecommendedPage/>,
+    loader: () => store.dispatch(recommendedPage.getRecommendedProductsFx())
   },
   {
     path: '/shop',
     element: <ShopPage/>,
+    loader: () => store.dispatch(shopPage.getProductsFx())
   },
   {
     path: '/search',
@@ -54,7 +68,12 @@ export const router = createBrowserRouter([
   },
   {
     path: '/product/:id',
-    element: <ProductPage/>
+    element: <ProductPage/>,
+    loader: ({ params }) => {
+      const id = params.id!
+      store.dispatch(productPage.getRecommendedProductsFx())
+      store.dispatch(productPage.getSingleProductFx(id))
+    }
   },
   {
     path: '/account',

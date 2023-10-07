@@ -1,95 +1,80 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ofType } from "redux-observable";
-import { catchError, exhaustMap, filter, from, map, of } from "rxjs";
 
-import { createBaseSelector } from "@/shared/lib/redux-std";
+import { Product } from "@/shared/lib/types";
 
-import { api } from "../api";
-
-const initialState = {
-  products: [],
-  isLoading: false,
-  lastRefKey: null,
-  total: 0,
+const reducerPath = "entity/products1";
+export type ProductsState = {
+  products: Product[],
+  isLoading: boolean,
+  lastRefKey: string | null,
+  total: number,
   requestStatus: null,
-};
-
-const reducerPath = "entity/products";
-type State = typeof initialState;
-
-const slice = createSlice({
-  name: reducerPath,
-  initialState,
-  reducers: {
-    // eslint-disable-next-line no-unused-vars
-    fetchingStart(state, action: PayloadAction<null | string>) {
-      state.isLoading = true;
+}
+export const createProducts = <RootState, Prefix>(
+  parentSelector: (state: RootState) => ProductsState,
+  prefix?: Prefix,
+  ) => {
+    
+    const name = prefix ? `${prefix}/${"entity/products"}` : "entity/products" as const
+    const initialState1: ProductsState = {
+      products: [],
+      isLoading: true,
+      lastRefKey: null,
+      total: 0,
+      requestStatus: null,
+    };
+    const slice = createSlice({
+    name,
+    initialState: initialState1,
+    reducers: {
+      // eslint-disable-next-line no-unused-vars
+      fetchingStart(state, action: PayloadAction<null | string>) {
+        state.isLoading = true;
+      },
+      setProducts(state, data: PayloadAction<Product[]>){
+        state.products = data.payload
+        state.isLoading = false
+      },
+      mergeProducts(state, data: PayloadAction<Product[]>){
+        state.products = [...state.products, ...data.payload]
+      },
+      setLastRef(state, productRef: PayloadAction<string>){
+        state.lastRefKey = productRef.payload
+      },
+      setTotal(state, total: PayloadAction<number>){
+        state.total = total.payload
+      },
+      fetchingSuccess(state: any, action: any) {
+        state.products = [...state.products, ...action.payload.products];
+        state.isLoading = false;
+        state.lastRefKey = action.payload.lastRef;
+        state.total = action.payload.total ?? state.total;
+        state.requestStatus = null;
+      },
+      fetchingFail(state, action) {
+        state.requestStatus = action.payload;
+      },
     },
-    fetchingSuccess(state: any, action: any) {
-      state.products = [...state.products, ...action.payload.products];
-      state.isLoading = false;
-      state.lastRefKey = action.payload.lastRef;
-      state.total = action.payload.total ?? state.total;
-      state.requestStatus = null;
-    },
-    fetchingFail(state, action) {
-      state.requestStatus = action.payload;
-    },
-  },
-});
-
-const getProducts = (action$: any): any =>
-  action$.pipe(
-    ofType(reducerPath + "/fetchingStart"),
-    filter(
-      (action: PayloadAction<string | null>) =>
-        typeof action.payload === "string" || action.payload === null
-    ),
-    exhaustMap((action: PayloadAction<null | string>) =>
-      from(api.getProducts(action.payload)).pipe(
-        map((response: any) =>
-          slice.actions.fetchingSuccess({
-            products: response.products,
-            lastRef: response.lastRef,
-            total: response.total,
-          })
-        ),
-        catchError((err) =>
-          of(err).pipe(
-            map(() =>
-              slice.actions.fetchingFail("Failed to fetch products! :(")
-            )
-          )
-        )
-      )
-    )
-  );
-
-//Selectors
-const baseSelector = createBaseSelector<State>(reducerPath);
-const products = createSelector(baseSelector, (state) => state.products);
-const isFetching = createSelector(baseSelector, (state) => state.isLoading);
-
-const lastRefKey = createSelector(baseSelector, (state) => state.lastRefKey);
-const requestStatus = createSelector(
-  baseSelector,
-  (state) => state.requestStatus
-);
-
-export const selectors = {
-  products,
-  isFetching,
-  lastRefKey,
-  requestStatus,
-};
-
-//Actions
-export const actions = {
-  startFetching: slice.actions.fetchingStart,
-};
-//Epics
-export const epics = {
-  getProducts,
-};
-
-export const reducers = { [reducerPath]: slice.reducer };
+  });
+  const actions = {
+    setProducts: slice.actions.setProducts,
+    mergeProducts: slice.actions.mergeProducts,
+    setLastRef: slice.actions.setLastRef,
+    setTotal: slice.actions.setTotal,
+  }
+  const products = createSelector(parentSelector, (state) => state.products)
+  const lastRefKey = createSelector(parentSelector, (state) => state.lastRefKey)
+  const isLoading = createSelector(parentSelector, (state) => state.isLoading)
+  const selectors = {
+    products,
+    lastRefKey,
+    isLoading
+  }
+  return {
+    actions,
+    selectors,
+    name,
+    reducer: slice.reducer
+  }
+}
+export type CreateProducts = ReturnType<typeof createProducts>

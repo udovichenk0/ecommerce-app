@@ -15,16 +15,20 @@ import storage from "redux-persist/lib/storage";
 
 import { basketModel } from "@/entities/basket";
 import { notifyModel } from "@/entities/notification";
-import { productModel } from "@/entities/products";
 import { viewerModel } from "@/entities/session";
 import { emailModel, oauthModel } from "@/features/auth";
 import { signOutModel } from "@/features/auth/sign-out";
 import { profileModel } from "@/features/edit-profile";
 import { searchModel } from "@/features/search";
+import { featurePage } from "@/pages/Featured";
+import { homePage } from "@/pages/Home";
+import { productPage } from "@/pages/Product";
+import { recommendedPage } from "@/pages/Recommended";
+import { shopPage } from "@/pages/Shop";
 
 const epicMiddleware = createEpicMiddleware();
 const rootEpics = combineEpics(
-  productModel.epics.getProducts,
+  // productModel.epics.getProducts,
   searchModel.epics.searchEpic,
   emailModel.epics.signInEpic,
   profileModel.epics.editProfileEpic,
@@ -33,11 +37,16 @@ const rootEpics = combineEpics(
   oauthModel.epics.signInGoogleEpic
 );
 const rootReducers = combineReducers({
-  ...productModel.reducers,
+  // ...productModel.reducers,
   ...searchModel.reducers,
   ...basketModel.reducer,
   ...viewerModel.reducer,
   ...notifyModel.reducers,
+  ...featurePage.pageReducers,
+  ...recommendedPage.pageReducers,
+  ...homePage.pageReducers,
+  ...productPage.pageReducers,
+  ...shopPage.pageReducers
 });
 const persistConfig = {
   key: "root",

@@ -2,12 +2,12 @@ import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { createBaseSelector } from "@/shared/lib/redux-std";
 
-import { ProfileType } from './types';
+import { SessionProfile } from './types';
 
 const reducerName = "entity/session";
 
 const initialState = {
-  profile: {} as ProfileType,
+  profile: {} as SessionProfile,
   isFetching: false,
   isLoaded: false
 };
@@ -26,7 +26,7 @@ const slice = createSlice({
       state.isLoaded = true
     },
     clearProfile(state) {
-      state.profile = {} as ProfileType;
+      state.profile = {} as SessionProfile;
     },
     setProfile(state, action) {
       state.profile = action.payload;
