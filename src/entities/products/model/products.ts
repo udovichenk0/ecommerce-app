@@ -1,6 +1,6 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Product } from "@/shared/lib/types";
+import { Product } from "@/shared/api/product";
 
 const reducerPath = "entity/products1";
 export type ProductsState = {

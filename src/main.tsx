@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import '@/shared/api/firebase'
+import '@/shared/api/config'
 import '@/app/index.css'
 
 import { Provider } from 'react-redux'

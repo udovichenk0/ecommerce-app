@@ -26,7 +26,8 @@ const getFeaturedProductsFx = createAsyncThunk(pageName + 'featured-products', a
 })
 
 const homeReducers = combineReducers({
-  [featurePrefix + '/entity/products']: $$featuredProducts.reducer
+  [featurePrefix + '/entity/products']: $$featuredProducts.reducer,
+  [recommendedPrefix + '/entity/products']: $$recommendedProducts.reducer,
 })
 export const homePage = {
   pageReducers: {

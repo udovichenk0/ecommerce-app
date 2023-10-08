@@ -16,8 +16,8 @@ export const AuthSignUpForm = () => {
 			fullName: ''
 		}
 	})
-	const onSubmit = (data:any) => {
-		startAuth(data)
+	const onSubmit = () => {
+		startAuth()
 	}
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full gap-1'>
