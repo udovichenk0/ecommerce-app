@@ -1,12 +1,13 @@
-import { viewerModel } from "@/entities/session"
 import { useAction } from "@/shared/lib/redux-std"
 
 // eslint-disable-next-line import/no-internal-modules
 import { GitHubSvg } from "../assets/githubSvg"
 
+import { signInWithGithubFx } from "./model"
+
 
 export const GitHubAuth = () => {
-	const startsignInWithGitHub = useAction(viewerModel.actions.startsignInWithGitHub)
+	const startsignInWithGitHub = useAction(signInWithGithubFx)
 	return (
 		<button 
 		onClick={() => startsignInWithGitHub()}

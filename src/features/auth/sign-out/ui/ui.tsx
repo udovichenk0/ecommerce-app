@@ -1,9 +1,10 @@
-import { viewerModel } from "@/entities/session"
 import { useAction } from "@/shared/lib/redux-std"
 import { GreyButton } from "@/shared/ui/buttons"
 
+import { signOutFx } from "../model"
+
 export const SignOut = () => {
-	const signOut = useAction(viewerModel.actions.startSignOut)
+	const signOut = useAction(signOutFx)
 	return (
 		<GreyButton label="Sign Out" action={() => signOut()}/>
 	)

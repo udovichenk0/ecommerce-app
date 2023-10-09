@@ -1,3 +1,3 @@
-export * as basketModel from "./model";
-export * as basketApi from "./api";
 export * from "./ui";
+export * as basketModel from './basket.model'
+export type { Basket } from './types'

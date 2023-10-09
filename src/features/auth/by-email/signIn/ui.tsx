@@ -1,15 +1,15 @@
 import { Controller, useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 
-
-import { viewerModel } from "@/entities/session"
 import { useAction } from "@/shared/lib/redux-std"
 import { BaseButton } from "@/shared/ui/buttons"
 import { TextInput } from "@/shared/ui/inputs"
 
+import { signInWithEmailFx } from "./signin.modal"
+
 
 export const AuthSignInForm = () => {
-	const startSignInWithEmail = useAction(viewerModel.actions.startSignInWithEmail)
+	const startSignInWithEmail = useAction(signInWithEmailFx)
 	const {handleSubmit, control, formState:{errors}} = useForm({
 		mode: 'onBlur',
 		defaultValues: {
@@ -17,11 +17,8 @@ export const AuthSignInForm = () => {
 			password: '',
 		}
 	})
-	const onSubmit = (data:any) => {
-		startSignInWithEmail({email: data.email, password:data.password})
-	}
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full gap-1'>
+		<form onSubmit={handleSubmit(startSignInWithEmail)} className='flex flex-col w-full gap-1'>
 			<Controller
 			name='email'
 			control={control}
@@ -70,7 +67,7 @@ export const AuthSignInForm = () => {
 					Forgot password?
 					</div>
 				</Link>
-				<BaseButton size="lg" action={handleSubmit(onSubmit)} label='Sign In'/>
+				<BaseButton size="lg" action={handleSubmit(startSignInWithEmail)} label='Sign In'/>
 			</div>
 		</form>
 	)

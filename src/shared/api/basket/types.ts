@@ -1,6 +1,8 @@
-export type BasketType = {
+import { ProductId } from "../product";
+
+export type BasketDto = {
   description: string;
-  id: string;
+  id: ProductId;
   image: string;
   imageCollection: string[];
   isFeatured: boolean;
@@ -12,4 +14,4 @@ export type BasketType = {
   selectedColor: string;
   selectedSize: number;
   sizes: number[];
-};
+}

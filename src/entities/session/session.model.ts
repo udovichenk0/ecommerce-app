@@ -1,13 +1,14 @@
-import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction, createEntityAdapter, createSelector, createSlice } from "@reduxjs/toolkit";
 
 import { createBaseSelector } from "@/shared/lib/redux-std";
 
-import { SessionProfile } from './types';
+import { User } from './types';
 
 const reducerName = "entity/session";
 
+const userAdapter = createEntityAdapter<User>()
 const initialState = {
-  profile: {} as SessionProfile,
+  profile: {} as User,
   isFetching: false,
   isLoaded: false
 };
@@ -19,30 +20,15 @@ const slice = createSlice({
     startAuthentication(state) {
       state.isFetching = true;
     },
-    startLoading(state){
-      state.isLoaded = false
-    },
     endLoading(state){
       state.isLoaded = true
     },
     clearProfile(state) {
-      state.profile = {} as SessionProfile;
+      state.profile = {} as User;
     },
-    setProfile(state, action) {
+    setUser(state, action: PayloadAction<User>) {
       state.profile = action.payload;
       state.isFetching = false;
-    },
-    startSignInWithEmail(state, action) {
-      state.isFetching = true;
-    },
-    startsignInWithGitHub(state) {
-      state.isFetching = true;
-    },
-    startSigninWithGoogle(state) {
-      state.isFetching = true;
-    },
-    startSignOut(state) {
-      state.isFetching = true;
     },
     startEditProfile(state, action: any) {
       state.isFetching = true;
@@ -62,14 +48,9 @@ export const selectors = {
 
 export const actions = {
   startAuth: slice.actions.startAuthentication,
-  startSignInWithEmail: slice.actions.startSignInWithEmail,
-  setProfile: slice.actions.setProfile,
+  setUser: slice.actions.setUser,
   clearProfile: slice.actions.clearProfile,
-  startSignOut: slice.actions.startSignOut,
-  startsignInWithGitHub: slice.actions.startsignInWithGitHub,
-  startSigninWithGoogle: slice.actions.startSigninWithGoogle,
   startEditProfile: slice.actions.startEditProfile,
-  startLoading: slice.actions.startLoading,
   endLoading: slice.actions.endLoading
 };
 

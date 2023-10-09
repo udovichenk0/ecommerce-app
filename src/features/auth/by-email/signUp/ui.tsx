@@ -1,13 +1,14 @@
 import { Controller, useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 
-import { viewerModel } from "@/entities/session"
 import { useAction } from "@/shared/lib/redux-std"
 import { BaseButton } from "@/shared/ui/buttons"
 import { TextInput } from "@/shared/ui/inputs"
 
+import { signUpWithEmailFx } from "./signup.modal"
+
 export const AuthSignUpForm = () => {
-	const startAuth = useAction(viewerModel.actions.startAuth)
+	const startAuth = useAction(signUpWithEmailFx)
 	const {handleSubmit, control, formState:{errors}} = useForm({
 		mode: 'onBlur',
 		defaultValues: {
@@ -16,8 +17,8 @@ export const AuthSignUpForm = () => {
 			fullName: ''
 		}
 	})
-	const onSubmit = () => {
-		startAuth()
+	const onSubmit = (data: { email: string, password: string, fullName: string}) => {
+		startAuth({email: data.email, password: data.password, fullName: data.fullName})
 	}
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-full gap-1'>

@@ -8,7 +8,7 @@ import * as yup from 'yup';
 
 import './style.css'
 import 'react-phone-input-2/lib/style.css'
-import { viewerModel } from "@/entities/session"
+import { sessionModel } from "@/entities/session"
 // eslint-disable-next-line import/no-internal-modules
 import bgDefault from '@/shared/assets/accBgDefault.jpg'
 import { readFile } from "@/shared/lib/fileReader"
@@ -23,7 +23,7 @@ import { IData } from "../types"
 export const ProfileEditForm = ({isFetching, profile}:{isFetching:boolean, profile: any}) => {
 	const [loading, setLoading] = useState<boolean>(false)
 	const navigate = useNavigate()
-	const editProfile = useAction(viewerModel.actions.startEditProfile)
+	const editProfile = useAction(sessionModel.actions.startEditProfile)
 	const {handleSubmit, register, control, errors} = useGetForm(profile)
 	
 	const handle = async (data:IData) => {

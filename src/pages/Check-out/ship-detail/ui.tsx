@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import * as yup from 'yup'
 
 import { basketModel } from "@/entities/basket"
-import { viewerModel } from "@/entities/session"
+import { sessionModel } from "@/entities/session"
 import { countTotalPrice } from "@/shared/lib/count-total-price"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { BaseButton, LightButton } from "@/shared/ui/buttons"
@@ -20,7 +20,7 @@ import { SubmitButton } from "../ui"
 
 export const ShipDetail = () => {
 	const navigate = useNavigate()
-	const profile = useAppSelector(viewerModel.selectors.profile)
+	const profile = useAppSelector(sessionModel.selectors.profile)
 	const basket = useAppSelector(basketModel.selectors.basket)
 	const [checkbox, setCheckbox] = useState<boolean>(false)
 	const scheme = yup.object({

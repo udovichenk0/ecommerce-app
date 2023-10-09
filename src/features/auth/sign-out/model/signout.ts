@@ -1,24 +1,14 @@
-import { ofType } from "redux-observable";
-import { from, of, switchMap } from "rxjs";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { basketModel } from "@/entities/basket";
-import { sessionApi, viewerModel } from "@/entities/session";
-
-const signOutEpic = (action$: any) =>
-  action$.pipe(
-    ofType(viewerModel.actions.startSignOut),
-    switchMap(() =>
-      from(sessionApi.api.signUserOut()).pipe(
-        switchMap(() =>
-          of(
-            viewerModel.actions.clearProfile(),
-            basketModel.actions.clearBasket()
-          )
-        )
-      )
-    )
-  );
-
-export const epics = {
-  signOutEpic,
-};
+import { sessionModel } from "@/entities/session";
+import { sessionApi } from "@/shared/api/session";
+export const signOutFx = createAsyncThunk('auth/signOut', async (_, { dispatch }) => {
+  try {
+    await sessionApi.signUserOut()
+    dispatch(sessionModel.actions.clearProfile())
+    dispatch(basketModel.actions.clearBasket())
+  } catch (error) {
+    console.log(error)
+  }
+})

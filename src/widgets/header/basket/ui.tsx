@@ -3,8 +3,8 @@ import {  useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { BasketItem, basketModel } from "@/entities/basket"
-import { BasketType } from "@/entities/basket/types"
-import { viewerModel } from "@/entities/session"
+import { Basket } from "@/entities/basket/types"
+import { sessionModel } from "@/entities/session"
 import { countTotalPrice } from "@/shared/lib/count-total-price"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { useClickOutside } from "@/shared/lib/use-click-outside"
@@ -23,10 +23,10 @@ export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 	const reference = useRef<HTMLHeadingElement>(null)
 
 	const basket = useAppSelector(basketModel.selectors.basket)
-	const profile = useAppSelector(viewerModel.selectors.profile)
+	const profile = useAppSelector(sessionModel.selectors.profile)
 
 	useClickOutside(() => !isModelOpened && setOpen(false), reference, isOpened)
-		
+	if(!basket?.length) return null
 	return (
 		<div ref={reference}>
 			<div className={`transition-all duration-300 ease h-full z-50 fixed right-0 top-0 w-full md:w-[700px] bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]
@@ -36,12 +36,12 @@ export const BasketSideMenu = ({isOpened, setOpen}:IProps) => {
 						<div className="flex justify-between items-center mb-4">
 							<div className="flex items-end gap-3">
 								<h2 className="leading-none text-[27px] font-medium">My Basket</h2>
-								<span className="font-bold text-light-dark">({basket.length} item)</span>
+								<span className="font-bold text-light-dark">({basket?.length} item)</span>
 							</div>
 							<MenuButton action={() => setOpen(false)} label={'Close'}/>
 						</div>
 						<div>
-							{basket.map(({selectedColor, selectedSize, quantity, price, name, image, id}:BasketType) => {
+							{basket?.map(({selectedColor, selectedSize, quantity, price, name, image, id}:Basket) => {
 							return (
 								<div key={id}>
 									<BasketItem 

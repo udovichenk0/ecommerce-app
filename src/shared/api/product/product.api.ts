@@ -2,11 +2,11 @@ import { query, collection, orderBy, documentId, startAfter, limit, getDocs, Doc
 
 import { db } from "../config";
 
-import { Product } from "./types";
+import { ProductDto } from "./types";
 
 export const getProducts = async (lastRefKey?: string) => {
   if (lastRefKey) {
-    const products: Product[] = [];
+    const products: ProductDto[] = [];
     const q = query(
       collection(db, "products"),
       orderBy(documentId()),
@@ -29,11 +29,11 @@ export const getProducts = async (lastRefKey?: string) => {
     }
   }
   else {
-    const products: Product[] = [];
+    const products: ProductDto[] = [];
     const q = query(collection(db, "products"), limit(4));
     const data = await getDocs(q);
     data.docs.forEach((doc) => {
-      const product = { id: doc.id, ...doc.data() } as Product;
+      const product = { id: doc.id, ...doc.data() } as ProductDto;
       return products.push(product)
     }
     );
@@ -48,7 +48,7 @@ export const getProducts = async (lastRefKey?: string) => {
 };
 
 export const getFeaturedProducts = async () => {
-  const products = [] as Product[]
+  const products = [] as ProductDto[]
   const data = await getDocs(
     query(
       collection(db, "products"),
@@ -57,13 +57,13 @@ export const getFeaturedProducts = async () => {
     )
   );
   data.docs.forEach(doc => {
-    const data = {...doc.data(), id: doc.id} as Product
+    const data = {...doc.data(), id: doc.id} as ProductDto
     products.push(data)
   })
   return products
 }
 export const getRecommendedProducts = async () => {
-  const products = [] as Product[]
+  const products = [] as ProductDto[]
   const data = await getDocs(
     query(
       collection(db, "products"),
@@ -72,12 +72,12 @@ export const getRecommendedProducts = async () => {
     )
   );
   data.docs.forEach(doc => {
-    const data = {...doc.data(), id: doc.id} as Product
+    const data = {...doc.data(), id: doc.id} as ProductDto
     products.push(data)
   })
   return products
 }
 export const getSingleProduct = async (id: string) => {
   const product = await getDoc(doc(db, "products", id))
-  return {...product.data(), id: product.id} as Product
+  return {...product.data(), id: product.id} as ProductDto
 };

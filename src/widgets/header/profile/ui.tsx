@@ -10,7 +10,7 @@ import { GreyButton } from '@/shared/ui/buttons'
 import { ProfileDropDown } from '@/shared/ui/profile-drop-down'
 
 
-export const Profile = ({name, photo}: {name:string, photo: string}) => {
+export const Profile = ({name, photo}: {name:string, photo: string | null}) => {
 	const [isOpened, setOpen] = useState<boolean>(false)
 	const navigate = useNavigate()
 	const reference = useRef(null)

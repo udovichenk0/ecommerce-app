@@ -20,7 +20,6 @@ export const createProduct = <RootState, Prefix>(
     name,
     initialState: initialState1,
     reducers: {
-      // eslint-disable-next-line no-unused-vars
       setProduct(state, data: PayloadAction<Product>){
         state.product = data.payload
         state.isLoading = false

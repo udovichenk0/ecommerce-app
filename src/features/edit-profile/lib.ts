@@ -1,4 +1,4 @@
-import { viewerModel } from "@/entities/session";
+import { sessionModel } from "@/entities/session";
 
 import { IData } from "./types";
 

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 
 import { BasketItem, basketModel } from "@/entities/basket"
-import { BasketType } from "@/entities/basket/types"
+import { Basket } from "@/entities/basket/types"
 import { countTotalPrice } from "@/shared/lib/count-total-price"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { BaseButton, LightButton } from "@/shared/ui/buttons"
@@ -25,7 +25,7 @@ export const SummaryOrder = () => {
 							</>
 						</div>
 						<div className="w-full mb-5">
-						{basket.map(({selectedColor, selectedSize, quantity, price, name, image, id}:BasketType) => {
+						{basket.map(({selectedColor, selectedSize, quantity, price, name, image, id}:Basket) => {
 							return (
 								<div key={id}>
 									<BasketItem 

@@ -2,11 +2,11 @@ import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit"
 
 import { createBaseSelector } from "@/shared/lib/redux-std";
 
-import { BasketType } from "../types";
+import { Basket } from "./types";
 
 const reducerPath = "entity/basket";
 const initialState = {
-  basket: [] as BasketType[],
+  basket: [] as Basket[],
 };
 type State = typeof initialState;
 const slice = createSlice({
@@ -24,11 +24,11 @@ const slice = createSlice({
     },
     removeFromBasket(state, action) {
       state.basket = state.basket.filter(
-        (item: BasketType) => item.id !== action.payload
+        (item: Basket) => item.id !== action.payload
       );
     },
     addQuantity(state, action) {
-      state.basket.find((item: BasketType) => {
+      state.basket.find((item: Basket) => {
         if (item.id == action.payload) {
           item.quantity++;
         }
@@ -38,7 +38,7 @@ const slice = createSlice({
       state.basket = [];
     },
     removeQuantity(state, action) {
-      state.basket.find((item: BasketType) => {
+      state.basket.find((item: Basket) => {
         if (item.id == action.payload) {
           item.quantity--;
         }

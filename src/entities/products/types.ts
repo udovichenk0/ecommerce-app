@@ -1,4 +1,4 @@
-export type productType = {
+export type Product = {
 	glasses: string
 	title: string
 	subtitle: string

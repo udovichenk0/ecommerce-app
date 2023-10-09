@@ -1,7 +1,7 @@
 import { useAction } from "@/shared/lib/redux-std"
 import { MenuButton } from "@/shared/ui/buttons"
 
-import { actions } from "../model"
+import { actions } from "./basket.model"
 
 
 

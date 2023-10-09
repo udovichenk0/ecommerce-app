@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { basketApi, basketModel } from '@/entities/basket'
-import { viewerModel } from '@/entities/session'
+import { basketModel } from '@/entities/basket'
+import { sessionModel } from '@/entities/session'
 import { SearchProduct } from '@/features/search'
 // eslint-disable-next-line import/no-internal-modules
 import logo from '@/shared/assets/logo.png'
@@ -20,11 +20,11 @@ export const Header = () => {
 	const [isOpened, setOpen] = useState<boolean>(false)
 	const [isNavOpened, setNavOpen] = useState<boolean>(false)
 	const basket = useAppSelector(basketModel.selectors.basket)
-	const profile = useAppSelector(viewerModel.selectors.profile)
+	const profile = useAppSelector(sessionModel.selectors.profile)
 	const navigate = useNavigate()
-	useEffect(() => {
-		if(profile.name) basketApi.api.setBasket(basket, profile.uid)
-	}, [basket])
+	// useEffect(() => {
+	// 	if(profile.name) basketApi.api.setBasket(basket, profile.uid)
+	// }, [basket])
 	return (
 			<div className='container pt-8 pb-20'>
 				<div className='flex items-center justify-between mb-5 sm:mb-0'>
@@ -53,11 +53,11 @@ export const Header = () => {
 						<div className='hidden sm:block w-[300px] mr-7'>
 							<SearchProduct/>
 						</div>
-						<ShopBag setOpen={setOpen} basketLength={basket.length}/>
-						{profile.name? <Profile name={profile.name} photo={profile.avatar}/>
+						<ShopBag setOpen={setOpen} basketLength={basket?.length}/>
+						{profile.name ? <Profile name={profile.name} photo={profile.avatar}/>
 						:	<div className='flex gap-5'>
-							<BaseButton size='md' label='Sign Up' action={() => navigate('/auth/signup')}/>
-							<LightButton label='Sign In' action={() => navigate("/auth/signin", {replace:true})}/>
+								<BaseButton size='md' label='Sign Up' action={() => navigate('/auth/signup')}/>
+								<LightButton label='Sign In' action={() => navigate("/auth/signin", {replace:true})}/>
 							</div>
 						}
 						<BasketSideMenu isOpened={isOpened} setOpen={setOpen}/>

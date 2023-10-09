@@ -6,10 +6,10 @@ import defaultUser from '@/shared/assets/defaultUser.png'
 import { ProfileType } from '@/shared/lib/types'
 import { BaseButton } from '@/shared/ui/buttons'
 
-import { SessionProfile } from '../types'
+import { User } from './types'
 
 
-export const Profile = ({profile, isFetching}: {profile: SessionProfile, isFetching: boolean}) => {
+export const Profile = ({profile, isFetching}: {profile: User, isFetching: boolean}) => {
 	const navigate = useNavigate()
 	return (
 		<div className="w-[700px] border-[1px] border-[#e1e1e1] p-4 relative mb-20">

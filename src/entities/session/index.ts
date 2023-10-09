@@ -1,4 +1,3 @@
-export * as viewerModel from "./session";
+export * as sessionModel from "./session.model";
 export * from "./ui";
-export * as sessionApi from "./api";
-export type { SessionProfile } from './types'
+export type { User } from './types'

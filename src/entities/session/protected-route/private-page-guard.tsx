@@ -2,7 +2,7 @@ import { PropsWithChildren, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
 
-import { selectors } from "../session"
+import { selectors } from "../session.model"
 
 export const PrivatePageGuard = ({children}: PropsWithChildren) => {
   const session = useSelector(selectors.profile)

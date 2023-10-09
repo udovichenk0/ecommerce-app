@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { viewerModel } from "@/entities/session";
+import { sessionModel } from "@/entities/session";
 import { AuthSignInForm } from "@/features/auth"
 import { useAppSelector } from "@/shared/lib/redux-std";
 import { LightButton } from "@/shared/ui/buttons"

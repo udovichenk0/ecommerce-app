@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { createBrowserRouter, redirect } from "react-router-dom";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 import {
   persistStore,
@@ -15,9 +14,7 @@ import storage from "redux-persist/lib/storage";
 
 import { basketModel } from "@/entities/basket";
 import { notifyModel } from "@/entities/notification";
-import { viewerModel } from "@/entities/session";
-import { emailModel, oauthModel } from "@/features/auth";
-import { signOutModel } from "@/features/auth/sign-out";
+import { sessionModel } from "@/entities/session";
 import { profileModel } from "@/features/edit-profile";
 import { searchModel } from "@/features/search";
 import { featurePage } from "@/pages/Featured";
@@ -25,22 +22,18 @@ import { homePage } from "@/pages/Home";
 import { productPage } from "@/pages/Product";
 import { recommendedPage } from "@/pages/Recommended";
 import { shopPage } from "@/pages/Shop";
+import { listenerMiddleware } from "@/shared/lib/redux-std";
 
 const epicMiddleware = createEpicMiddleware();
 const rootEpics = combineEpics(
-  // productModel.epics.getProducts,
   searchModel.epics.searchEpic,
-  emailModel.epics.signInEpic,
   profileModel.epics.editProfileEpic,
-  signOutModel.epics.signOutEpic,
-  oauthModel.epics.signInGithubEpic,
-  oauthModel.epics.signInGoogleEpic
 );
 const rootReducers = combineReducers({
   // ...productModel.reducers,
   ...searchModel.reducers,
   ...basketModel.reducer,
-  ...viewerModel.reducer,
+  ...sessionModel.reducer,
   ...notifyModel.reducers,
   ...featurePage.pageReducers,
   ...recommendedPage.pageReducers,
@@ -62,7 +55,7 @@ export const store = configureStore({
         serializableCheck: false,
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(epicMiddleware);
+    }).concat(epicMiddleware).prepend(listenerMiddleware.middleware);
   },
 });
 epicMiddleware.run(rootEpics);

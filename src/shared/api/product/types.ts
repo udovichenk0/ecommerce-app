@@ -1,5 +1,5 @@
 export type ProductId = string
-export type Product = {
+export type ProductDto = {
   description: string;
   image: string;
   isFeatured: boolean;
