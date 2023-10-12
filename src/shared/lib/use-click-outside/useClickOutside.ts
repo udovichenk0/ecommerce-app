@@ -1,11 +1,11 @@
-import { MutableRefObject, useEffect } from "react";
+import { MutableRefObject, useEffect } from "react"
 
 export const useClickOutside = <
-  T extends { contains: (event: Node) => Node } | HTMLHeadingElement | null
+  T extends { contains: (event: Node) => Node } | HTMLHeadingElement | null,
 >(
   handle: () => void,
   reference: MutableRefObject<T>,
-  isHandled: boolean
+  isHandled: boolean,
 ): void => {
   useEffect(() => {
     const listener = (event: Event) => {
@@ -14,17 +14,17 @@ export const useClickOutside = <
         !isHandled ||
         reference?.current.contains(event?.target as Node)
       ) {
-        return;
+        return
       }
-      handle();
-    };
+      handle()
+    }
 
-    document.addEventListener("mousedown", listener);
-    document.addEventListener("touchstart", listener);
+    document.addEventListener("mousedown", listener)
+    document.addEventListener("touchstart", listener)
 
     return () => {
-      document.removeEventListener("mousedown", listener);
-      document.removeEventListener("touchstart", listener);
-    };
-  }, [handle, reference]);
-};
+      document.removeEventListener("mousedown", listener)
+      document.removeEventListener("touchstart", listener)
+    }
+  }, [handle, reference])
+}

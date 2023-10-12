@@ -1,2 +1,2 @@
-export * from "./ui";
-export { signInWithGithubFx } from './model'
+export * from "./ui"
+export { signInWithGithubFx } from "./model"

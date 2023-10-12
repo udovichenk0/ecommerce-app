@@ -1,3 +1,3 @@
-import PageSignUp from "./ui";
+import PageSignUp from "./ui"
 
-export default PageSignUp;
+export default PageSignUp

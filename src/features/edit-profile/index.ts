@@ -1,2 +1,2 @@
-export * from "./ui";
-export * as profileModel from "./model";
+export * from "./ui"
+export * as profileModel from "./model"

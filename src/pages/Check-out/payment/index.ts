@@ -1,2 +1,2 @@
-import { Payment } from "./ui";
-export default Payment;
+import { Payment } from "./ui"
+export default Payment

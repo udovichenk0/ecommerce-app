@@ -1,1 +1,1 @@
-export * from "./searchSvg";
+export * from "./searchSvg"

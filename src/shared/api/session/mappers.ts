@@ -1,10 +1,10 @@
-import { UserCredential } from "firebase/auth";
+import { UserCredential } from "firebase/auth"
 
-import { FirebaseUser, UserDto } from "./types";
+import { UserDto } from "./types"
 
 export function mapUser(response: UserCredential, fullName?: string): UserDto {
   const user = response.user
-  const { email, uid, photoURL, phoneNumber, displayName } = user;
+  const { email, uid, photoURL, phoneNumber, displayName } = user
   return {
     email: email!,
     uid,
@@ -12,11 +12,11 @@ export function mapUser(response: UserCredential, fullName?: string): UserDto {
     mobile: phoneNumber,
     joinedData: user.metadata.creationTime!,
     name: (displayName || fullName)!,
-    address: '',
-    basket: []
-  };
+    address: "",
+    basket: [],
+  }
 }
-export function normilizeUser(user: UserDto){
+export function normilizeUser(user: UserDto) {
   return {
     address: user.address,
     avatar: user.avatar,

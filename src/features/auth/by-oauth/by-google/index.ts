@@ -1,2 +1,2 @@
-export * from "./ui";
-export { signWithGoogleFx } from './model'
+export * from "./ui"
+export { signWithGoogleFx } from "./model"

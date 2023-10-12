@@ -1,3 +1,3 @@
-import Product from './ui'
+import Product from "./ui"
 export default Product
-export { productPage } from './product.model'
+export { productPage } from "./product.model"

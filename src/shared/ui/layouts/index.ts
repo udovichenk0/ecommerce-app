@@ -1,2 +1,2 @@
-export * from "./layout";
-export * from "./hero-layout";
+export * from "./layout"
+export * from "./hero-layout"

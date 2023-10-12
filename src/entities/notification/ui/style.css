@@ -1,23 +1,22 @@
-
 @keyframes slideInToast {
-	0% {
-	  opacity: 0;
-	  transform: translateX(120%);
-	}
-	20% {
-	  opacity: 1;
-	  transform: translateX(0);
-	}
-	90% {
-	  opacity: 1;
-	  transform: translateX(0);
-	}
-	100% {
-	  opacity: 0;
-	  transform: translateX(120%);
-	}
+  0% {
+    opacity: 0;
+    transform: translateX(120%);
   }
+  20% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+}
 
-.animation{
-	animation: slideInToast 4s ease;
+.animation {
+  animation: slideInToast 4s ease;
 }

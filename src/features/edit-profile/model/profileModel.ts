@@ -1,14 +1,10 @@
-import { ofType } from "redux-observable";
-import {
-  exhaustMap,
-  from,
-  mergeMap,
-  of,
-} from "rxjs";
+import { ofType } from "redux-observable"
+import { exhaustMap, from, mergeMap, of } from "rxjs"
 
-import { notifyModel } from "@/entities/notification";
-import { sessionModel } from "@/entities/session";
-import { sessionApi } from "@/shared/api/session";
+import { notifyModel } from "@/entities/notification"
+import { sessionModel } from "@/entities/session"
+
+import { sessionApi } from "@/shared/api/session"
 const editProfileEpic = (action$: any) =>
   action$.pipe(
     ofType(sessionModel.actions.startEditProfile),
@@ -20,13 +16,13 @@ const editProfileEpic = (action$: any) =>
             notifyModel.actions.enqueueSnackbar({
               message: "Profile Updated!",
               type: "success",
-            })
-          )
-        )
-      )
-    )
-  );
+            }),
+          ),
+        ),
+      ),
+    ),
+  )
 
 export const epics = {
   editProfileEpic,
-};
+}

@@ -1,5 +1,4 @@
-import { FeaturedPage } from "./ui";
-export { featurePage } from './featured.model'
+import { FeaturedPage } from "./ui"
+export { featurePage } from "./featured.model"
 
-export default FeaturedPage;
-
+export default FeaturedPage

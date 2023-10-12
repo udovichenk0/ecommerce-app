@@ -1,2 +1,2 @@
-export * from "./profile";
-export * from "./basket";
+export * from "./profile"
+export * from "./basket"

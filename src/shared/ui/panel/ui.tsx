@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom"
 
-export const Panel = ({title, link}: {title: string, link: string}) => {
-return (
-	<div className="flex justify-between items-center mb-10">
-		<div className="text-main-dark text-[32px] font-medium">
-			{title}
-		</div>
-		<Link to={link}>
-			<div className="text-tr-dark underline text-xl font-bold">See all</div>	
-		</Link>
-	</div>
-)
+export const Panel = ({ title, link }: { title: string; link: string }) => {
+  return (
+    <div className="mb-10 flex items-center justify-between">
+      <div className="text-[32px] font-medium text-main-dark">{title}</div>
+      <Link to={link}>
+        <div className="text-xl font-bold text-tr-dark underline">See all</div>
+      </Link>
+    </div>
+  )
 }

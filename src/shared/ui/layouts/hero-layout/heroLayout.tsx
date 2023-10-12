@@ -1,20 +1,22 @@
 import { ReactNode } from "react"
 
 interface IProps {
-	children: ReactNode
-	image: string
+  children: ReactNode
+  image: string
 }
-export const HeroLayout = ({children, image}: IProps) => {
-	return (
-		<div>
-			<section className=" bg-[#f3f3f3] flex items-center h-[400px] justify-between">
-				<div className="p-8 md:basis-1/2">
-					{children}
-				</div>
-				<div className="h-full w-full bg-cover basis-1/2 hidden md:block">
-					<img src={image} className='h-full bg-contain w-full object-cover' alt="" />
-				</div>
-			</section>
-		</div>
-	)
+export const HeroLayout = ({ children, image }: IProps) => {
+  return (
+    <div>
+      <section className=" flex h-[400px] items-center justify-between bg-[#f3f3f3]">
+        <div className="p-8 md:basis-1/2">{children}</div>
+        <div className="hidden h-full w-full basis-1/2 bg-cover md:block">
+          <img
+            src={image}
+            className="h-full w-full bg-contain object-cover"
+            alt=""
+          />
+        </div>
+      </section>
+    </div>
+  )
 }

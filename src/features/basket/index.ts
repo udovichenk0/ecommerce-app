@@ -1,2 +1,2 @@
-export * from "./addToBasket";
-export * from "./removeFromBasket";
+export * from "./add-to-basket"
+export * from "./remove-from-basket"

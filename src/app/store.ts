@@ -1,5 +1,5 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { combineEpics, createEpicMiddleware } from "redux-observable";
+import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import { combineEpics, createEpicMiddleware } from "redux-observable"
 import {
   persistStore,
   persistReducer,
@@ -9,26 +9,29 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+} from "redux-persist"
+import storage from "redux-persist/lib/storage"
 
-import { basketModel } from "@/entities/basket";
-import { notifyModel } from "@/entities/notification";
-import { sessionModel } from "@/entities/session";
-import { profileModel } from "@/features/edit-profile";
-import { searchModel } from "@/features/search";
-import { featurePage } from "@/pages/Featured";
-import { homePage } from "@/pages/Home";
-import { productPage } from "@/pages/Product";
-import { recommendedPage } from "@/pages/Recommended";
-import { shopPage } from "@/pages/Shop";
-import { listenerMiddleware } from "@/shared/lib/redux-std";
+import { featurePage } from "@/pages/Featured"
+import { homePage } from "@/pages/Home"
+import { productPage } from "@/pages/Product"
+import { recommendedPage } from "@/pages/Recommended"
+import { shopPage } from "@/pages/Shop"
 
-const epicMiddleware = createEpicMiddleware();
+import { searchModel } from "@/features/search"
+import { profileModel } from "@/features/edit-profile"
+
+import { sessionModel } from "@/entities/session"
+import { notifyModel } from "@/entities/notification"
+import { basketModel } from "@/entities/basket"
+
+import { listenerMiddleware } from "@/shared/lib/redux-std"
+
+const epicMiddleware = createEpicMiddleware()
 const rootEpics = combineEpics(
   searchModel.epics.searchEpic,
   profileModel.epics.editProfileEpic,
-);
+)
 const rootReducers = combineReducers({
   // ...productModel.reducers,
   ...searchModel.reducers,
@@ -39,14 +42,14 @@ const rootReducers = combineReducers({
   ...recommendedPage.pageReducers,
   ...homePage.pageReducers,
   ...productPage.pageReducers,
-  ...shopPage.pageReducers
-});
+  ...shopPage.pageReducers,
+})
 const persistConfig = {
   key: "root",
   storage,
   whitelist: ["entity/basket"],
-};
-export const persistedReducer = persistReducer(persistConfig, rootReducers);
+}
+export const persistedReducer = persistReducer(persistConfig, rootReducers)
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => {
@@ -55,8 +58,10 @@ export const store = configureStore({
         serializableCheck: false,
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(epicMiddleware).prepend(listenerMiddleware.middleware);
+    })
+      .concat(epicMiddleware)
+      .prepend(listenerMiddleware.middleware)
   },
-});
-epicMiddleware.run(rootEpics);
-export const persistor = persistStore(store);
+})
+epicMiddleware.run(rootEpics)
+export const persistor = persistStore(store)

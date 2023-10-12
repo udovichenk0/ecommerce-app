@@ -1,3 +1,3 @@
-import SearchPage from "./ui";
+import SearchPage from "./ui"
 
 export default SearchPage

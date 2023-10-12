@@ -1,1 +1,1 @@
-export * from "./fileReader";
+export * from "./fileReader"

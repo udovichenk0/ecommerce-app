@@ -1,1 +1,1 @@
-export * from "./profileModel";
+export * from "./profileModel"

@@ -1,13 +1,13 @@
-.card{
-	&:hover{
-		.image{
-			width: 60%;
-			height: auto;
-		}
-	}
-	&:hover{
-		.hov{
-			padding-top: 0;
-		}
-	}
+.card {
+  &:hover {
+    .image {
+      width: 60%;
+      height: auto;
+    }
+  }
+  &:hover {
+    .hov {
+      padding-top: 0;
+    }
+  }
 }

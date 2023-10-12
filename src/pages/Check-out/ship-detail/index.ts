@@ -1,2 +1,2 @@
-import { ShipDetail } from "./ui";
-export default ShipDetail;
+import { ShipDetail } from "./ui"
+export default ShipDetail

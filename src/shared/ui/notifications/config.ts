@@ -3,4 +3,4 @@ export const Types = {
   success: "success",
   warning: "warning",
   error: "error",
-};
+}

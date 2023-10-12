@@ -1,28 +1,32 @@
-import { lazy } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { lazy } from "react"
+import { createBrowserRouter } from "react-router-dom"
 
-import { PrivatePageGuard, SignedInPageGuard } from "@/entities/session/protected-route";
-import { featurePage } from "@/pages/Featured";
-import { homePage } from "@/pages/Home";
-import { productPage } from "@/pages/Product";
-import { recommendedPage } from "@/pages/Recommended";
+import { featurePage } from "@/pages/Featured"
+import { homePage } from "@/pages/Home"
+import { productPage } from "@/pages/Product"
+import { recommendedPage } from "@/pages/Recommended"
+import { shopPage } from "@/pages/Shop"
 
-import { store } from "../store";
-import { shopPage } from "@/pages/Shop";
+import {
+  PrivatePageGuard,
+  SignedInPageGuard,
+} from "@/entities/session/protected-route"
 
-const ShipDetailPage = lazy(() => import("@/pages/Check-out/ship-detail"));
-const SummaryOrderPage = lazy(() => import("@/pages/Check-out/summary-order"));
-const Payment = lazy(() => import("@/pages/Check-out/payment"));
-const MainPage = lazy(() => import("@/pages/Home"));
-const SignInPage = lazy(() => import("@/pages/Auth/SignIn"));
-const SignUpPage = lazy(() => import("@/pages/Auth/SignUp"));
-const ShopPage = lazy(() => import("@/pages/Shop"));
-const SearchPage = lazy(() => import("@/pages/Search"));
-const ProductPage = lazy(() => import("@/pages/Product"));
-const FeaturedPage = lazy(() => import("@/pages/Featured"));
-const RecommendedPage = lazy(() => import("@/pages/Recommended"));
-const AccountPage = lazy(() => import("@/pages/Account"));
-const AccountEditPage = lazy(() => import("@/pages/AccountEdit"));
+import { store } from "../store"
+
+// const ShipDetailPage = lazy(() => import("@/pages/Check-out/ship-detail"));
+// const SummaryOrderPage = lazy(() => import("@/pages/Check-out/summary-order"));
+// const Payment = lazy(() => import("@/pages/Check-out/payment"));
+const MainPage = lazy(() => import("@/pages/Home"))
+const SignInPage = lazy(() => import("@/pages/Auth/SignIn"))
+const SignUpPage = lazy(() => import("@/pages/Auth/SignUp"))
+const ShopPage = lazy(() => import("@/pages/Shop"))
+const SearchPage = lazy(() => import("@/pages/Search"))
+const ProductPage = lazy(() => import("@/pages/Product"))
+const FeaturedPage = lazy(() => import("@/pages/Featured"))
+const RecommendedPage = lazy(() => import("@/pages/Recommended"))
+const AccountPage = lazy(() => import("@/pages/Account"))
+const AccountEditPage = lazy(() => import("@/pages/AccountEdit"))
 export enum RoutesEnum {
   MAIN = "main",
   SIGNIN = "signin",
@@ -40,60 +44,76 @@ export enum RoutesEnum {
 }
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <MainPage/>,
-    loader: () => { 
+    path: "/",
+    element: <MainPage />,
+    loader: () => {
       store.dispatch(homePage.getRecommendedProductsFx())
       store.dispatch(homePage.getFeaturedProductsFx())
-    }
+    },
   },
   {
-    path: '/featured',
-    element: <FeaturedPage/>,
-    loader: () => store.dispatch(featurePage.getFeatureProductsFx())
+    path: "/featured",
+    element: <FeaturedPage />,
+    loader: () => store.dispatch(featurePage.getFeatureProductsFx()),
   },
   {
-    path: '/recommended',
-    element: <RecommendedPage/>,
-    loader: () => store.dispatch(recommendedPage.getRecommendedProductsFx())
+    path: "/recommended",
+    element: <RecommendedPage />,
+    loader: () => store.dispatch(recommendedPage.getRecommendedProductsFx()),
   },
   {
-    path: '/shop',
-    element: <ShopPage/>,
-    loader: () => store.dispatch(shopPage.getProductsFx())
+    path: "/shop",
+    element: <ShopPage />,
+    loader: () => store.dispatch(shopPage.getProductsFx()),
   },
   {
-    path: '/search',
-    element: <SearchPage/>
+    path: "/search",
+    element: <SearchPage />,
   },
   {
-    path: '/product/:id',
-    element: <ProductPage/>,
+    path: "/product/:id",
+    element: <ProductPage />,
     loader: ({ params }) => {
       const id = params.id!
       store.dispatch(productPage.getRecommendedProductsFx())
       store.dispatch(productPage.getSingleProductFx(id))
-    }
+    },
   },
   {
-    path: '/account',
-    element: <PrivatePageGuard><AccountPage/></PrivatePageGuard>,
+    path: "/account",
+    element: (
+      <PrivatePageGuard>
+        <AccountPage />
+      </PrivatePageGuard>
+    ),
   },
   {
-    path: '/account/edit',
-    element: <PrivatePageGuard><AccountEditPage/></PrivatePageGuard>
+    path: "/account/edit",
+    element: (
+      <PrivatePageGuard>
+        <AccountEditPage />
+      </PrivatePageGuard>
+    ),
   },
   {
-    path: '/auth',
+    path: "/auth",
     children: [
       {
-        path: 'signin',
-        element: <SignedInPageGuard><SignInPage/></SignedInPageGuard>
+        path: "signin",
+        element: (
+          <SignedInPageGuard>
+            <SignInPage />
+          </SignedInPageGuard>
+        ),
       },
       {
-        path: 'signup',
-        element: <SignedInPageGuard><SignUpPage/></SignedInPageGuard>
-      }
-    ]
+        path: "signup",
+        element: (
+          <SignedInPageGuard>
+            <SignUpPage />
+          </SignedInPageGuard>
+        ),
+      },
+    ],
   },
 ])
