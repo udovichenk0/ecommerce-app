@@ -19,7 +19,6 @@ import { recommendedPage } from "@/pages/Recommended"
 import { shopPage } from "@/pages/Shop"
 
 import { searchModel } from "@/features/search"
-import { profileModel } from "@/features/edit-profile"
 
 import { sessionModel } from "@/entities/session"
 import { notifyModel } from "@/entities/notification"
@@ -28,10 +27,7 @@ import { basketModel } from "@/entities/basket"
 import { listenerMiddleware } from "@/shared/lib/redux-std"
 
 const epicMiddleware = createEpicMiddleware()
-const rootEpics = combineEpics(
-  searchModel.epics.searchEpic,
-  profileModel.epics.editProfileEpic,
-)
+const rootEpics = combineEpics(searchModel.epics.searchEpic)
 const rootReducers = combineReducers({
   // ...productModel.reducers,
   ...searchModel.reducers,

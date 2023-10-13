@@ -20,7 +20,7 @@ export const FeaturedPage = () => {
           <div className="mb-5 text-[48px] font-light">Featured Products</div>
         </HeroLayout>
         <div className="mt-28 px-10">
-          <ProductList products={products} isPending={isPending}/>
+          <ProductList products={products} isPending={isPending} />
         </div>
       </div>
     </Layout>

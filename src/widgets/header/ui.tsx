@@ -24,7 +24,7 @@ export const Header = () => {
   const profile = useAppSelector(sessionModel.selectors.profile)
   const navigate = useNavigate()
   return (
-    <div className="container pt-8 pb-20">
+    <div className="container pb-20 pt-8">
       <div className="mb-5 flex items-center justify-between sm:mb-0">
         <div className="flex items-center xl:static ">
           <div className="bloc mr-5 flex xl:hidden">
@@ -48,7 +48,7 @@ export const Header = () => {
             <ul className="flex h-screen flex-col items-center justify-center gap-y-5 text-[30px] font-medium text-[#101010ba] xl:h-fit xl:flex-row xl:text-[18px]">
               {links.map(({ link, title }) => {
                 return (
-                  <li key={title} className="py-[10px] px-4">
+                  <li key={title} className="px-4 py-[10px]">
                     <Link to={link}>{title}</Link>
                   </li>
                 )
@@ -83,4 +83,3 @@ export const Header = () => {
     </div>
   )
 }
-

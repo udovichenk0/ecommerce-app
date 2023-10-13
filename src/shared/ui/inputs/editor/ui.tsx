@@ -20,7 +20,7 @@ export const InputEditor = ({
       <input
         disabled={disabled}
         placeholder={placeholder}
-        className={`mt-2 w-full border-[1px] border-[#c5c5c5] bg-[#f9f9f9] py-[5px] px-6 text-[22px] font-medium outline-none ${
+        className={`mt-2 w-full border-[1px] border-[#c5c5c5] bg-[#f9f9f9] px-6 py-[5px] text-[22px] font-medium outline-none ${
           disabled && "text-[#696868]"
         }`}
         {...register(name)}

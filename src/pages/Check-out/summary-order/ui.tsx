@@ -19,11 +19,11 @@ export const SummaryOrder = () => {
       <CheckoutTemplate
         step={1}
         backBtn={
-          <Button 
-            size={'sm'} 
-            intent={'outline'}
+          <Button
+            size={"sm"}
+            intent={"outline"}
             onClick={() => navigate("/", { replace: true })}
-            >
+          >
             Continue Shopping
           </Button>
         }

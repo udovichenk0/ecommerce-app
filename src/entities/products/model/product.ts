@@ -11,7 +11,7 @@ export const createProduct = <RootState, Prefix extends string>(
   parentSelector: (state: RootState) => ProductState,
   prefix: Prefix,
 ) => {
-  const name = 'entities/product'
+  const name = "entities/product"
   const initialState1: ProductState = {
     product: {} as Product,
     isLoading: true,

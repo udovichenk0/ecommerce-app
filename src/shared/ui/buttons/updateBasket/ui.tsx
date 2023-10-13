@@ -6,7 +6,7 @@ interface IProps {
 export const UpdateCart = ({ label, action, style }: IProps) => {
   return (
     <button
-      className={`py-3 px-4 font-bold
+      className={`px-4 py-3 font-bold
 		${
       style == "add"
         ? "ease border-[1px] border-black bg-black text-white transition-all duration-200 hover:bg-main-dark"

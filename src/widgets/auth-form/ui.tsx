@@ -10,7 +10,7 @@ export const AuthForm = ({ children, title, button, text }: any) => {
           <div className=" relative mx-14 flex justify-center">
             <span
               className="hidden before:absolute before:left-1/2 before:top-10 before:h-24 before:w-[1px] before:bg-[#e1e1e1] before:content-[''] after:absolute
-					after:left-1/2 after:bottom-10 after:h-24 after:w-[1px] after:bg-[#e1e1e1] after:content-[''] md:block
+					after:bottom-10 after:left-1/2 after:h-24 after:w-[1px] after:bg-[#e1e1e1] after:content-[''] md:block
 					"
             ></span>
             <span className="text-sm font-bold text-[#1a1a1a]">OR</span>

@@ -44,20 +44,25 @@ export const Profile = ({
             title="View Account"
             onClick={() => navigate("/account")}
           />
-          <GreyButton 
-            title="Sign Out" 
-            onClick={() => signOut()} />
+          <GreyButton title="Sign Out" onClick={() => signOut()} />
         </ProfileDropDown>
       )}
     </div>
   )
 }
 
-const GreyButton = ({title, onClick}:{title: string, onClick: () => void}) => {
+const GreyButton = ({
+  title,
+  onClick,
+}: {
+  title: string
+  onClick: () => void
+}) => {
   return (
-    <button 
-      className="w-full py-2 px-4 text-sm font-bold text-tr-dark" 
-      onClick={onClick}>
+    <button
+      className="w-full px-4 py-2 text-sm font-bold text-tr-dark"
+      onClick={onClick}
+    >
       {title}
     </button>
   )

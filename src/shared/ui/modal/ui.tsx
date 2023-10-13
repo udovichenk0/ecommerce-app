@@ -7,7 +7,7 @@ interface IProps {
 }
 export const Modal = ({ children, setModelOpen }: IProps) => {
   return createPortal(
-    <div className="fixed top-0 left-0 z-[101] h-full w-full">
+    <div className="fixed left-0 top-0 z-[101] h-full w-full">
       <div
         onClick={(event: any) =>
           !event.target.closest("#modal") && setModelOpen(false)

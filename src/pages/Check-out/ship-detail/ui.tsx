@@ -59,11 +59,7 @@ export const ShipDetail = () => {
         <CheckoutTemplate
           step={2}
           backBtn={
-            <Button 
-              size="sm" 
-              intent={'outline'}
-              onClick={() => navigate(-1)}
-              >
+            <Button size="sm" intent={"outline"} onClick={() => navigate(-1)}>
               'Go Back'
             </Button>
           }
@@ -128,7 +124,7 @@ export const ShipDetail = () => {
                         : "before:border-[#e1e1e1] before:bg-white"
                     } before:absolute before:cursor-pointer before:rounded-full`}
                 >
-                  <div className="absolute top-0 left-[2px]">
+                  <div className="absolute left-[2px] top-0">
                     <DoneSvg color={checkbox ? "white" : "#e1e1e1"} />
                   </div>
                 </label>

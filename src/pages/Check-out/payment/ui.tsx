@@ -28,9 +28,7 @@ export const Payment = () => {
       <CheckoutTemplate
         step={3}
         backBtn={
-          <Button
-            size={'sm'}
-            intent={'outline'}>
+          <Button size={"sm"} intent={"outline"}>
             Go Back
           </Button>
         }

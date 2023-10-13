@@ -64,4 +64,3 @@ export const createProducts = <RootState, Prefix extends string>(
 }
 
 export type CreateProducts = ReturnType<typeof createProducts>
-

@@ -29,7 +29,7 @@ const slice = createSlice({
       state.profile = action.payload
       state.isFetching = false
     },
-    startEditProfile(state, action: any) {
+    startEditProfile(state) {
       state.isFetching = true
     },
   },

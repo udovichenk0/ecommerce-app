@@ -20,7 +20,7 @@ export const ShopPage = () => {
       <div className="container relative">
         <div className="mb-16">
           <div className="grid w-full grid-cols-auto-fit justify-center gap-5">
-            <ShopProductList isPending={isLoading} products={products}/>
+            <ShopProductList isPending={isLoading} products={products} />
           </div>
         </div>
         <div className="flex w-full justify-center pb-28">

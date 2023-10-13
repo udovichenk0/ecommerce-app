@@ -15,9 +15,9 @@ export const SignIn = () => {
       <AuthForm
         title={"Sign in to Salinaka"}
         button={
-          <Button 
-            size={'sm'}
-            intent={'outline'}
+          <Button
+            size={"sm"}
+            intent={"outline"}
             onClick={() => navigate("/auth/signup")}
           >
             Sign Up

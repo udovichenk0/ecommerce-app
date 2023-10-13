@@ -22,21 +22,21 @@ export const TextInput = ({
     <div className="flex flex-col">
       {error ? (
         <label
-          className="py-[10px] px-3 text-sm font-bold text-error "
+          className="px-3 py-[10px] text-sm font-bold text-error "
           htmlFor={name}
         >
           {error.message}
         </label>
       ) : (
         <label
-          className="py-[10px] px-3 text-sm font-bold text-[#696868] "
+          className="px-3 py-[10px] text-sm font-bold text-[#696868] "
           htmlFor={name}
         >
           {label}
         </label>
       )}
       <input
-        className={`border-[1px] bg-[#f9f9f9] py-[10px] px-4 font-bold outline-none ${
+        className={`border-[1px] bg-[#f9f9f9] px-4 py-[10px] font-bold outline-none ${
           error ? "border-error" : "border-[#c5c5c5]"
         }`}
         type="text"

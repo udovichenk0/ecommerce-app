@@ -20,7 +20,7 @@ const selectEntityProduct = createSelector(
   selectParent,
   (state) => state["entity/products"],
 )
-const shopPrefix = 'shop/products'
+const shopPrefix = "shop/products"
 const $$products = createProducts(selectEntityProduct, shopPrefix)
 
 const shopReducers = combineReducers({

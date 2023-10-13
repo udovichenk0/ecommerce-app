@@ -21,10 +21,10 @@ export const Home = () => {
     homePage.$$featuredProducts.selectors.products,
   )
   const isRecommendedPending = useSelector(
-    homePage.$$recommendedProducts.selectors.isLoading
+    homePage.$$recommendedProducts.selectors.isLoading,
   )
   const isFeaturedPending = useSelector(
-    homePage.$$featuredProducts.selectors.isLoading
+    homePage.$$featuredProducts.selectors.isLoading,
   )
   const navigate = useNavigate()
   return (
@@ -47,11 +47,17 @@ export const Home = () => {
       </HeroLayout>
       <div className="mt-28 px-10">
         <Panel title={"Featured Products"} link={"featured"} />
-        <ProductList isPending={isFeaturedPending} products={featuredProducts}/>
+        <ProductList
+          isPending={isFeaturedPending}
+          products={featuredProducts}
+        />
       </div>
       <div className="mt-28 px-10">
         <Panel title={"Recommended Products"} link={"recommended"} />
-        <ProductList isPending={isRecommendedPending} products={recommendedProducts}/>
+        <ProductList
+          isPending={isRecommendedPending}
+          products={recommendedProducts}
+        />
       </div>
     </Layout>
   )

@@ -25,7 +25,10 @@ export const RecommendedPage = () => {
           </div>
         </HeroLayout>
         <div className="mt-28 px-10">
-          <ProductList isPending={isRecommendedPending} products={recommendedProducts}/>
+          <ProductList
+            isPending={isRecommendedPending}
+            products={recommendedProducts}
+          />
         </div>
       </div>
     </Layout>

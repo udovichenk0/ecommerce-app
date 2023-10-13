@@ -53,10 +53,7 @@ const Product = () => {
   return (
     <Layout header={<Header />}>
       <div className="container">
-        <Button 
-          className="mb-5"
-          onClick={() => navigate(-1)} 
-          size={'lg'}>
+        <Button className="mb-5" onClick={() => navigate(-1)} size={"lg"}>
           Back
         </Button>
         <div className="flex w-full justify-center">
@@ -83,7 +80,7 @@ const Product = () => {
                 disabled
                 type="color"
                 ref={ref}
-                className={`absolute top-0 left-0 h-full w-full mix-blend-hue ${
+                className={`absolute left-0 top-0 h-full w-full mix-blend-hue ${
                   selectedColor ? "opacity-100" : "opacity-0"
                 }`}
               />
@@ -155,7 +152,10 @@ const Product = () => {
         </div>
         <div className="mt-28 px-10">
           <Panel title={"Recommended Products"} link={"/recommended"} />
-          <ProductList products={recommendedProducts} isPending={isRecommendedPending}/>
+          <ProductList
+            products={recommendedProducts}
+            isPending={isRecommendedPending}
+          />
         </div>
       </div>
     </Layout>

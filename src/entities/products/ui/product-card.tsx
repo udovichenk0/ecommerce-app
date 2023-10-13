@@ -6,9 +6,14 @@ interface ProductCardProps {
   subtitle: string
   id: string
 }
-export const ProductCard = ({ image, name, subtitle, id }: ProductCardProps) => {
+export const ProductCard = ({
+  image,
+  name,
+  subtitle,
+  id,
+}: ProductCardProps) => {
   return (
-    <div className="border-2 h-[330px] w-full border-[#e1e1e1] max-w-[454px] bg-white">
+    <div className="h-[330px] w-full max-w-[454px] border-2 border-[#e1e1e1] bg-white">
       <Link to={`/product/${id}`}>
         <div className="flex h-[60%] w-full justify-center bg-[#f1f1f1]">
           <img src={image} alt={name} />

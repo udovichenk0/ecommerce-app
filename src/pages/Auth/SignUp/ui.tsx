@@ -15,10 +15,11 @@ export const SignUp = () => {
         title={"Sign up to Salinaka"}
         form={<AuthSignUpForm />}
         button={
-          <Button 
-            onClick={() => navigate('/auth/signin')}
-            size={'sm'} 
-            intent={'outline'}>
+          <Button
+            onClick={() => navigate("/auth/signin")}
+            size={"sm"}
+            intent={"outline"}
+          >
             Sign In
           </Button>
         }

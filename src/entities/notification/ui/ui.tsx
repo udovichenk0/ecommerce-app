@@ -8,7 +8,7 @@ export const NotificationPopup = () => {
   const notifications = useAppSelector(notifyModel.selectors.notifications)
   const onClose = useAction(notifyModel.actions.closeSnackbar)
   return (
-    <div className="fixed top-5 right-14">
+    <div className="fixed right-14 top-5">
       {notifications.map((alert) => {
         return (
           <div

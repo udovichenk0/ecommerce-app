@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom"
 
 import "./style.css"
 import "react-phone-input-2/lib/style.css"
-import { sessionModel } from "@/entities/session"
+// import { sessionModel } from "@/entities/session"
 
 // eslint-disable-next-line import/no-internal-modules
 import bgDefault from "@/shared/assets/accBgDefault.jpg"
-import { readFile } from "@/shared/lib/fileReader"
-import { useAction } from "@/shared/lib/redux-std"
+// import { readFile } from "@/shared/lib/fileReader"
+// import { useAction } from "@/shared/lib/redux-std"
 import { Button } from "@/shared/ui/buttons/main"
 import { FileChooser, InputEditor } from "@/shared/ui/inputs"
 
@@ -27,23 +27,23 @@ export const ProfileEditForm = ({
 }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const navigate = useNavigate()
-  const editProfile = useAction(sessionModel.actions.startEditProfile)
+  // const editProfile = useAction(sessionModel.actions.startEditProfile)
   const { handleSubmit, register, control, errors } = useGetForm(profile)
 
   const handle = async (data: IData) => {
     if (checkUpdate(data, profile)) {
-      const avatar = await readFile(data.avatar[0])
+      // const avatar = await readFile(data.avatar[0])
       setLoading(true)
-      editProfile({
-        profile: {
-          id: profile.uid,
-          info: {
-            ...data,
-            avatar: avatar || profile.avatar,
-            mobile: data?.mobile?.length > 5 ? data.mobile : null,
-          },
-        },
-      })
+      // editProfile({
+      // profile: {
+      //   id: profile.uid,
+      //   info: {
+      //     ...data,
+      //     avatar: avatar || profile.avatar,
+      //     mobile: data?.mobile?.length > 5 ? data.mobile : null,
+      //   },
+      // },
+      // })
     }
   }
   useEffect(() => {
@@ -56,7 +56,7 @@ export const ProfileEditForm = ({
       <div className="container flex justify-center">
         <div className="relative  mb-20 w-[700px] p-4">
           <div className="relative h-[150px] w-full bg-[#e9e9e9]">
-            <div className="absolute top-0 left-0 h-full w-full overflow-hidden object-cover">
+            <div className="absolute left-0 top-0 h-full w-full overflow-hidden object-cover">
               <img className="h-full w-full" src={bgDefault} alt="banner" />
             </div>
             <div className="absolute -bottom-1/3 z-[9] flex w-full items-center justify-between px-5">
@@ -66,7 +66,7 @@ export const ProfileEditForm = ({
                   src={profile.avatar}
                   alt={profile.name}
                 />
-                <div className="absolute right-0 bottom-0 flex">
+                <div className="absolute bottom-0 right-0 flex">
                   <FileChooser register={register} name="avatar" />
                 </div>
               </div>
@@ -113,7 +113,7 @@ export const ProfileEditForm = ({
             <div className="flex justify-between">
               <button
                 onClick={() => navigate("/account")}
-                className="border-[1px] border-[#e1e1e1] bg-[#f2f2f2] py-[15px] px-[20px] font-bold text-[#7d7d7d]"
+                className="border-[1px] border-[#e1e1e1] bg-[#f2f2f2] px-[20px] py-[15px] font-bold text-[#7d7d7d]"
               >
                 Back to Profile
               </button>

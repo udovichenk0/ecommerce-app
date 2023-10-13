@@ -26,7 +26,10 @@ const selectRecommendedProducts = createSelector(
   (state) => state["entity/products"],
 )
 const recommendedPrefix = "product/recommended"
-const $$recommendedProducts = createProducts(selectRecommendedProducts, recommendedPrefix)
+const $$recommendedProducts = createProducts(
+  selectRecommendedProducts,
+  recommendedPrefix,
+)
 
 const selectSingleProduct = createSelector(
   selectParent,

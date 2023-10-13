@@ -16,7 +16,7 @@ export const CheckOutModal = ({ setModelOpen }: IProps) => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setModelOpen(false)}
-            className="border-2 border-[#e1e1e1] py-[15px] px-[20px] text-base font-bold text-light-dark"
+            className="border-2 border-[#e1e1e1] px-[20px] py-[15px] text-base font-bold text-light-dark"
           >
             Continue shopping
           </button>
