@@ -1,21 +1,21 @@
 import { Header } from "@/widgets/header"
 
-import { searchModel } from "@/features/search"
+// import { searchModel } from "@/features/search"
 
-import { ShopCard } from "@/entities/products"
+// import { ShopCard } from "@/entities/products"
 
-import { useAppSelector } from "@/shared/lib/redux-std"
+// import { useAppSelector } from "@/shared/lib/redux-std"
 import { Layout } from "@/shared/ui/layouts"
-import { Loader } from "@/shared/ui/spinner"
-
-import { NotFound } from "./notFound"
+// import { Loader } from "@/shared/ui/spinner"
+// 
+// import { NotFound } from "./notFound"
 const SearchPage = () => {
-  const searchProducts = useAppSelector(searchModel.selectors.searchedProducts)
-  const isFetching = useAppSelector(searchModel.selectors.isSearchedFetching)
+  // const searchProducts = useAppSelector(searchModel.selectors.searchedProducts)
+  // const isFetching = useAppSelector(searchModel.selectors.isSearchedFetching)
   return (
     <Layout header={<Header />}>
       <div className="container grid grid-cols-auto-fit justify-center gap-5">
-        {isFetching ? (
+        {/* {isFetching ? (
           <div className="flex h-full items-center justify-center">
             <Loader />
           </div>
@@ -36,7 +36,7 @@ const SearchPage = () => {
           })
         ) : (
           <NotFound />
-        )}
+        )} */}
       </div>
     </Layout>
   )
