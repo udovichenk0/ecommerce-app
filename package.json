@@ -34,11 +34,13 @@
     "rxjs": "^7.5.7",
     "sass": "^1.55.0",
     "tailwindcss": "^3.3.3",
+    "uuid4": "^2.0.3",
     "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/uuid4": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "@vitejs/plugin-react": "^2.1.0",

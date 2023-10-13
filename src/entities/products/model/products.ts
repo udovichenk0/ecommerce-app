@@ -1,6 +1,7 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 import { Product } from "@/shared/api/product"
+import { nameAction } from "@/shared/lib/name-action"
 
 export type ProductsState = {
   products: Product[]
@@ -9,11 +10,11 @@ export type ProductsState = {
   total: number
   requestStatus: null
 }
-export const createProducts = <RootState, Prefix>(
+export const createProducts = <RootState, Prefix extends string>(
   parentSelector: (state: RootState) => ProductsState,
-  prefix?: Prefix,
+  prefix: Prefix,
 ) => {
-  const name = prefix ? `${prefix}/${"entity/products"}` : "entity/products"
+  const name = "entity/products"
   const initialState1: ProductsState = {
     products: [],
     isLoading: true,
@@ -22,13 +23,13 @@ export const createProducts = <RootState, Prefix>(
     requestStatus: null,
   }
   const slice = createSlice({
-    name,
+    name: nameAction(name, prefix),
     initialState: initialState1,
     reducers: {
       setProducts(state, data: PayloadAction<Product[]>) {
-        console.log(state.isLoading)
         state.products = data.payload
         state.isLoading = false
+        console.log('set products')
       },
       mergeProducts(state, data: PayloadAction<Product[]>) {
         state.products = [...state.products, ...data.payload]
@@ -63,3 +64,4 @@ export const createProducts = <RootState, Prefix>(
   }
 }
 export type CreateProducts = ReturnType<typeof createProducts>
+

@@ -20,7 +20,8 @@ const selectEntityProduct = createSelector(
   selectPage,
   (state) => state["entity/products"],
 )
-const $$product = createProducts(selectEntityProduct)
+const productPrefix = "recommended/recommended-products"
+const $$product = createProducts(selectEntityProduct, productPrefix)
 
 const pageReducers = combineReducers({
   [$$product.name]: $$product.reducer,

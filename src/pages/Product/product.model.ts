@@ -25,13 +25,15 @@ const selectRecommendedProducts = createSelector(
   selectParent,
   (state) => state["entity/products"],
 )
-const $$recommendedProducts = createProducts(selectRecommendedProducts)
+const recommendedPrefix = "product/recommended"
+const $$recommendedProducts = createProducts(selectRecommendedProducts, recommendedPrefix)
 
 const selectSingleProduct = createSelector(
   selectParent,
   (state) => state["entity/product"],
 )
-const $$singleProduct = createProduct(selectSingleProduct)
+const singleProductPrefix = "product/single"
+const $$singleProduct = createProduct(selectSingleProduct, singleProductPrefix)
 
 const getRecommendedProductsFx = createAsyncThunk(
   pageName + "recommended-products",

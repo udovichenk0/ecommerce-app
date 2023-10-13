@@ -18,14 +18,14 @@ type Page = Record<CreateProducts["name"], ProductsState>
 const selectParent = (state: Record<typeof pageName, Page>) =>
   state["page/home"]
 
-const featurePrefix = "featured"
+const featurePrefix = "home/featured"
 const selectFeatureProducts = createSelector(
   selectParent,
   (state) => state[featurePrefix + "/entity/products"],
 )
 const $$featuredProducts = createProducts(selectFeatureProducts, featurePrefix)
 
-const recommendedPrefix = "recommended"
+const recommendedPrefix = "home/recommended"
 const selectRecommendedProducts = createSelector(
   selectParent,
   (state) => state[recommendedPrefix + "/entity/products"],

@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
   {
     path: "/recommended",
     element: <RecommendedPage />,
-    loader: () => store.dispatch(recommendedPage.getRecommendedProductsFx()),
+    // loader: () => store.dispatch(recommendedPage.getRecommendedProductsFx()),
   },
   {
     path: "/shop",

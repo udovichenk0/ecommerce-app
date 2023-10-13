@@ -19,7 +19,8 @@ const selectEntityProduct = createSelector(
   selectPage,
   (state) => state["entity/products"],
 )
-const $$product = createProducts(selectEntityProduct)
+const featuredPrefix = "featured/feature-products"
+const $$product = createProducts(selectEntityProduct, featuredPrefix)
 
 const getFeatureProductsFx = createAsyncThunk(
   pageName + "featured-products",

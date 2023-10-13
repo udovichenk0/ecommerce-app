@@ -1,24 +1,23 @@
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit"
 
 import { Product } from "@/shared/api/product"
+import { nameAction } from "@/shared/lib/name-action"
 
 export type ProductState = {
   product: Product
   isLoading: boolean
 }
-export const createProduct = <RootState, Prefix>(
+export const createProduct = <RootState, Prefix extends string>(
   parentSelector: (state: RootState) => ProductState,
-  prefix?: Prefix,
+  prefix: Prefix,
 ) => {
-  const name = prefix
-    ? `${prefix}/${"entity/product"}`
-    : ("entity/product" as const)
+  const name = 'entities/product'
   const initialState1: ProductState = {
     product: {} as Product,
     isLoading: true,
   }
   const slice = createSlice({
-    name,
+    name: nameAction(name, prefix),
     initialState: initialState1,
     reducers: {
       setProduct(state, data: PayloadAction<Product>) {

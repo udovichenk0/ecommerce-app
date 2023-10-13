@@ -12,7 +12,7 @@ import {
 
 import { productApi } from "@/shared/api/product"
 
-const pageName = "page/shop"
+const pageName = "page/shop" as const
 type Page = Record<CreateProducts["name"], ProductsState>
 const selectParent = (state: Record<typeof pageName, Page>) =>
   state["page/shop"]
@@ -20,13 +20,14 @@ const selectEntityProduct = createSelector(
   selectParent,
   (state) => state["entity/products"],
 )
-const $$products = createProducts(selectEntityProduct)
+const shopPrefix = 'shop/products'
+const $$products = createProducts(selectEntityProduct, shopPrefix)
 
 const shopReducers = combineReducers({
   [$$products.name]: $$products.reducer,
 })
 const getProductsFx = createAsyncThunk(
-  pageName + "fetch",
+  pageName + "products",
   async (_, { dispatch, getState }) => {
     const state = getState() as Record<typeof pageName, Page>
     const lastRefKey = $$products.selectors.lastRefKey(state)
