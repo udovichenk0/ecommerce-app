@@ -11,7 +11,7 @@ import { db } from "@/shared/api"
 
 const searchProducts = async (searchName: string) => {
   return new Promise((res, rej) => {
-    ;(async () => {
+    (async () => {
       try {
         const searchItems: DocumentData[] = []
         if (searchName[0].toUpperCase() != searchName[0])

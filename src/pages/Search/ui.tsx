@@ -2,7 +2,7 @@ import { Header } from "@/widgets/header"
 
 import { searchModel } from "@/features/search"
 
-import { ShopCard } from "@/entities/card/shop-card"
+import { ShopCard } from "@/entities/products"
 
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { Layout } from "@/shared/ui/layouts"

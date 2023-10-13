@@ -7,7 +7,7 @@ import { Header } from "@/widgets/header"
 import { addToBasketFx, removeFromBasketFx } from "@/features/basket"
 
 import { basketModel } from "@/entities/basket"
-import { Card } from "@/entities/card"
+import { ProductList } from "@/entities/products"
 
 import { correctPrice } from "@/shared/lib/correctPrice"
 import { isItemInBasket } from "@/shared/lib/is-item-in-basket"
@@ -33,6 +33,9 @@ const Product = () => {
   const product = useSelector(productPage.$$singleProduct.selectors.product)
   const recommendedProducts = useSelector(
     productPage.$$recommendedProducts.selectors.products,
+  )
+  const isRecommendedPending = useSelector(
+    productPage.$$recommendedProducts.selectors.isLoading,
   )
 
   const addItemToBasket = useAction(addToBasketFx)
@@ -152,21 +155,7 @@ const Product = () => {
         </div>
         <div className="mt-28 px-10">
           <Panel title={"Recommended Products"} link={"/recommended"} />
-          <div className="grid grid-cols-auto-fit items-center justify-center gap-5">
-            {recommendedProducts?.map(
-              ({ name, image, subtitle, id }: any, ind: number) => {
-                return (
-                  <Card
-                    key={ind}
-                    name={name}
-                    image={image}
-                    id={id}
-                    subtitle={subtitle}
-                  />
-                )
-              },
-            )}
-          </div>
+          <ProductList products={recommendedProducts} isPending={isRecommendedPending}/>
         </div>
       </div>
     </Layout>

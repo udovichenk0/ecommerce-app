@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 import { Header } from "@/widgets/header"
 
-import { Card } from "@/entities/card"
+import { ProductList } from "@/entities/products"
 
 import { Button } from "@/shared/ui/buttons/main"
 import { HeroLayout, Layout } from "@/shared/ui/layouts"
@@ -19,6 +19,12 @@ export const Home = () => {
   )
   const featuredProducts = useSelector(
     homePage.$$featuredProducts.selectors.products,
+  )
+  const isRecommendedPending = useSelector(
+    homePage.$$recommendedProducts.selectors.isLoading
+  )
+  const isFeaturedPending = useSelector(
+    homePage.$$featuredProducts.selectors.isLoading
   )
   const navigate = useNavigate()
   return (
@@ -41,39 +47,11 @@ export const Home = () => {
       </HeroLayout>
       <div className="mt-28 px-10">
         <Panel title={"Featured Products"} link={"featured"} />
-        <div className="grid grid-cols-auto-fit items-center justify-center gap-5">
-          {featuredProducts?.map(
-            ({ name, image, subtitle, id }: any, ind: number) => {
-              return (
-                <Card
-                  key={ind}
-                  name={name}
-                  image={image}
-                  id={id}
-                  subtitle={subtitle}
-                />
-              )
-            },
-          )}
-        </div>
+        <ProductList isPending={isFeaturedPending} products={featuredProducts}/>
       </div>
       <div className="mt-28 px-10">
         <Panel title={"Recommended Products"} link={"recommended"} />
-        <div className="grid grid-cols-auto-fit gap-5">
-          {recommendedProducts?.map(
-            ({ name, image, subtitle, id }: any, ind: number) => {
-              return (
-                <Card
-                  key={ind}
-                  name={name}
-                  image={image}
-                  id={id}
-                  subtitle={subtitle}
-                />
-              )
-            },
-          )}
-        </div>
+        <ProductList isPending={isRecommendedPending} products={recommendedProducts}/>
       </div>
     </Layout>
   )

@@ -26,6 +26,7 @@ export const createProducts = <RootState, Prefix>(
     initialState: initialState1,
     reducers: {
       setProducts(state, data: PayloadAction<Product[]>) {
+        console.log(state.isLoading)
         state.products = data.payload
         state.isLoading = false
       },

@@ -1,27 +1,27 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { onAuthStateChanged } from "firebase/auth"
 import { Suspense } from "react"
-import { useSelector } from "react-redux"
+// import { useSelector } from "react-redux"
 import { RouterProvider } from "react-router-dom"
 
 import { basketModel } from "@/entities/basket"
 import { sessionModel } from "@/entities/session"
 
 import { auth } from "@/shared/api"
-import { Loader } from "@/shared/ui/spinner"
+// import { Loader } from "@/shared/ui/spinner"
 
 import { router } from "./app/route"
 import { store } from "./app/store"
 import { NotificationPopup } from "./entities/notification"
 import { sessionApi, normilizeUser } from "./shared/api/session"
 function App() {
-  const isLoaded = useSelector(sessionModel.selectors.isLoaded)
-  if (!isLoaded)
-    return (
-      <div className="flex h-screen w-full items-center justify-center">
-        <Loader />
-      </div>
-    )
+  // const isLoaded = useSelector(sessionModel.selectors.isLoaded)
+  // if (!isLoaded)
+  //   return (
+  //     <div className="flex h-screen w-full items-center justify-center">
+  //       <Loader />
+  //     </div>
+  //   )
   return (
     <>
       <Suspense fallback={null}>

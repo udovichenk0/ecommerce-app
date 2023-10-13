@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom"
 
-interface IProps {
+interface ProductCardProps {
   image: string
   name: string
   subtitle: string
   id: string
 }
-export const Card = ({ image, name, subtitle, id }: IProps) => {
+export const ProductCard = ({ image, name, subtitle, id }: ProductCardProps) => {
   return (
-    <div className="border-2 border-[#e1e1e1] md:max-w-[358px] lg:max-w-[284px] xl:max-w-[362px] 2xl:max-w-[454px]">
+    <div className="border-2 h-[330px] w-full border-[#e1e1e1] max-w-[454px] bg-white">
       <Link to={`/product/${id}`}>
-        <div className="flex h-40 w-full justify-center bg-[#f1f1f1]">
-          <img src={image} className="h-full" alt={name} />
+        <div className="flex h-[224px] w-full justify-center bg-[#f1f1f1]">
+          <img src={image} alt={name} />
         </div>
         <div className="p-4">
           <h2 className="text-2xl font-medium">{name}</h2>

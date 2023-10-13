@@ -2,9 +2,8 @@ import { useSelector } from "react-redux"
 
 import { Header } from "@/widgets/header"
 
-import { Card } from "@/entities/card"
+import { ProductList } from "@/entities/products"
 
-import { Product } from "@/shared/api/product"
 import { HeroLayout, Layout } from "@/shared/ui/layouts"
 
 // eslint-disable-next-line import/no-internal-modules
@@ -13,6 +12,9 @@ import { recommendedPage } from "./recommended.model"
 export const RecommendedPage = () => {
   const recommendedProducts = useSelector(
     recommendedPage.$$product.selectors.products,
+  )
+  const isRecommendedPending = useSelector(
+    recommendedPage.$$product.selectors.isLoading,
   )
   return (
     <Layout header={<Header />}>
@@ -23,21 +25,7 @@ export const RecommendedPage = () => {
           </div>
         </HeroLayout>
         <div className="mt-28 px-10">
-          <div className="grid grid-cols-auto-fit items-center justify-center gap-5">
-            {recommendedProducts?.map(
-              ({ name, image, subtitle, id }: Product, ind: number) => {
-                return (
-                  <Card
-                    key={ind}
-                    name={name}
-                    image={image}
-                    id={id}
-                    subtitle={subtitle}
-                  />
-                )
-              },
-            )}
-          </div>
+          <ProductList isPending={isRecommendedPending} products={recommendedProducts}/>
         </div>
       </div>
     </Layout>
