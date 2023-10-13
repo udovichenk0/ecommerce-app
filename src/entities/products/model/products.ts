@@ -29,7 +29,6 @@ export const createProducts = <RootState, Prefix extends string>(
       setProducts(state, data: PayloadAction<Product[]>) {
         state.products = data.payload
         state.isLoading = false
-        console.log('set products')
       },
       mergeProducts(state, data: PayloadAction<Product[]>) {
         state.products = [...state.products, ...data.payload]
@@ -63,5 +62,6 @@ export const createProducts = <RootState, Prefix extends string>(
     reducer: slice.reducer,
   }
 }
+
 export type CreateProducts = ReturnType<typeof createProducts>
 

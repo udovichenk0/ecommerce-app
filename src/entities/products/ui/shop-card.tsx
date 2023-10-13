@@ -18,7 +18,7 @@ export const ShopCard = ({ image, name, subtitle, price, id }: ShopCardProps) =>
         </div>
         <div className="ease flex flex-col items-center p-4 transition-all duration-200">
           <div className="text-2xl font-medium">{name}</div>
-          <div className="text-[#818181]">{subtitle}/</div>
+          <div className="text-[#818181]">{subtitle}</div>
           <div className="py-6 text-xl font-bold">${price}</div>
         </div>
       </Link>

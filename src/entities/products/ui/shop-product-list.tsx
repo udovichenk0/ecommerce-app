@@ -38,7 +38,7 @@ export const ShopProductList = ({
 const Skeleton = () => {
   return (
     <div className="sm:h-[300px] md:h-[340px] lg:h-[380px] shadow animate-pulse border-2 w-full border-[#e1e1e1] max-w-[454px] bg-white">
-      <div className="bg-[#f1f1f1] h-[224px]"/>
+      <div className="bg-[#f1f1f1] h-[60%]"/>
       <div className="p-4">
         <div className="h-8 w-44 mb-2 bg-[#f1f1f1] rounded-[5px]"/>
         <div className="h-6 w-32 mb-2 bg-[#f1f1f1] roudned-[5px]"/>
