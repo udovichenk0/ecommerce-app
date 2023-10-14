@@ -14,8 +14,8 @@ export const createProducts = <RootState, Prefix extends string>(
   parentSelector: (state: RootState) => ProductsState,
   prefix: Prefix,
 ) => {
-  const name = "entity/products"
-  const initialState1: ProductsState = {
+  const name = "entities/products" as const
+  const initialState: ProductsState = {
     products: [],
     isLoading: true,
     lastRefKey: null,
@@ -24,7 +24,7 @@ export const createProducts = <RootState, Prefix extends string>(
   }
   const slice = createSlice({
     name: nameAction(name, prefix),
-    initialState: initialState1,
+    initialState,
     reducers: {
       setProducts(state, data: PayloadAction<Product[]>) {
         state.products = data.payload

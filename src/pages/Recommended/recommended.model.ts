@@ -18,7 +18,7 @@ const selectPage = (state: Record<typeof pageName, PageType>) =>
   state["page/recommended"]
 const selectEntityProduct = createSelector(
   selectPage,
-  (state) => state["entity/products"],
+  (state) => state["entities/products"],
 )
 const productPrefix = "recommended/recommended-products"
 const $$product = createProducts(selectEntityProduct, productPrefix)

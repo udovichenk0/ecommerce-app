@@ -18,7 +18,7 @@ const selectParent = (state: Record<typeof pageName, Page>) =>
   state["page/shop"]
 const selectEntityProduct = createSelector(
   selectParent,
-  (state) => state["entity/products"],
+  (state) => state["entities/products"],
 )
 const shopPrefix = "shop/products"
 const $$products = createProducts(selectEntityProduct, shopPrefix)

@@ -17,7 +17,7 @@ const selectPage = (state: Record<typeof pageName, Page>) =>
   state["page/featured"]
 const selectEntityProduct = createSelector(
   selectPage,
-  (state) => state["entity/products"],
+  (state) => state["entities/products"],
 )
 const featuredPrefix = "featured/feature-products"
 const $$product = createProducts(selectEntityProduct, featuredPrefix)

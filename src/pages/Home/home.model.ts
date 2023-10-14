@@ -13,22 +13,23 @@ import {
 import { productApi } from "@/shared/api/product"
 
 const pageName = "page/home"
-type Page = Record<CreateProducts["name"], ProductsState>
+const recommendedPrefix = "home/recommended" as const
+const featurePrefix = "home/featured" as const
+type Page = Record<WithPrefix<typeof recommendedPrefix, CreateProducts['name']>, ProductsState> &
+            Record<WithPrefix<typeof featurePrefix, CreateProducts['name']>, ProductsState>
 
 const selectParent = (state: Record<typeof pageName, Page>) =>
   state["page/home"]
 
-const featurePrefix = "home/featured"
 const selectFeatureProducts = createSelector(
   selectParent,
-  (state) => state[featurePrefix + "/entity/products"],
+  (state) => state['home/featured/entities/products'],
 )
 const $$featuredProducts = createProducts(selectFeatureProducts, featurePrefix)
 
-const recommendedPrefix = "home/recommended"
 const selectRecommendedProducts = createSelector(
   selectParent,
-  (state) => state[recommendedPrefix + "/entity/products"],
+  (state) => state['home/recommended/entities/products'],
 )
 const $$recommendedProducts = createProducts(
   selectRecommendedProducts,
@@ -51,8 +52,8 @@ const getFeaturedProductsFx = createAsyncThunk(
 )
 
 const homeReducers = combineReducers({
-  [featurePrefix + "/entity/products"]: $$featuredProducts.reducer,
-  [recommendedPrefix + "/entity/products"]: $$recommendedProducts.reducer,
+  [featurePrefix + "/" + $$featuredProducts.name]: $$featuredProducts.reducer,
+  [recommendedPrefix + "/" + $$recommendedProducts.name]: $$recommendedProducts.reducer,
 })
 export const homePage = {
   pageReducers: {
