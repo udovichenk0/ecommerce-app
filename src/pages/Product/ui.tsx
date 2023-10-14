@@ -16,9 +16,9 @@ import { ColorPicker } from "@/shared/ui/buttons"
 import { Button } from "@/shared/ui/buttons/main"
 import { Layout } from "@/shared/ui/layouts"
 import { Panel } from "@/shared/ui/panel"
-import { Selector } from "@/shared/ui/selector"
 
 import { productPage } from "./product.model"
+import { MySelector } from "./ui/select"
 
 const Product = () => {
   const { id } = useParams()
@@ -43,6 +43,7 @@ const Product = () => {
 
   useEffect(() => {
     setSelectedImage(product?.image)
+    setSelectedSize(product?.sizes?.[0])
   }, [product])
   function onSelectColor(color: string) {
     setSelectedColor(color)
@@ -105,10 +106,7 @@ const Product = () => {
                   Lens Width and Frame Size
                 </p>
                 <div className="mb-6">
-                  <Selector
-                    setSelectedSize={setSelectedSize}
-                    sizes={product?.sizes}
-                  />
+                  <MySelector selected={selectedSize} options={product?.sizes} setSelected={setSelectedSize}/>
                 </div>
                 <p className="mb-3 text-base font-bold text-[#818181]">
                   Choose Color
