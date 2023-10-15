@@ -1,16 +1,16 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { SearchProduct } from "@/features/search"
 
 import { basketModel } from "@/entities/basket"
 import { sessionModel } from "@/entities/session"
 
-// eslint-disable-next-line import/no-internal-modules
 import logo from "@/shared/assets/logo.png"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { BurgerButton } from "@/shared/ui/buttons"
-import { Button } from "@/shared/ui/buttons/main"
+import { mainVariant } from "@/shared/ui/buttons/main"
+import { routes } from "@/shared/config/routes"
 
 import { BasketSideMenu } from "./ui/basket"
 import { links } from "./config"
@@ -22,24 +22,19 @@ export const Header = () => {
   const [isNavOpened, setNavOpen] = useState<boolean>(false)
   const basket = useAppSelector(basketModel.selectors.basket)
   const profile = useAppSelector(sessionModel.selectors.profile)
-  const navigate = useNavigate()
   return (
     <div className="container pb-20 pt-8">
       <div className="mb-5 flex items-center justify-between sm:mb-0">
         <div className="flex items-center xl:static ">
-          <div className="bloc mr-5 flex xl:hidden">
+          <div className="mr-5 xl:hidden">
             <BurgerButton
               onHandle={() => setNavOpen((prev) => !prev)}
               isNavOpened={isNavOpened}
             />
           </div>
-
-          <div className="hidden h-[65px] w-[179px] xl:block">
-            <Link to={"/"}>
+            <Link className="hidden h-[65px] w-[179px] xl:block" to={routes.home}>
               <img src={logo} alt="Logo" className="h-full w-full" />
             </Link>
-          </div>
-
           <nav
             className={`fixed top-0 z-[10] justify-center xl:static ${
               isNavOpened ? "left-0" : "-left-full"
@@ -65,13 +60,8 @@ export const Header = () => {
             <Profile name={profile.name} photo={profile.avatar} />
           ) : (
             <div className="flex gap-5">
-              <Button onClick={() => navigate("/auth/signup")}>Sign In</Button>
-              <Button
-                intent={"outline"}
-                onClick={() => navigate("/auth/signin")}
-              >
-                Sign In
-              </Button>
+              <Link to={routes.signin}className={mainVariant()}>Sign In</Link>
+              <Link to={routes.signup}className={mainVariant({intent: 'outline'})}>Sign Up</Link>
             </div>
           )}
           <BasketSideMenu isOpened={isOpened} setOpen={setOpen} />

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+
+import { routes } from "@/shared/config/routes"
 interface ShopCardProps {
   image: string
   name: string
@@ -17,7 +19,7 @@ export const ShopCard = ({
 }: ShopCardProps) => {
   return (
     <div className="group w-full max-w-[454px] border-2 border-[#e1e1e1] bg-white sm:h-[300px] md:h-[340px] lg:h-[380px]">
-      <Link to={`/product/${id}`}>
+      <Link to={routes.product(id)}>
         <div className="flex justify-center bg-[#f1f1f1] ">
           <img
             src={image}

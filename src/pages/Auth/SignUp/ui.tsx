@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { AuthForm } from "@/widgets/auth-form"
 import { Header } from "@/widgets/header"
@@ -6,22 +6,16 @@ import { Header } from "@/widgets/header"
 import { AuthSignUpForm } from "@/features/auth"
 
 import { Layout } from "@/shared/ui/layouts"
-import { Button } from "@/shared/ui/buttons/main"
+import { mainVariant } from "@/shared/ui/buttons/main"
+import { routes } from "@/shared/config/routes"
 export const SignUp = () => {
-  const navigate = useNavigate()
   return (
     <Layout header={<Header />}>
       <AuthForm
         title={"Sign up to Salinaka"}
         form={<AuthSignUpForm />}
         button={
-          <Button
-            onClick={() => navigate("/auth/signin")}
-            size={"sm"}
-            intent={"outline"}
-          >
-            Sign In
-          </Button>
+          <Link to={routes.signin} className={mainVariant({intent: 'outline'})}>Sign In</Link>
         }
         text="Have an account?"
       >

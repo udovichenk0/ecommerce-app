@@ -24,7 +24,6 @@ export const SearchProduct = () => {
   return (
     <form
       className="relative w-full"
-      action=""
       onSubmit={handleSubmit(onclick)}
     >
       <button className="absolute left-0 flex h-[47px] w-[47px] items-center justify-center ">

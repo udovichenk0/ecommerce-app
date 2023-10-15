@@ -2,6 +2,8 @@ import { PropsWithChildren } from "react"
 import { useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
 
+import { routes } from "@/shared/config/routes"
+
 import { selectors } from "../session.model"
 
 export const PrivatePageGuard = ({ children }: PropsWithChildren) => {
@@ -11,7 +13,7 @@ export const PrivatePageGuard = ({ children }: PropsWithChildren) => {
     if (session.uid) {
       return <>{children}</>
     }
-    return <Navigate to={"/auth/signin"} />
+    return <Navigate to={routes.signin} />
   }
   return null
 }

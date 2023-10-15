@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { useAction } from "@/shared/lib/redux-std"
 import { Button } from "@/shared/ui/buttons/main"
 import { TextInput } from "@/shared/ui/inputs"
+import { routes } from "@/shared/config/routes"
 
 import { signInWithEmailFx } from "./signin.modal"
 
@@ -72,12 +73,12 @@ export const AuthSignInForm = () => {
         }}
       />
       <div className="flex items-center justify-between pt-3">
-        <Link to={"/"}>
+        <Link to={routes.home}>
           <div className="font-medium text-light-dark underline">
             Forgot password?
           </div>
         </Link>
-        <Button size={"md"} onClick={handleSubmit(startSignInWithEmail)}>
+        <Button onClick={handleSubmit(startSignInWithEmail)}>
           Sign In
         </Button>
       </div>

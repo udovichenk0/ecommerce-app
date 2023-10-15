@@ -1,9 +1,9 @@
-/* eslint-disable import/no-internal-modules */
-import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import bgDefault from "@/shared/assets/accBgDefault.jpg"
 import defaultUser from "@/shared/assets/defaultUser.png"
-import { Button } from "@/shared/ui/buttons/main"
+import { mainVariant } from "@/shared/ui/buttons/main"
+import { routes } from "@/shared/config/routes"
 
 import { User } from "./types"
 
@@ -13,7 +13,6 @@ export const Profile = ({
   profile: User
   isFetching: boolean
 }) => {
-  const navigate = useNavigate()
   return (
     <div className="relative mb-20 w-[700px] border-[1px] border-[#e1e1e1] p-4">
       <div className="relative h-[150px] w-full bg-[#e9e9e9]">
@@ -28,9 +27,7 @@ export const Profile = ({
               alt={profile.name}
             />
           </div>
-          <Button size={"md"} onClick={() => navigate("edit")}>
-            Edit Account
-          </Button>
+          <Link to={routes.edit} className={mainVariant({size: 'md'})}>Edit Account</Link>
         </div>
       </div>
       <div className="grid gap-8 pt-20">

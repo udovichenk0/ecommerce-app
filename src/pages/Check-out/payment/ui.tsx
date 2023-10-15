@@ -6,14 +6,14 @@ import {
   AccordionItemHeading,
   AccordionItemPanel,
 } from "react-accessible-accordion"
-import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { CheckoutTemplate } from "@/widgets/checkout-layout"
 import { Header } from "@/widgets/header"
 
 import { CheckoutForm } from "@/features/payment"
 
-import { Button } from "@/shared/ui/buttons/main"
+import { Button, mainVariant } from "@/shared/ui/buttons/main"
 import { Layout } from "@/shared/ui/layouts"
 
 import "./styles.css"
@@ -22,7 +22,6 @@ import { VisaSvg } from "./assets/visa"
 import { cards } from "./config"
 
 export const Payment = () => {
-  const navigate = useNavigate()
   return (
     <Layout header={<Header />}>
       <CheckoutTemplate
@@ -33,9 +32,7 @@ export const Payment = () => {
           </Button>
         }
         nextBtn={
-          <Button size="sm" onClick={() => navigate("/checkout/step3")}>
-            Next Step
-          </Button>
+          <Link to={"/checkout/step3"} className={mainVariant()}>Next Step</Link>
         }
       >
         <Accordion>

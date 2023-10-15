@@ -41,8 +41,8 @@ const authAsyncThunk = createAsyncThunk(
         dispatch(sessionModel.actions.setUser(normilizeUser(data)))
         dispatch(basketModel.actions.setBasket(data.basket))
       }
+      dispatch(sessionModel.actions.endLoading())
     })
-    dispatch(sessionModel.actions.endLoading())
     unsubscribe()
   },
 )

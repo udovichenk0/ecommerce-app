@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { createBrowserRouter } from "react-router-dom"
+import { Outlet, createBrowserRouter } from "react-router-dom"
 
 import { featurePage } from "@/pages/Featured"
 import { homePage } from "@/pages/Home"
@@ -83,36 +83,29 @@ export const router = createBrowserRouter([
     path: "/account",
     element: (
       <PrivatePageGuard>
-        <AccountPage />
+        <Outlet/>
       </PrivatePageGuard>
     ),
-  },
-  {
-    path: "/account/edit",
-    element: (
-      <PrivatePageGuard>
-        <AccountEditPage />
-      </PrivatePageGuard>
-    ),
+    children: [
+      {path: '', element: <AccountPage />},
+      {path: 'edit', element: <AccountEditPage/>}
+    ]
   },
   {
     path: "/auth",
+    element: (
+      <SignedInPageGuard>
+        <Outlet/>
+      </SignedInPageGuard>
+    ),
     children: [
       {
         path: "signin",
-        element: (
-          <SignedInPageGuard>
-            <SignInPage />
-          </SignedInPageGuard>
-        ),
+        element: <SignInPage/>
       },
       {
         path: "signup",
-        element: (
-          <SignedInPageGuard>
-            <SignUpPage />
-          </SignedInPageGuard>
-        ),
+        element: (<SignUpPage/>),
       },
     ],
   },

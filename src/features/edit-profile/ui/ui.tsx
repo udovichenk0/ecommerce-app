@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Controller } from "react-hook-form"
 import PhoneInput from "react-phone-input-2"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import "./style.css"
 import "react-phone-input-2/lib/style.css"
@@ -11,8 +11,9 @@ import "react-phone-input-2/lib/style.css"
 import bgDefault from "@/shared/assets/accBgDefault.jpg"
 // import { readFile } from "@/shared/lib/fileReader"
 // import { useAction } from "@/shared/lib/redux-std"
-import { Button } from "@/shared/ui/buttons/main"
+import { Button, mainVariant } from "@/shared/ui/buttons/main"
 import { FileChooser, InputEditor } from "@/shared/ui/inputs"
+import { routes } from "@/shared/config/routes"
 
 import { useGetForm } from "../config"
 import { checkUpdate } from "../lib"
@@ -111,12 +112,9 @@ export const ProfileEditForm = ({
               />
             </div>
             <div className="flex justify-between">
-              <button
-                onClick={() => navigate("/account")}
-                className="border-[1px] border-[#e1e1e1] bg-[#f2f2f2] px-[20px] py-[15px] font-bold text-[#7d7d7d]"
-              >
+              <Link to={routes.account} className={mainVariant({intent: 'outline'})}>
                 Back to Profile
-              </button>
+              </Link>
               <Button
                 disabled={isFetching}
                 size={"md"}
