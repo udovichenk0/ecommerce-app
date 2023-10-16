@@ -31,12 +31,20 @@ const getProductsFx = createAsyncThunk(
   async (_, { dispatch, getState }) => {
     const state = getState() as Record<typeof pageName, Page>
     const lastRefKey = $$products.selectors.lastRefKey(state)
-    const { setProducts, setLastRef, setTotal } = $$products.actions
+    const { setProducts, setLastRef, setTotal, startLoading, endLoading } = $$products.actions
     if (!lastRefKey) {
-      const { products, total, lastRef } = await productApi.getProducts()
-      dispatch(setProducts(products))
-      dispatch(setLastRef(lastRef))
-      dispatch(setTotal(total))
+      try {
+        dispatch(startLoading())
+        const { products, total, lastRef } = await productApi.getProducts()
+        dispatch(setProducts(products))
+        dispatch(setLastRef(lastRef))
+        dispatch(setTotal(total))
+      } catch (error) {
+        console.log(error)
+      }
+      finally {
+        dispatch(endLoading())
+      }
     }
   },
 )
@@ -46,12 +54,19 @@ const getNextProductFx = createAsyncThunk(
     const state = getState() as Record<typeof pageName, Page>
     const lastRefKey = $$products.selectors.lastRefKey(state)
     if (!lastRefKey) return
-    const { mergeProducts, setLastRef, setTotal } = $$products.actions
-    const { products, total, lastRef } =
-      await productApi.getProducts(lastRefKey)
-    dispatch(mergeProducts(products))
-    dispatch(setLastRef(lastRef))
-    dispatch(setTotal(total))
+    const { mergeProducts, setLastRef, setTotal, startLoading, endLoading } = $$products.actions
+    try {
+      dispatch(startLoading())
+      const { products, total, lastRef } = await productApi.getProducts(lastRefKey)
+      dispatch(mergeProducts(products))
+      dispatch(setLastRef(lastRef))
+      dispatch(setTotal(total))
+    } catch (error) {
+      console.log(error)
+    }
+    finally {
+      dispatch(endLoading())
+    }
   },
 )
 export const shopPage = {

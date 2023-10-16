@@ -25,8 +25,16 @@ const $$product = createProducts(selectEntityProduct, featuredPrefix)
 const getFeatureProductsFx = createAsyncThunk(
   pageName + "featured-products",
   async (_, { dispatch }) => {
-    const data = await productApi.getFeaturedProducts()
-    dispatch($$product.actions.setProducts(data))
+    try {
+      dispatch($$product.actions.startLoading())
+      const data = await productApi.getFeaturedProducts()
+      dispatch($$product.actions.setProducts(data))
+    } catch (error) {
+      console.log(error)
+    }
+    finally {
+      dispatch($$product.actions.endLoading())
+    }
   },
 )
 

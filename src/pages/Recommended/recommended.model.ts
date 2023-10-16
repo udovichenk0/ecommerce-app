@@ -21,23 +21,32 @@ const selectEntityProduct = createSelector(
   (state) => state["entities/products"],
 )
 const productPrefix = "recommended/recommended-products"
-const $$product = createProducts(selectEntityProduct, productPrefix)
+const $$recommendedProducts = createProducts(selectEntityProduct, productPrefix)
 
 const pageReducers = combineReducers({
-  [$$product.name]: $$product.reducer,
+  [$$recommendedProducts.name]: $$recommendedProducts.reducer,
 })
 const getRecommendedProductsFx = createAsyncThunk(
   "pages/recommended-products",
   async (_, { dispatch }) => {
-    const data = await productApi.getRecommendedProducts()
-    dispatch($$product.actions.setProducts(data))
+    const {startLoading, setProducts, endLoading} = $$recommendedProducts.actions
+    try {
+      dispatch(startLoading())
+      const data = await productApi.getRecommendedProducts()
+      dispatch(setProducts(data))
+    } catch (error) {
+     console.log(error) 
+    }
+    finally {
+      dispatch(endLoading())
+    }
   },
 )
 export const recommendedPage = {
   pageReducers: {
     [pageName]: pageReducers,
   },
-  $$product,
+  $$product: $$recommendedProducts,
   name: pageName,
   getRecommendedProductsFx,
 }

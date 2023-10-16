@@ -34,7 +34,6 @@ export const createProducts = <RootState, Prefix extends string>(
       },
       setProducts(state, data: PayloadAction<Product[]>) {
         state.products = data.payload
-        state.isLoading = false
       },
       mergeProducts(state, data: PayloadAction<Product[]>) {
         state.products = [...state.products, ...data.payload]

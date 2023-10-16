@@ -45,15 +45,33 @@ const $$recommendedProducts = createProducts(
 const getRecommendedProductsFx = createAsyncThunk(
   pageName + "recommended-products",
   async (_, { dispatch }) => {
-    const recommendedProducts = await productApi.getRecommendedProducts()
-    dispatch($$recommendedProducts.actions.setProducts(recommendedProducts))
+    const {startLoading, endLoading, setProducts} = $$recommendedProducts.actions
+    try {
+      dispatch(startLoading())
+      const recommendedProducts = await productApi.getRecommendedProducts()
+      dispatch(setProducts(recommendedProducts))
+    } catch (error) {
+      console.log(error)
+    }
+    finally {
+      dispatch(endLoading())
+    }
   },
 )
 const getFeaturedProductsFx = createAsyncThunk(
   pageName + "featured-products",
   async (_, { dispatch }) => {
-    const featuredProducts = await productApi.getFeaturedProducts()
-    dispatch($$featuredProducts.actions.setProducts(featuredProducts))
+    const {startLoading, endLoading, setProducts} = $$featuredProducts.actions
+    try {
+      dispatch(startLoading())
+      const featuredProducts = await productApi.getFeaturedProducts()
+      dispatch(setProducts(featuredProducts))
+    } catch (error) {
+      console.log(error)
+    }
+    finally {
+      dispatch(endLoading())
+    }
   },
 )
 

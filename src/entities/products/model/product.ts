@@ -14,20 +14,27 @@ export const createProduct = <RootState, Prefix extends string>(
   const name = "entities/product" as const
   const initialState: ProductState = {
     product: {} as Product,
-    isLoading: true,
+    isLoading: false,
   }
   const slice = createSlice({
     name: nameAction(name, prefix),
     initialState,
     reducers: {
+      startLoading(state){
+        state.isLoading = true
+      },
+      endLoading(state){
+        state.isLoading = false
+      },
       setProduct(state, data: PayloadAction<Product>) {
         state.product = data.payload
-        state.isLoading = false
       },
     },
   })
   const actions = {
     setProduct: slice.actions.setProduct,
+    startLoading: slice.actions.startLoading,
+    endLoading: slice.actions.endLoading,
   }
   const product = createSelector(parentSelector, (state) => state.product)
   const selectors = {
