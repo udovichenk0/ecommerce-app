@@ -1,6 +1,6 @@
 # Salinaka | E-commerce react app
 
-eCommerce web application using React, Redux, Redux-observable, Firebase and Tailwindcss.
+eCommerce web application using React, Redux, Redux-thunk, Redux-listener, Firebase, Tailwindcss.
 
 # [Live Demo](https://ecommerce-app-beta-plum.vercel.app)
 
