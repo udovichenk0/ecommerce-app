@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
 
 import { Header } from "@/widgets/header"
 
 import { ProductList } from "@/entities/products"
 
-import { mainVariant } from "@/shared/ui/buttons/main"
+import { Button } from "@/shared/ui/buttons/main"
 import { HeroLayout, Layout } from "@/shared/ui/layouts"
 import { Panel } from "@/shared/ui/panel"
 import { routes } from "@/shared/config/routes"
@@ -40,9 +39,9 @@ export const Home = () => {
           your pocket. Glasses, sunglasses, and contacts—we have got your eyes
           covered.
         </p>
-        <Link to={routes.shop} className={mainVariant({ size: "md" })}>
+        <Button as="link" to={routes.shop} size={'md'}>
           Shop Now
-        </Link>
+        </Button>
       </HeroLayout>
       <div className="mt-28 px-10">
         <Panel title={"Featured Products"} link={"featured"} />

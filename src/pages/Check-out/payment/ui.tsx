@@ -6,14 +6,13 @@ import {
   AccordionItemHeading,
   AccordionItemPanel,
 } from "react-accessible-accordion"
-import { Link } from "react-router-dom"
 
 import { CheckoutTemplate } from "@/widgets/checkout-layout"
 import { Header } from "@/widgets/header"
 
 import { CheckoutForm } from "@/features/payment"
 
-import { Button, mainVariant } from "@/shared/ui/buttons/main"
+import { Button } from "@/shared/ui/buttons/main"
 import { Layout } from "@/shared/ui/layouts"
 
 import "./styles.css"
@@ -32,9 +31,9 @@ export const Payment = () => {
           </Button>
         }
         nextBtn={
-          <Link to={"/checkout/step3"} className={mainVariant()}>
+          <Button as="link" to={"/checkout/step3"}>
             Next Step
-          </Link>
+          </Button>
         }
       >
         <Accordion>

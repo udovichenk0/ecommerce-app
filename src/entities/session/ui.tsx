@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom"
-
 import bgDefault from "@/shared/assets/accBgDefault.jpg"
 import defaultUser from "@/shared/assets/defaultUser.png"
-import { mainVariant } from "@/shared/ui/buttons/main"
+import { Button } from "@/shared/ui/buttons/main"
 import { routes } from "@/shared/config/routes"
 
 import { User } from "./types"
@@ -27,9 +25,9 @@ export const Profile = ({
               alt={profile.name}
             />
           </div>
-          <Link to={routes.edit} className={mainVariant({ size: "md" })}>
+          <Button as="link" size="md" to={routes.edit}>
             Edit Account
-          </Link>
+          </Button>
         </div>
       </div>
       <div className="grid gap-8 pt-20">

@@ -9,7 +9,7 @@ import { sessionModel } from "@/entities/session"
 import logo from "@/shared/assets/logo.png"
 import { useAppSelector } from "@/shared/lib/redux-std"
 import { BurgerButton } from "@/shared/ui/buttons"
-import { mainVariant } from "@/shared/ui/buttons/main"
+import { Button } from "@/shared/ui/buttons/main"
 import { routes } from "@/shared/config/routes"
 
 import { BasketSideMenu } from "./ui/basket"
@@ -59,17 +59,14 @@ export const Header = () => {
           {profile.name ? (
             <Profile name={profile.name} photo={profile.avatar} />
           ) : (
-            <div className="flex gap-5">
-              <Link to={routes.signin} className={mainVariant()}>
+            <>
+              <Button as="link" to={routes.signin} className="mr-5">
                 Sign In
-              </Link>
-              <Link
-                to={routes.signup}
-                className={mainVariant({ intent: "outline" })}
-              >
+              </Button>
+              <Button as="link" to={routes.signup} intent={'outline'}>
                 Sign Up
-              </Link>
-            </div>
+              </Button>
+            </>
           )}
           <BasketSideMenu isOpened={isOpened} setOpen={setOpen} />
         </div>
