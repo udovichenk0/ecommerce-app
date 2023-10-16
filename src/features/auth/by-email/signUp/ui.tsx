@@ -111,9 +111,7 @@ export const AuthSignUpForm = () => {
             Forgot password?
           </div>
         </Link>
-        <Button onClick={handleSubmit(onSubmit)}>
-          Sign Up
-        </Button>
+        <Button onClick={handleSubmit(onSubmit)}>Sign Up</Button>
       </div>
     </form>
   )

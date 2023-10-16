@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import { combineEpics, createEpicMiddleware } from "redux-observable"
 import {
   persistStore,
   persistReducer,
@@ -25,15 +24,14 @@ import { notifyModel } from "@/entities/notification"
 import { basketModel } from "@/entities/basket"
 
 import { listenerMiddleware } from "@/shared/lib/redux-std"
+import { routerModel } from "@/shared/router"
 
-const epicMiddleware = createEpicMiddleware()
-const rootEpics = combineEpics(searchModel.epics.searchEpic)
 const rootReducers = combineReducers({
-  // ...productModel.reducers,
   ...searchModel.reducers,
   ...basketModel.reducer,
   ...sessionModel.reducer,
   ...notifyModel.reducers,
+  ...routerModel.routerReducer,
   ...featurePage.pageReducers,
   ...recommendedPage.pageReducers,
   ...homePage.pageReducers,
@@ -52,12 +50,18 @@ export const store = configureStore({
     return getDefaultMiddleware({
       serializableCheck: {
         serializableCheck: false,
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredPaths: ["router.router"],
+        ignoredActions: [
+          FLUSH,
+          REHYDRATE,
+          PAUSE,
+          PERSIST,
+          PURGE,
+          REGISTER,
+          routerModel.setRouter.type,
+        ],
       },
-    })
-      .concat(epicMiddleware)
-      .prepend(listenerMiddleware.middleware)
+    }).prepend(listenerMiddleware.middleware)
   },
 })
-epicMiddleware.run(rootEpics)
 export const persistor = persistStore(store)

@@ -23,7 +23,7 @@ const selectParent = (state: Record<typeof pageName, Page>) =>
 
 const selectRecommendedProducts = createSelector(
   selectParent,
-  (state) => state['entities/products'],
+  (state) => state["entities/products"],
 )
 const recommendedPrefix = "product/recommended"
 const $$recommendedProducts = createProducts(
@@ -33,7 +33,7 @@ const $$recommendedProducts = createProducts(
 
 const selectSingleProduct = createSelector(
   selectParent,
-  (state) => state['entities/product'],
+  (state) => state["entities/product"],
 )
 const singleProductPrefix = "product/single"
 const $$singleProduct = createProduct(selectSingleProduct, singleProductPrefix)

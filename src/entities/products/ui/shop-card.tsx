@@ -18,7 +18,7 @@ export const ShopCard = ({
   id,
 }: ShopCardProps) => {
   return (
-    <div className="group w-full max-w-[454px] border-2 border-[#e1e1e1] bg-white sm:h-[300px] md:h-[340px] lg:h-[380px]">
+    <div className="group w-full max-w-[330px] border-2 border-[#e1e1e1] bg-white sm:h-[300px] md:h-[340px] lg:h-[380px]">
       <Link to={routes.product(id)}>
         <div className="flex justify-center bg-[#f1f1f1] ">
           <img

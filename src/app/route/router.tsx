@@ -6,6 +6,7 @@ import { homePage } from "@/pages/Home"
 import { productPage } from "@/pages/Product"
 import { recommendedPage } from "@/pages/Recommended"
 import { shopPage } from "@/pages/Shop"
+import { searchPage } from "@/pages/Search"
 
 import {
   PrivatePageGuard,
@@ -69,6 +70,12 @@ export const router = createBrowserRouter([
   {
     path: "/search",
     element: <SearchPage />,
+    loader: ({ request }) => {
+      const title = new URL(request.url).searchParams.get("title")
+      if (title) {
+        store.dispatch(searchPage.getSearchedProductsFx(title))
+      }
+    },
   },
   {
     path: "/product/:id",
@@ -83,29 +90,29 @@ export const router = createBrowserRouter([
     path: "/account",
     element: (
       <PrivatePageGuard>
-        <Outlet/>
+        <Outlet />
       </PrivatePageGuard>
     ),
     children: [
-      {path: '', element: <AccountPage />},
-      {path: 'edit', element: <AccountEditPage/>}
-    ]
+      { path: "", element: <AccountPage /> },
+      { path: "edit", element: <AccountEditPage /> },
+    ],
   },
   {
     path: "/auth",
     element: (
       <SignedInPageGuard>
-        <Outlet/>
+        <Outlet />
       </SignedInPageGuard>
     ),
     children: [
       {
         path: "signin",
-        element: <SignInPage/>
+        element: <SignInPage />,
       },
       {
         path: "signup",
-        element: (<SignUpPage/>),
+        element: <SignUpPage />,
       },
     ],
   },

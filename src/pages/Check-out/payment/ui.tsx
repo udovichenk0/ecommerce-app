@@ -32,7 +32,9 @@ export const Payment = () => {
           </Button>
         }
         nextBtn={
-          <Link to={"/checkout/step3"} className={mainVariant()}>Next Step</Link>
+          <Link to={"/checkout/step3"} className={mainVariant()}>
+            Next Step
+          </Link>
         }
       >
         <Accordion>

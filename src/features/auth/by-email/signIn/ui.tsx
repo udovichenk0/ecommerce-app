@@ -78,9 +78,7 @@ export const AuthSignInForm = () => {
             Forgot password?
           </div>
         </Link>
-        <Button onClick={handleSubmit(startSignInWithEmail)}>
-          Sign In
-        </Button>
+        <Button onClick={handleSubmit(startSignInWithEmail)}>Sign In</Button>
       </div>
     </form>
   )

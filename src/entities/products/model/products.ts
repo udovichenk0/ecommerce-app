@@ -17,7 +17,7 @@ export const createProducts = <RootState, Prefix extends string>(
   const name = "entities/products" as const
   const initialState: ProductsState = {
     products: [],
-    isLoading: true,
+    isLoading: false,
     lastRefKey: null,
     total: 0,
     requestStatus: null,
@@ -26,6 +26,12 @@ export const createProducts = <RootState, Prefix extends string>(
     name: nameAction(name, prefix),
     initialState,
     reducers: {
+      startLoading(state) {
+        state.isLoading = true
+      },
+      endLoading(state) {
+        state.isLoading = false
+      },
       setProducts(state, data: PayloadAction<Product[]>) {
         state.products = data.payload
         state.isLoading = false
@@ -46,6 +52,8 @@ export const createProducts = <RootState, Prefix extends string>(
     mergeProducts: slice.actions.mergeProducts,
     setLastRef: slice.actions.setLastRef,
     setTotal: slice.actions.setTotal,
+    startLoading: slice.actions.startLoading,
+    endLoading: slice.actions.endLoading,
   }
   const products = createSelector(parentSelector, (state) => state.products)
   const lastRefKey = createSelector(parentSelector, (state) => state.lastRefKey)

@@ -3,7 +3,6 @@ import { ButtonHTMLAttributes, ReactNode } from "react"
 
 import { mainVariant } from "./variant"
 
-
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof mainVariant> {

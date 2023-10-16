@@ -27,7 +27,9 @@ export const Profile = ({
               alt={profile.name}
             />
           </div>
-          <Link to={routes.edit} className={mainVariant({size: 'md'})}>Edit Account</Link>
+          <Link to={routes.edit} className={mainVariant({ size: "md" })}>
+            Edit Account
+          </Link>
         </div>
       </div>
       <div className="grid gap-8 pt-20">

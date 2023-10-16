@@ -1,4 +1,4 @@
-import { routes } from "@/shared/config/routes";
+import { routes } from "@/shared/config/routes"
 
 export const links = [
   { title: "Home", link: routes.home },

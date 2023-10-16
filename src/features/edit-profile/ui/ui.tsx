@@ -112,7 +112,10 @@ export const ProfileEditForm = ({
               />
             </div>
             <div className="flex justify-between">
-              <Link to={routes.account} className={mainVariant({intent: 'outline'})}>
+              <Link
+                to={routes.account}
+                className={mainVariant({ intent: "outline" })}
+              >
                 Back to Profile
               </Link>
               <Button

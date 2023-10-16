@@ -1,1 +1,4 @@
-type WithPrefix<Prefix extends string, SliceName extends string> = `${Prefix}/${SliceName}`
+type WithPrefix<
+  Prefix extends string,
+  SliceName extends string,
+> = `${Prefix}/${SliceName}`

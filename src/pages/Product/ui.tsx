@@ -106,7 +106,11 @@ const Product = () => {
                   Lens Width and Frame Size
                 </p>
                 <div className="mb-6">
-                  <MySelector selected={selectedSize} options={product?.sizes} setSelected={setSelectedSize}/>
+                  <MySelector
+                    selected={selectedSize}
+                    options={product?.sizes}
+                    setSelected={setSelectedSize}
+                  />
                 </div>
                 <p className="mb-3 text-base font-bold text-[#818181]">
                   Choose Color

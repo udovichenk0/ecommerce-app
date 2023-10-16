@@ -32,9 +32,9 @@ export const Header = () => {
               isNavOpened={isNavOpened}
             />
           </div>
-            <Link className="hidden h-[65px] w-[179px] xl:block" to={routes.home}>
-              <img src={logo} alt="Logo" className="h-full w-full" />
-            </Link>
+          <Link className="hidden h-[65px] w-[179px] xl:block" to={routes.home}>
+            <img src={logo} alt="Logo" className="h-full w-full" />
+          </Link>
           <nav
             className={`fixed top-0 z-[10] justify-center xl:static ${
               isNavOpened ? "left-0" : "-left-full"
@@ -60,8 +60,15 @@ export const Header = () => {
             <Profile name={profile.name} photo={profile.avatar} />
           ) : (
             <div className="flex gap-5">
-              <Link to={routes.signin}className={mainVariant()}>Sign In</Link>
-              <Link to={routes.signup}className={mainVariant({intent: 'outline'})}>Sign Up</Link>
+              <Link to={routes.signin} className={mainVariant()}>
+                Sign In
+              </Link>
+              <Link
+                to={routes.signup}
+                className={mainVariant({ intent: "outline" })}
+              >
+                Sign Up
+              </Link>
             </div>
           )}
           <BasketSideMenu isOpened={isOpened} setOpen={setOpen} />

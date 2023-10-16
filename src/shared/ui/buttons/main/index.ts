@@ -1,2 +1,2 @@
 export { Button } from "./ui"
-export { mainVariant} from './variant'
+export { mainVariant } from "./variant"

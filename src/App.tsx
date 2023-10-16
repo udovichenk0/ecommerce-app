@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { onAuthStateChanged } from "firebase/auth"
-import { Suspense } from "react"
+import { Suspense, useEffect } from "react"
 // import { useSelector } from "react-redux"
 import { RouterProvider } from "react-router-dom"
 
@@ -14,7 +14,13 @@ import { router } from "./app/route"
 import { store } from "./app/store"
 import { NotificationPopup } from "./entities/notification"
 import { sessionApi, normilizeUser } from "./shared/api/session"
+import { useAction } from "./shared/lib/redux-std"
+import { routerModel } from "./shared/router"
 function App() {
+  const setRouter = useAction(routerModel.setRouter)
+  useEffect(() => {
+    setRouter(router)
+  }, [])
   // const isLoaded = useSelector(sessionModel.selectors.isLoaded)
   // if (!isLoaded)
   //   return (

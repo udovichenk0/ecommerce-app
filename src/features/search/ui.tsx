@@ -1,15 +1,12 @@
 import { Controller, useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
 
-// import { useAction } from "@/shared/lib/redux-std"
-import { SearchInput } from "@/shared/ui/inputs"
+import { useAction } from "@/shared/lib/redux-std"
 
-import { SearchSvg } from "./assets"
-// import { actions } from "./model"
+import { SearchSvg } from "./assets/searchSvg"
+import { searchProductsFx } from "./model"
 
 export const SearchProduct = () => {
-  const navigate = useNavigate()
-  // const search = useAction(actions.startSearchFetching)
+  const search = useAction(searchProductsFx)
   const { handleSubmit, control } = useForm<{ search: string }>({
     defaultValues: {
       search: "",
@@ -17,27 +14,26 @@ export const SearchProduct = () => {
   })
   function onclick(data: { search: string }) {
     if (data.search) {
-      // search(data.search)
-      navigate("/search")
+      search(data.search)
     }
   }
   return (
-    <form
-      className="relative w-full"
-      onSubmit={handleSubmit(onclick)}
-    >
-      <button className="absolute left-0 flex h-[47px] w-[47px] items-center justify-center ">
+    <form className="relative w-full" onSubmit={handleSubmit(onclick)}>
+      <button className="absolute left-0 flex h-[47px] w-[47px] items-center justify-center">
         <SearchSvg />
       </button>
       <Controller
         control={control}
         name={"search"}
         render={({ field: { onChange, onBlur, value, ref } }) => (
-          <SearchInput
+          <input
+            placeholder="Search product..."
+            className="w-full border-[1px] border-[#e1e1e1] px-16 py-2 text-xl outline-none"
+            type="text"
             onChange={onChange}
             onBlur={onBlur}
             value={value}
-            inputRef={ref}
+            ref={ref}
           />
         )}
       />

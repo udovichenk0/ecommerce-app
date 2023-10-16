@@ -15,7 +15,12 @@ export const SignUp = () => {
         title={"Sign up to Salinaka"}
         form={<AuthSignUpForm />}
         button={
-          <Link to={routes.signin} className={mainVariant({intent: 'outline'})}>Sign In</Link>
+          <Link
+            to={routes.signin}
+            className={mainVariant({ intent: "outline" })}
+          >
+            Sign In
+          </Link>
         }
         text="Have an account?"
       >
