@@ -5,22 +5,23 @@ import { Link, LinkProps as ReactRouterLinkProps } from "react-router-dom"
 import { mainVariant } from "./variant"
 
 type BaseProps = VariantProps<typeof mainVariant> & {
-  children: ReactNode,
+  children: ReactNode
 }
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>  & BaseProps & {
-  as?: 'button'
-}
-type LinkProps = ReactRouterLinkProps & RefAttributes<HTMLAnchorElement> & BaseProps & {
-  as: 'link'
-}
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  BaseProps & {
+    as?: "button"
+  }
+type LinkProps = ReactRouterLinkProps &
+  RefAttributes<HTMLAnchorElement> &
+  BaseProps & {
+    as: "link"
+  }
 
 type ButtonOrLinkProps = LinkProps | ButtonProps
 
-export const Button = ({ 
-  ...props
- }: ButtonOrLinkProps) => {
+export const Button = ({ ...props }: ButtonOrLinkProps) => {
   const { children, intent, className, size } = props
-  if(props.as === 'link'){
+  if (props.as === "link") {
     return (
       <Link {...props} className={mainVariant({ intent, size, className })}>
         {children}

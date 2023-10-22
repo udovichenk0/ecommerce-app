@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 
 import { Header } from "@/widgets/header"
 
-import { addToBasketFx, removeFromBasketFx } from "@/features/basket"
+import { addToBasketFx, removeFromBasketFx } from "@/features/manage-basket"
 
 import { basketModel } from "@/entities/basket"
 import { ProductList } from "@/entities/products"

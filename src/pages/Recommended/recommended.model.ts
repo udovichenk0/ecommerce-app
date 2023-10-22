@@ -29,15 +29,15 @@ const pageReducers = combineReducers({
 const getRecommendedProductsFx = createAsyncThunk(
   "pages/recommended-products",
   async (_, { dispatch }) => {
-    const {startLoading, setProducts, endLoading} = $$recommendedProducts.actions
+    const { startLoading, setProducts, endLoading } =
+      $$recommendedProducts.actions
     try {
       dispatch(startLoading())
       const data = await productApi.getRecommendedProducts()
       dispatch(setProducts(data))
     } catch (error) {
-     console.log(error) 
-    }
-    finally {
+      console.log(error)
+    } finally {
       dispatch(endLoading())
     }
   },

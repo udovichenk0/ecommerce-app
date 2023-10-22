@@ -63,7 +63,7 @@ export const Header = () => {
               <Button as="link" to={routes.signin} className="mr-5">
                 Sign In
               </Button>
-              <Button as="link" to={routes.signup} intent={'outline'}>
+              <Button as="link" to={routes.signup} intent={"outline"}>
                 Sign Up
               </Button>
             </>

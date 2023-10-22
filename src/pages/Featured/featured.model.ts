@@ -31,8 +31,7 @@ const getFeatureProductsFx = createAsyncThunk(
       dispatch($$product.actions.setProducts(data))
     } catch (error) {
       console.log(error)
-    }
-    finally {
+    } finally {
       dispatch($$product.actions.endLoading())
     }
   },

@@ -39,7 +39,7 @@ export const Home = () => {
           your pocket. Glasses, sunglasses, and contacts—we have got your eyes
           covered.
         </p>
-        <Button as="link" to={routes.shop} size={'md'}>
+        <Button as="link" to={routes.shop} size={"md"}>
           Shop Now
         </Button>
       </HeroLayout>

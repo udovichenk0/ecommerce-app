@@ -1,7 +1,7 @@
 import { AuthForm } from "@/widgets/auth-form"
 import { Header } from "@/widgets/header"
 
-import { AuthSignInForm } from "@/features/auth"
+import { AuthSignInForm } from "@/features/auth/by-email"
 
 import { Layout } from "@/shared/ui/layouts"
 import { Button } from "@/shared/ui/buttons/main"

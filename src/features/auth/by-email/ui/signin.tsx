@@ -6,10 +6,10 @@ import { Button } from "@/shared/ui/buttons/main"
 import { TextInput } from "@/shared/ui/inputs"
 import { routes } from "@/shared/config/routes"
 
-import { signUpWithEmailFx } from "./signup.modal"
+import { signInWithEmailFx } from "../model/signin"
 
-export const AuthSignUpForm = () => {
-  const startAuth = useAction(signUpWithEmailFx)
+export const AuthSignInForm = () => {
+  const signinWithEmail = useAction(signInWithEmailFx)
   const {
     handleSubmit,
     control,
@@ -19,46 +19,13 @@ export const AuthSignUpForm = () => {
     defaultValues: {
       email: "",
       password: "",
-      fullName: "",
     },
   })
-  const onSubmit = (data: {
-    email: string
-    password: string
-    fullName: string
-  }) => {
-    startAuth({
-      email: data.email,
-      password: data.password,
-      fullName: data.fullName,
-    })
-  }
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(signinWithEmail)}
       className="flex w-full flex-col gap-1"
     >
-      <Controller
-        name="fullName"
-        control={control}
-        rules={{
-          required: "Full name is required",
-        }}
-        render={({ field: { onChange, value, ref, onBlur } }) => {
-          return (
-            <TextInput
-              inputRef={ref}
-              value={value}
-              onChange={onChange}
-              label={"Full name"}
-              placeholder={"John Doe"}
-              error={errors?.fullName}
-              onBlur={onBlur}
-              name={"fullName"}
-            />
-          )
-        }}
-      />
       <Controller
         name="email"
         control={control}
@@ -111,7 +78,7 @@ export const AuthSignUpForm = () => {
             Forgot password?
           </div>
         </Link>
-        <Button onClick={handleSubmit(onSubmit)}>Sign Up</Button>
+        <Button onClick={handleSubmit(signinWithEmail)}>Sign In</Button>
       </div>
     </form>
   )

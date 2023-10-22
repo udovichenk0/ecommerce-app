@@ -20,10 +20,10 @@ export const createProduct = <RootState, Prefix extends string>(
     name: nameAction(name, prefix),
     initialState,
     reducers: {
-      startLoading(state){
+      startLoading(state) {
         state.isLoading = true
       },
-      endLoading(state){
+      endLoading(state) {
         state.isLoading = false
       },
       setProduct(state, data: PayloadAction<Product>) {

@@ -12,7 +12,6 @@ export const addToBasketFx = createAsyncThunk(
     const state = getState() as Record<string, unknown>
     const user = sessionModel.selectors.profile(state)
     try {
-      console.log(product)
       dispatch(basketModel.actions.startFetching())
       const result = await basketApi.addProductToBasket(product, user.uid)
       dispatch(

@@ -1,6 +1,21 @@
-import { GitHubAuth, GoogleAuth } from "@/features/auth"
+import { ReactNode } from "react"
 
-export const AuthForm = ({ children, title, button, text }: any) => {
+import { signInWithGithubFx, signWithGoogleFx } from "@/features/auth/by-oauth"
+
+import { Button } from "@/shared/ui/buttons/main"
+import { useAction } from "@/shared/lib/redux-std"
+
+import { GitHubSvg } from "./assets/github.svg"
+import { GoogleSvg } from "./assets/google.svg"
+type AuthFormProps = {
+  children: ReactNode
+  title: string
+  button: ReactNode
+  text: string
+}
+export const AuthForm = ({ children, title, button, text }: AuthFormProps) => {
+  const authWithGithub = useAction(signInWithGithubFx)
+  const authWithGoogle = useAction(signWithGoogleFx)
   return (
     <div className="flex h-full w-full items-center justify-center">
       <div className="h-auto w-[800px] border-2 border-[#c5c5c5]">
@@ -16,8 +31,23 @@ export const AuthForm = ({ children, title, button, text }: any) => {
             <span className="text-sm font-bold text-[#1a1a1a]">OR</span>
           </div>
           <div className="mt-5 grid grid-cols-2 gap-3 max-[550px]:grid-cols-1 md:mt-0 md:flex md:w-[60%]  md:flex-col">
-            <GitHubAuth />
-            <GoogleAuth />
+            <Button
+              className="flex items-center justify-between"
+              size={"md"}
+              onClick={authWithGithub}
+            >
+              <GitHubSvg />
+              Continue with GitHub
+            </Button>
+            <Button
+              intent={"outline"}
+              className="flex items-center justify-between"
+              size={"md"}
+              onClick={authWithGoogle}
+            >
+              <GoogleSvg />
+              Continue with Google
+            </Button>
           </div>
         </div>
         <div className=" flex h-16 w-full items-center justify-center gap-7 border-t-2 border-[#c5c5c5] bg-lgrey">

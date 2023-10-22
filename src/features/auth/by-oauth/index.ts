@@ -1,2 +1,2 @@
-export * from "./by-github"
-export * from "./by-google"
+export * from "./model/github"
+export * from "./model/google"
